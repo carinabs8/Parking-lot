@@ -1,0 +1,35 @@
+#error {
+    background: transparent url(../images/encore/error.gif) no-repeat 15px 10px;
+}
+#messages { width: 100%; margin-bottom: 10px; }
+.message {
+    font-size: 1em;
+    padding: 10px 15px 10px 40px;
+    margin-bottom: 10px;
+    border-style: solid;
+    border-width: 1px;
+    background-repeat: no-repeat;
+    background-position: 10px 10px;
+}
+#msgError {
+    background-color: #fda790;
+    background-image: url(../images/encore/ico/icoError.png);
+    border-color: #bc3826;
+}
+#msgInfo {
+    background-color: #cde5ec;
+    background-image: url(../images/encore/ico/icoInfo.png);
+    border-color: #408abd;
+}
+#msgConfirm {
+    background-color: #d4f28c;
+    background-image: url(../images/encore/ico/icoConfirm.png);
+    border-color: #b2c722;
+}
+#msgWarning {
+    background-color: #fff89d;
+    background-image: url(../images/encore/ico/icoWarning.png);
+    border-color: #9c894a;
+}
+
+/* Main content */

@@ -1,0 +1,61 @@
+<!-- start main -->
+<div id="main" class="clear">
+
+  <div id="head" class="clear">
+    <h1>Mapa do Estacionamento</h1>
+    <div id="actions">
+      <%#= link_to 'Novo Conteúdo', new_conteudo_path, :class => "button primary" if can? "conteudo-visualizar" %>
+    </div>
+  </div>
+
+  <!-- start top table options -->
+  <div id="topOptions" class="clear">
+    <%#= page_entries_info @conteudos, :entry_name => 'registro' %>
+  </div>
+  <!-- end top table options -->
+
+  <%= raw show_msg(flash[:success], :success) %>
+  <%= raw show_msg(flash[:error], :errors) %>
+  
+  <p class="upload_edit" id="upload_edit">
+    
+  </p>
+
+  <%=image_tag @map.photo.url(:small)%>
+  
+  <div id="map" title="Estacionamento" style="display:none;">
+    <%= render 'maps/partials/form', :map => @map, :legend => "Alterar Mapa"%>
+  </div>
+</div>
+<!-- end main -->
+
+<div id="sidebar">
+  <!-- start filters sidebox -->
+  <div id="boxFirst" class="sidebox clear">
+    <h2>Ferramentas</h2>
+    <div>
+      <a href="javascript:history.go(-1);">Voltar</a>
+      |
+      <%= link_to "A estrutura do estacionamento mudou? Então altere aqui.", "#", :onclick => "jQuery('#map').dialog({ modal: true, width: 720, position: 'top' });" %>
+    </div>
+  </div>
+  <div id="boxFirst" class="sidebox clear">
+    <h2>Vagas</h2>
+    <%@vagas.each do |vaga|%>
+      <p><%#= link_to image_tag('encore/ico/icoDelete.png')+"#{vaga.codigo}", "#", :onclick => "jQuery(this).draggable().pageX;" %></p>
+      <p>
+        <%if vaga.status == false%>
+          <%= link_to image_tag('encore/ico/icoStatusRed.png')+"#{vaga.codigo}", "#", :onclick => "get_and_save_coordenates('vaga-#{vaga.codigo}',#{vaga.id});", :id=>"vaga-#{vaga.codigo}" %>
+        <%else%>
+          <%= link_to image_tag('encore/ico/icoStatusGreen.png')+"#{vaga.codigo}", "#", :onclick => "get_and_save_coordenates('vaga-#{vaga.codigo}',#{vaga.id});", :id=>"vaga-#{vaga.codigo}" %>
+        <%end%>
+      </p>
+      <div id="salva-vaga-<%=vaga.codigo%>"></div>
+      <script>//jQuery("#vaga-<%=vaga.codigo%>").offset({ top: <%=vaga.eixo_y%>, left: <%=vaga.eixo_x%> });</script>
+      <script>$("#vaga-<%=vaga.codigo%>").offset({ top: <%=vaga.eixo_x%>, left: <%=vaga.eixo_y%> });</script>
+    <%end%>
+  </div>
+  <!-- end filters sidebox -->
+
+</div>
+<!-- end sidebar -->

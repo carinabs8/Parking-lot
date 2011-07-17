@@ -1,0 +1,33 @@
+<!-- start main -->
+<div id="main" class="clear">
+
+  <%= raw show_msg(notice, :success) %>
+
+  <div id="head" class="clear">
+    <h1><%= @vaga.codigo %></h1>
+  </div>
+  <div class="textContent full clear">
+    <p>Código: <%= @vaga.codigo %></p>
+    <p>Mapa: <%= @vaga.map.codigo unless @vaga.map.nil?%> <%= "Sem mapa associado." if @vaga.map.nil?%></p>
+    <p>Status: <%= "ativa" if @vaga.status %> <%= "desativada" if !@vaga.status %></a></p>
+    <p>Situação: <%= "Reservada para deficientes físicos" if @vaga.especial %> <%= "Vaga normal" if !@vaga.especial %></a></p>
+    
+  </div>
+
+</div>
+<!-- end main -->
+
+<!-- start sidebar -->
+<div id="sidebar">
+  <!-- start context help sidebox -->
+  <div id="help" class="sidebox">
+    <h1>Ferramentas</h1>
+
+    <div class="boxContent clear">
+      <%= link_to 'Editar', edit_vaga_path(@vaga.codigo) %> |
+      <%= link_to 'Voltar', vagas_path %>
+    </div>
+  </div>
+  <!-- end context help sidebox -->
+</div>
+<!-- end sidebar -->

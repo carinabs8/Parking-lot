@@ -1,0 +1,28 @@
+<%= form_for map, :html => {:class => "mainForm clear", :id => "formEditor", :multipart => true} do |m| %>
+  <p id="asterisk"><span class="star">*</span> Campos obrigatórios.</p>
+  <fieldset>
+  <legend><span><%=legend%></span></legend>
+    <div class="field clear">
+      <label for="txtName">Código: <span class="star">*</span></label>
+      <%= m.text_field(:codigo, :class => "text long")%>
+      <a class="hint" href="#">
+        <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
+        <span>É necessário informar o código.</span>
+      </a>
+    </div>
+    
+    <div class="field clear">
+      <label for="txtName">Foto: <span class="star">*</span></label>
+      <%= m.file_field :photo, :size => 55 ,:class =>"file"%>
+      <a class="hint" href="#">
+        <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
+        <span>É necessário informar o mapa.</span>
+      </a>
+    </div>
+  </fieldset> 
+  
+  <div class="formActions clear"> 
+    <input id="btnSubmit" name="btnSubmit" class="button primary" type="submit" value="Salvar"/> 
+    <input id="btnCancel" class="button secondary" type="button" value="Cancelar" onclick = "jQuery('#map').dialog('close');"/>
+  </div>
+<%end%>

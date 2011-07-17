@@ -1,0 +1,53 @@
+<%= will_paginate @maps %>
+<!-- start main -->
+<div id="main" class="clear">
+
+  <div id="head" class="clear">
+    <h1>Mapas</h1>
+    <div id="actions">
+      <%= link_to "Faça o upload do mapa do seu estacionamento", "#", :onclick => "jQuery('#map').dialog({ modal: true, width: 720, position: 'top' });" %>
+      <div id="map" title="Estacionamento" style="display:none;">
+        <%= render 'maps/partials/form', :map => @map, :legend => "Cadastro de Mapa"%>
+      </div>
+    </div>
+  </div>
+
+  <!-- start top table options -->
+  <div id="topOptions" class="clear">
+    <%= page_entries_info @maps, :entry_name => 'registro' %>
+  </div>
+  <!-- end top table options -->
+  
+  <%= raw show_msg(flash[:success], :success) %>
+  <%= raw show_msg(flash[:error], :errors) %>
+
+  <%= render :partial => "maps/partials/informacoes", :locals => {:maps => @maps}%>
+
+  <% if !@maps.nil? && @maps.length == 0 %>
+      <%= raw show_msg("Nenhuma vaga foi encontrada.", :warning) %>
+  <% end %>
+
+</div>
+<!-- end main -->
+
+<!-- start sidebar -->
+<div id="sidebar">
+  <!-- start filters sidebox -->
+  <div id="boxFirst" class="sidebox clear">
+    <h1>Buscar</h1>
+    <div class="boxContent clear">
+      <%form_for :search, @search, :html => {:method => :get, :class => "sideForm"} do |b|%>
+        <fieldset>
+          <div class="field clear">
+            <%=b.label  "Código"%>
+            <%=b.text_field :codigo_contains, :class => "full"%> 
+          </div> 
+        </fieldset>
+          <%=b.submit "Buscar", :class => "button secondary"%>
+        <%end%>
+      </div>
+  </div>
+  <!-- end filters sidebox -->
+
+</div>
+<!-- end sidebar -->

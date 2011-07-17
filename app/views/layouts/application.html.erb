@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" dir="ltr">
+<head>
+  <title>Controle de Vagas</title>
+  <!-- start HTML tags -->
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="content-language" content="pl"/>
+  <!-- end HTML tags -->
+  <%#= javascript_include_tag "jquery/jquery-1.6.1.min" %>
+  <%= javascript_include_tag "jquery/jquery-1.4.4.min" %>
+  <%= javascript_include_tag "jquery/jquery-ui-1.8.9.custom.min" %>
+  <%= javascript_include_tag "jquery/jquery.ui.tabs" %>
+  <%= javascript_include_tag "jquery/jquery.ui.tabs.min" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "rails" %>
+  <%= csrf_meta_tag %>
+
+  <!-- start obligatory styles -->
+
+  <%= stylesheet_link_tag 'layout' %>
+  <!-- end obligatory styles -->
+
+  <!-- 1. change the skin color here by replacing <colorname>.css (available skins: black, blue, orange, wine) -->
+  <%= stylesheet_link_tag 'skin/black' %>
+
+  <%= stylesheet_link_tag 'global' %>
+
+  <!-- 2. if you want boxes to have rounded corners, uncomment the style declaration below: -->
+  <!-- (note: rounded corners are displayed only by browsers supporting CSS3) -->
+  <%= stylesheet_link_tag 'rounded' %>
+  <%= stylesheet_link_tag 'jquery-ui-1.8.9.custom' %>
+  <%= stylesheet_link_tag 'jquery.ui.autocomplete' %>
+  <%= stylesheet_link_tag 'calendar' %>
+
+</head>
+
+<!-- 1. you may use body ID to make different CSS styles for different pages -->
+<!-- 2. body class: use "withoutSubnav" - when page doesn't have a submenu -->
+<!--                or  "withSubnav" - when your menu has some subitems -->
+<body id="pageDashboard" class="withoutSubnav">
+
+<!-- start wrapper -->
+<div id="wrapper">
+
+  <!-- start top -->
+  <div id="top">
+
+    <!-- start title -->
+    <div id="title" class="clear">
+      <a href="#">Sistema de Controle de Vagas</a>
+      <span>|</span>
+    </div>
+    <!-- end title -->
+
+    <!-- start menu -->
+    <div id="menu" class="clear">
+      <ul>
+        <li class="<%= is_active? "parkings" %>"><%=link_to "Home", "/"%></li>
+        <li class="<%= is_active? "vagas" %>"><%=link_to "Vagas", vagas_path%></li>
+        <li class="<%= is_active? "relatorios" %>"><%=link_to "Relatórios", relatorios_path%></li>
+      </ul>
+    </div>
+    <!-- end menu -->
+
+    <!-- start toolbar -->
+    <div id="toolbar" class="clear">
+      <p id="user">
+      <%# if logged_in? %>
+        Logado como
+        <a href="/users/<%#= current_user.id %>">
+          Fulano
+          <%#= current_user.login %>
+        </a>
+        <%# end %>
+      </p>
+
+      <div id="buttons">
+        <a href="#" class="button tool">Perfis</a>
+        <a href="/logout" class="button tool">Logout</a>
+      </div>
+    </div>
+    <!-- end toolbar -->
+
+  </div>
+  <!-- end top -->
+
+  <!-- start content -->
+  <div id="content" class="clear">
+    <%= yield %>
+  </div>
+  <!-- end content -->
+
+  <!-- start push (allows footer stay at the bottom) -->
+  <div id="push">&nbsp;</div>
+  <!-- end push -->
+
+</div>
+<!-- end wrapper -->
+
+<!-- start footer -->
+<div id="footer">
+  <div id="wrapFooter">
+    <p id="copyright">Copyright &copy; by Carina Brito. Todos os direitos reservados.</p>
+  </div>
+</div>
+<!-- end footer -->
+
+</body>
+</html>

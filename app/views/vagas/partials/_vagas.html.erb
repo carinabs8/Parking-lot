@@ -1,0 +1,25 @@
+<table id="tableItems" class="clear" cellpadding="0" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th style="width:565px;text-align:left;">ID</th>
+      <th style="width:565px;text-align:left;">Código</th>
+      <th style="width:565px;text-align:left;">Mapa</th>
+      <th colspan="2" style="width: 60px;">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% vagas.each do |vaga| %>
+      <tr class="<%= cycle('even', 'odd') %>">
+        <td><%= link_to vaga.id, vaga_path(vaga.codigo) %></td>
+        <td style="text-align:left;"><%= vaga.codigo %></td>
+        <td style="text-align:left;"><%= vaga.map.codigo unless vaga.map.nil?%> <%= "Sem mapa associado." if vaga.map.nil?%></td>
+        <td>
+          <%= link_to image_tag("encore/ico/icoEdit.png"), edit_vaga_path(vaga.codigo), :id=> "alterar_vaga" %>
+        </td>
+        <td>
+          <%= link_to image_tag('encore/ico/icoDelete.png'), vaga, :confirm => "Tem certeza que deseja excluir?", :method => :delete, :id=> "excluir_client" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
