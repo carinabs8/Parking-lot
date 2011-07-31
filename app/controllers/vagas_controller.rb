@@ -6,7 +6,7 @@ class VagasController < ApplicationController
   end
   
   def show
-    @vaga = Vaga.find(:first, :conditions => ["codigo = ?", params[:id]])
+    @vaga = Vaga.where(:codigo => params[:id]).first
   end
   
   def new
@@ -14,7 +14,7 @@ class VagasController < ApplicationController
   end
   
   def edit
-    @vaga = Vaga.find(:first, :conditions => ["codigo = ?", params[:id]])
+    @vaga = Vaga..where(:codigo => params[:id]).first
   end
   
   def update
