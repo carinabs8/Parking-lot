@@ -29,13 +29,8 @@ class VagasController < ApplicationController
   
   def update_coordendas
     @vaga = Vaga.find(params[:vaga_id])
-    puts @vaga.inspect
-    puts params[:eixo_x]
-    puts params[:eixo_y]
     @vaga.eixo_x = params[:eixo_x]
     @vaga.eixo_y = params[:eixo_y]
-    
-    puts @vaga.inspect
     @vaga.save!
     
     render 'update_coordendas', :layout => false
