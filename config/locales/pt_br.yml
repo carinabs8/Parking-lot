@@ -1,0 +1,12 @@
+pt_br:
+  activerecord:
+    errors:
+      models:
+        vaga:
+          attributes:
+            codigo:
+              taken: "Já existe uma vaga com esse código"
+            map_id:
+              blank: "Mapa inválido"
+    
+  
