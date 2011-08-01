@@ -3,7 +3,7 @@
 
 $(document).ready(function(){
   $("#upload").click(function(){
-    $("#map").dialog({ modal: true, width: 720, position: 'top' });
+    $("#map").dialog({ modal: true, width: 720, position: 'center' });
   })
 })
 function get_and_save_coordenates(vaga, vaga_id) {
