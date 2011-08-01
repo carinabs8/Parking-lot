@@ -1,3 +1,6 @@
+public/system/*
+config/database.yml
+config/database01.yml
 .redcar/*
 .bundle
 db/*.sqlite3
