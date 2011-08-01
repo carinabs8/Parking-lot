@@ -14,7 +14,7 @@ class VagasController < ApplicationController
   end
   
   def edit
-    @vaga = Vaga..where(:codigo => params[:id]).first
+    @vaga = Vaga.where(:codigo => params[:id]).first
   end
   
   def update
