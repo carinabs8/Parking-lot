@@ -5,7 +5,7 @@
   <div id="head" class="clear">
     <h1>Mapas</h1>
     <div id="actions">
-      <%= link_to "Faça o upload do mapa do seu estacionamento", "#", :onclick => "jQuery('#map').dialog({ modal: true, width: 720, position: 'top' });" %>
+      <%= link_to "Faça o upload do mapa do seu estacionamento", "#", :id => 'upload' %>
       <div id="map" title="Estacionamento" style="display:none;">
         <%= render 'maps/partials/form', :map => @map, :legend => "Cadastro de Mapa"%>
       </div>
@@ -40,8 +40,8 @@
         <fieldset>
           <div class="field clear">
             <%=b.label  "Código"%>
-            <%=b.text_field :codigo_contains, :class => "full"%> 
-          </div> 
+            <%=b.text_field :codigo_contains, :class => "full"%>
+          </div>
         </fieldset>
           <%=b.submit "Buscar", :class => "button secondary"%>
         <%end%>
