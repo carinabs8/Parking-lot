@@ -19,7 +19,7 @@ class VagasController < ApplicationController
   
   def update
     @vaga = Vaga.find(params[:id])
-    if @vaga.update_attributes(params[:vaga])      
+    if @vaga.update_attributes(params[:vaga])
       flash[:success] = "Vaga atualizada com sucesso!"
       redirect_to vagas_path
     else
@@ -37,13 +37,17 @@ class VagasController < ApplicationController
   end
   
   def create
+    map = Map.where(:codigo => params[:vaga][:map_id]).first
     @vaga = Vaga.new(params[:vaga])
-    
+    if map.nil?
+      @vaga.map = nil
+      @vaga.errors[:map_id] << "Entre com um mapa valido"
+    end
     if @vaga.save
       flash[:notice] = 'Vaga cadastrada com sucesso!'
       redirect_to vagas_url
     else
-      redirect_to new_vaga_path
+      render :new
     end
   end
   

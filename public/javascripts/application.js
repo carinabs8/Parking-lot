@@ -5,6 +5,9 @@ $(document).ready(function(){
   $("#upload").click(function(){
     $("#map").dialog({ modal: true, width: 720, position: 'center' });
   })
+  $("#auto_complet_map").autocomplete(
+    { source: "/auto_complete/maps_list.json" }
+  );
 })
 function get_and_save_coordenates(vaga, vaga_id) {
   var vaga = vaga

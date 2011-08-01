@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   def show_error_in_form(text)
-    "<p class=\"error clear\">#{text}</p>" unless text.nil?
+    "<p class=\"error clear\">#{text}</p>" unless text.nil? || text.blank?
   end
   
 end

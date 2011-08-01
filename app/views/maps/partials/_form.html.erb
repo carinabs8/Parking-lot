@@ -1,4 +1,4 @@
-<%= form_for map, :html => {:class => "mainForm clear", :id => "formEditor", :multipart => true} do |m| %>
+<%= form_for map, :as => map, :html => {:class => "mainForm clear", :id => "formEditor", :multipart => true} do |m| %>
   <p id="asterisk"><span class="star">*</span> Campos obrigatórios.</p>
   <fieldset>
   <legend><span><%=legend%></span></legend>
@@ -19,10 +19,10 @@
         <span>É necessário informar o mapa.</span>
       </a>
     </div>
-  </fieldset> 
+  </fieldset>
   
-  <div class="formActions clear"> 
-    <input id="btnSubmit" name="btnSubmit" class="button primary" type="submit" value="Salvar"/> 
+  <div class="formActions clear">
+    <input id="btnSubmit" name="btnSubmit" class="button primary" type="submit" value="Salvar"/>
     <input id="btnCancel" class="button secondary" type="button" value="Cancelar" onclick = "jQuery('#map').dialog('close');"/>
   </div>
 <%end%>
