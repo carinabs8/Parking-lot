@@ -27,22 +27,23 @@ class VagasController < ApplicationController
     end
   end
   
+  def coordenates
+    @vaga = Vaga.find(params[:id])
+  end
+  
   def update_coordendas
     @vaga = Vaga.find(params[:vaga_id])
     @vaga.eixo_x = params[:eixo_x]
     @vaga.eixo_y = params[:eixo_y]
     @vaga.save!
-    
-    render 'update_coordendas', :layout => false
+    puts @bu.inspect
+    render :partial => "update_coordendas", :layout => false
   end
   
   def create
     map = Map.where(:codigo => params[:vaga][:map_id]).first
     @vaga = Vaga.new(params[:vaga])
-    if map.nil?
-      @vaga.map = nil
-      @vaga.errors[:map_id] << "Entre com um mapa valido"
-    end
+    @vaga.map_id = map.nil? ? nil : map.id
     if @vaga.save
       flash[:notice] = 'Vaga cadastrada com sucesso!'
       redirect_to vagas_url

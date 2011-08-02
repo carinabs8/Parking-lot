@@ -36,18 +36,17 @@
     <div>
       <a href="javascript:history.go(-1);">Voltar</a>
       |
-      <%= link_to "A estrutura do estacionamento mudou? Então altere aqui.", "#", :onclick => "jQuery('#map').dialog({ modal: true, width: 720, position: 'top' });" %>
+      <%= link_to "A estrutura do estacionamento mudou? Então altere aqui.", "#", :id => "dialog_modal" %>
     </div>
   </div>
   <div id="boxFirst" class="sidebox clear">
     <h2>Vagas</h2>
-    <%@vagas.each do |vaga|%>
-      <p><%#= link_to image_tag('encore/ico/icoDelete.png')+"#{vaga.codigo}", "#", :onclick => "jQuery(this).draggable().pageX;" %></p>
+    <%@map.vagas.each do |vaga|%>
       <p>
         <%if vaga.status == false%>
-          <%= link_to image_tag('encore/ico/icoStatusRed.png')+"#{vaga.codigo}", "#", :onclick => "get_and_save_coordenates('vaga-#{vaga.codigo}',#{vaga.id});", :id=>"vaga-#{vaga.codigo}" %>
+          <%= link_to image_tag('encore/ico/icoStatusRed.png')+"#{vaga.codigo}", "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}" %>
         <%else%>
-          <%= link_to image_tag('encore/ico/icoStatusGreen.png')+"#{vaga.codigo}", "#", :onclick => "get_and_save_coordenates('vaga-#{vaga.codigo}',#{vaga.id});", :id=>"vaga-#{vaga.codigo}" %>
+          <%= link_to image_tag('encore/ico/icoStatusGreen.png')+"#{vaga.codigo}", "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}" %>
         <%end%>
       </p>
       <div id="salva-vaga-<%=vaga.codigo%>"></div>

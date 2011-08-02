@@ -24,7 +24,6 @@ class MapsController < ApplicationController
       flash[:success] = "Mapa salvo com sucesso!"
       redirect_to map_path(@map.codigo)
     else
-      puts @map.errors
       flash[:error] = "Mapa ou Codigo com formato invalido!"
       redirect_to maps_path
     end

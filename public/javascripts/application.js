@@ -2,22 +2,21 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(document).ready(function(){
-  $("#upload").click(function(){
+  $("#dialog_modal").click(function(){
     $("#map").dialog({ modal: true, width: 720, position: 'center' });
   })
   $("#auto_complet_map").autocomplete(
     { source: "/auto_complete/maps_list.json" }
   );
 })
-function get_and_save_coordenates(vaga, vaga_id) {
-  var vaga = vaga
+function get_and_save_coordenates(codigo, vaga_id) {
+  var codigo = codigo
   var vaga_id = vaga_id
-  //var position = jQuery("#"+vaga).position();
-  jQuery("#"+vaga).draggable();
-  jQuery("#"+vaga).bind('mouseenter mouseleave',function(e){
+  jQuery("#vaga-"+codigo).draggable();
+  jQuery("#vaga-"+codigo).bind('mouseenter mouseleave',function(e){
     var positionX = this.offsetTop;
     var positionY = this.offsetLeft;
-    $("#salva-"+vaga).load('/vagas/update_coordendas/'+vaga_id + "/" + positionX +"/"+ positionY);
+    $("#salva-vaga-"+codigo).load("/vagas/update_coordendas/"+vaga_id + "/" + positionX +"/"+ positionY);
   });
 }
 

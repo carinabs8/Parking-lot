@@ -5,6 +5,8 @@ ProjetoFinal::Application.routes.draw do
   resources :maps
   resources :vagas
   resources :relatorios
+
+  match '/vagas/:id/coordenates' => 'vagas#coordenates'
   match '/vagas/update_coordendas/:vaga_id/:eixo_x/:eixo_y' => 'vagas#update_coordendas'
   
   # The priority is based upon order of creation:
