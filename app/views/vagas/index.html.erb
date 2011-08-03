@@ -32,16 +32,16 @@
   <div id="boxFirst" class="sidebox clear">
     <h1>Buscar</h1>
     <div class="boxContent clear">
-      <%form_for :search, @search, :html => {:method => :get, :class => "sideForm"} do |b|%>
+      <%=form_for @search, :as => :search, :html => {:method => :get, :class => "sideForm"} do |b|%>
         <fieldset>
           <div class="field clear">
             <%=b.label  "Código"%>
-            <%=b.text_field :codigo_contains, :class => "full"%> 
+            <%=b.text_field :codigo_contains, :class => "full"%>
             <%=b.label  "Ativo?"%>
-            <%=b.check_box :status_eq, :class => "full"%> 
+            <%=b.check_box :status_eq,:checked =>true, :class => "full"%>
             <%=b.label  "Especial?"%>
-            <%=b.check_box :especial_eq, :class => "full"%> 
-          </div> 
+            <%=b.check_box :especial_eq, :class => "full"%>
+          </div>
         </fieldset>
           <%=b.submit "Buscar", :class => "button secondary"%>
         <%end%>
