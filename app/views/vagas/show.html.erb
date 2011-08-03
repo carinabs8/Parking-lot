@@ -8,9 +8,9 @@
   </div>
   <div class="textContent full clear">
     <p>Código: <%= @vaga.codigo %></p>
-    <p>Mapa: <%= @vaga.map.codigo unless @vaga.map.nil?%> <%= "Sem mapa associado." if @vaga.map.nil?%></p>
-    <p>Status: <%= "ativa" if @vaga.status %> <%= "desativada" if !@vaga.status %></a></p>
-    <p>Situação: <%= "Reservada para deficientes físicos" if @vaga.especial %> <%= "Vaga normal" if !@vaga.especial %></a></p>
+    <p>Mapa: <%= @vaga.map.nil? ? "Sem mapa associado." : @vaga.map.codigo %></p>
+    <p>Status: <%=  @vaga.status ? "ativa" : "desativada" %></a></p>
+    <p>Situação: <%= @vaga.especial ? "Reservada para deficientes físicos" : "Vaga normal" %></a></p>
     
   </div>
 
