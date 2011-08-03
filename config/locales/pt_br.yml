@@ -8,5 +8,9 @@ pt_br:
               taken: "Já existe uma vaga com esse código"
             map_id:
               blank: "Mapa inválido"
-    
-  
+
+  helpers:
+    label:
+      vaga:
+        status: "Está ativa?"
+        especial: "É especial?"
