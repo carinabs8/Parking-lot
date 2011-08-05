@@ -66,13 +66,12 @@
     <!-- start toolbar -->
     <div id="toolbar" class="clear">
       <p id="user">
-      <%# if logged_in? %>
+      <% if logged_in? %>
         Logado como
         <a href="/users/<%#= current_user.id %>">
-          Fulano
-          <%#= current_user.login %>
+          <%= current_user.login %>
         </a>
-        <%# end %>
+        <% end %>
       </p>
 
       <div id="buttons">

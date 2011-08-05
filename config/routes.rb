@@ -1,9 +1,14 @@
 ProjetoFinal::Application.routes.draw do
+  root  :to =>  'maps#index'
+  resources :user_sessions
   get "user_sessions/new"
+  match 'login' => "user_sessions#new", :as => :login
+  match 'logout' => "user_sessions#destroy", :as => :logout
+  
+  resource :account, :controller => "users"
+  resources :users
 
   get "auto_complete/maps_list"
-
-  root  :to =>  'maps#index'
   resources :maps
   resources :vagas
   resources :relatorios
