@@ -1,8 +1,11 @@
 source 'http://rubygems.org'
 gem 'rails', '3.0.3'
+gem 'authlogic'
+gem 'rails3-generators'
 gem "will_paginate", "3.0.pre2"
 gem "meta_search"
 gem "paperclip", "2.3.8"
+gem "serialport", "~> 1.0.4"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'pg'
