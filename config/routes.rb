@@ -1,4 +1,6 @@
 ProjetoFinal::Application.routes.draw do
+  get "user_sessions/new"
+
   get "auto_complete/maps_list"
 
   root  :to =>  'maps#index'
