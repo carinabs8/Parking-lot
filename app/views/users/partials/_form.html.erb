@@ -1,0 +1,39 @@
+<div class="field clear">
+  <label for="user_login">Login: <span class="star">*</span></label>
+  <%= u.text_field :login, :class => "text long" %>
+  <a class="hint" href="#">
+    <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
+    <span>É necessário informar o login.</span>
+  </a>
+  <%= raw show_error_in_form(@user.errors[:login])%>
+</div>
+
+<div class="field clear">
+  <label for="user_email">E-mail: <span class="star">*</span></label>
+  <%= u.text_field :email, :class => "text long" %>
+  <a class="hint" href="#">
+    <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
+    <span>É necessário informar o e-mail.</span>
+  </a>
+  <%= raw show_error_in_form(@user.errors[:email])%>
+</div>
+
+<div class="field clear">
+  <label for="user_password">Password: <span class="star">*</span></label>
+  <%= u.password_field :password, :class => "text long" %>
+  <a class="hint" href="#">
+    <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
+    <span>É necessário informar o password.</span>
+  </a>
+  <%= raw show_error_in_form(@user.errors[:password])%>
+</div>
+
+<div class="field clear">
+  <label for="user_password_confirmation">Confirmar Password: <span class="star">*</span></label>
+  <%= u.password_field :password_confirmation, :class => "text long" %>
+  <a class="hint" href="#">
+    <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
+    <span>É necessário confirmar o password.</span>
+  </a>
+  <%= raw show_error_in_form(@user.errors[:password_confirmation])%>
+</div>

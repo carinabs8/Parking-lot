@@ -1,0 +1,11 @@
+<%= form_for @user, :as => @user, :url => account_path, :html => {:class => "mainForm clear", :id => "formEditor", :multipart => true} do |u| %>
+  <p id="asterisk"><span class="star">*</span> Campos obrigatórios.</p>
+  <fieldset>
+    <legend><span>Cadastro</span></legend>
+    <%= render :partial => "users/partials/form", :locals => {:u => u}%>
+  </fieldset>
+  
+  <div class="formActions clear">
+    <%= u.submit "Cadastrar-se", :class => "button primary" %>
+  </div>
+<%end%>
