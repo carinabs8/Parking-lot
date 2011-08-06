@@ -65,19 +65,23 @@
 
     <!-- start toolbar -->
     <div id="toolbar" class="clear">
-      <p id="user">
       <% if logged_in? %>
+      <p id="user">
         Logado como
         <a href="/users/<%#= current_user.id %>">
-          <%= current_user.login %>
-        </a>
-        <% end %>
-      </p>
-
-      <div id="buttons">
-        <a href="#" class="button tool">Perfis</a>
-        <a href="/logout" class="button tool">Logout</a>
-      </div>
+            <%= current_user.login %>
+          </a>
+        </p>
+        <div id="buttons">
+          <a href="#" class="button tool">Perfis</a>
+          <a href="/logout" class="button tool">Logout</a>
+        </div>
+      <% else %>
+        <div id="buttons">
+          <a href="/login" class="button tool">Login</a>
+          <a href="/account" class="button tool">Enjoy</a>
+        </div>
+      <% end %>
     </div>
     <!-- end toolbar -->
 
