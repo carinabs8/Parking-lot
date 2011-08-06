@@ -5,12 +5,51 @@ pt_br:
         vaga:
           attributes:
             codigo:
-              taken: "Já existe uma vaga com esse código"
+              taken: Já existe uma vaga com esse código
             map_id:
-              blank: "Mapa inválido"
+              blank: Mapa inválido
+
+        user:
+          attributes:
+            login:
+              too_short: Muito Curto
+              blank: Não pode ser em branco
+              invalid: Inválido
+              not_found: Não encontrado
+              taken: Já existe no sistema
+
+            email:
+              invalid: Inválido
+              too_short: Muito Curto
+              taken: Já existe no sistema
+
+            password:
+              too_short: Muito Curto
+              blank: Não pode ser em branco
+              invalid: Inválido
+              confirmation: Inconsistente com a confirmação
+
+            password_confirmation:
+              too_short: Muito Curto
 
   helpers:
     label:
       vaga:
         status: "Está ativa?"
         especial: "É especial?"
+
+  authlogic:
+    error_messages:
+      consecutive_failed_logins_limit_exceeded: "Consecutive failed logins limit exceeded, account is disabled."
+      not_active: Your account is not active
+      not_confirmed: Your account is not confirmed
+      not_approved: Your account is not approved
+      no_authentication_details: You did not provide any details for authentication.
+    models:
+      user_session:
+    attributes:
+      user_session:
+        login: login
+        email: email
+        password: password
+        remember_me: remember me
