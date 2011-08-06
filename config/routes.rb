@@ -4,7 +4,7 @@ ProjetoFinal::Application.routes.draw do
   get "user_sessions/new"
   match 'login' => "user_sessions#new", :as => :login
   match 'logout' => "user_sessions#destroy", :as => :logout
-  
+
   resource :account, :controller => "users"
   resources :users
 

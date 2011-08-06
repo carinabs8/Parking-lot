@@ -1,3 +1,5 @@
 class UserSession < Authlogic::Session::Base
-  new_record? ? nil : [self.send(self.class.primary_key)]
+  def to_key
+    new_record? ? nil : [self.send(self.class.primary_key)]
+  end
 end
