@@ -33,6 +33,7 @@ GEM
     authlogic (2.1.6)
       activesupport
     builder (2.1.2)
+    cancan (1.6.5)
     capistrano (2.6.0)
       highline
       net-scp (>= 1.0.0)
@@ -112,6 +113,7 @@ PLATFORMS
 
 DEPENDENCIES
   authlogic
+  cancan
   capistrano
   meta_search
   paperclip (= 2.3.8)

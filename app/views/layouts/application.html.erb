@@ -57,8 +57,10 @@
     <div id="menu" class="clear">
       <ul>
         <li class="<%= is_active? "parkings" %>"><%=link_to "Home", "/"%></li>
-        <li class="<%= is_active? "vagas" %>"><%=link_to "Vagas", vagas_path%></li>
-        <li class="<%= is_active? "relatorios" %>"><%=link_to "Relatórios", relatorios_path%></li>
+        <% if can? :manage, "vaga", "relatorios" %>
+          <li class="<%= is_active? "vagas" %>"><%=link_to "Vagas", vagas_path%></li>
+          <li class="<%= is_active? "relatorios" %>"><%=link_to "Relatórios", relatorios_path%></li>
+        <%end%>
       </ul>
     </div>
     <!-- end menu -->

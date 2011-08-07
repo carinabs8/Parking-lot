@@ -1,4 +1,5 @@
 class MapsController < ApplicationController
+
   def index
     @search = Map.search(params[:search])
     @maps = @search.paginate(:all, :page => params[:page], :order =>"updated_at DESC")

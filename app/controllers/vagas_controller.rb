@@ -1,5 +1,6 @@
 class VagasController < ApplicationController
-
+  before_filter :require_user
+  
   def index
     @search = Vaga.search(params[:search])
     @vagas = @search.paginate(:all, :page => params[:page], :order =>"updated_at DESC")
