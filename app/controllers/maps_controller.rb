@@ -1,5 +1,5 @@
 class MapsController < ApplicationController
-  before_filter :require_user, :only => [:new, :create, :update, :destroy]
+  before_filter :require_user, :only => [:new, :create, :update, :destroy, :edit]
   def index
     @search = Map.search(params[:search])
     @maps = @search.paginate(:all, :page => params[:page], :order =>"updated_at DESC")
@@ -29,7 +29,11 @@ class MapsController < ApplicationController
       redirect_to maps_path
     end
   end
-
+  
+  def edit
+    @map = Map.find(params[:id])
+  end
+  
   def update
     @map = Map.find(params[:id])
     if @map.update_attributes(params[:map])
