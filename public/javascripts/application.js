@@ -1,6 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
-
+var reloadTimer = null;
 $(document).ready(function(){
   $("#dialog_modal").click(function(){
     $("#map").dialog({ modal: true, width: 720, position: 'center' });
