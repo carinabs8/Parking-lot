@@ -6,6 +6,7 @@ pt_br:
           attributes:
             codigo:
               taken: Já existe uma vaga com esse código
+              blank: O código é obrigatório.
             map_id:
               blank: Mapa inválido
 
