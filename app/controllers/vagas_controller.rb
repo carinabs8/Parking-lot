@@ -40,7 +40,9 @@ class VagasController < ApplicationController
     @vaga.eixo_y = params[:eixo_y]
     @vaga.create_report = 0
     @vaga.save!
-    render :partial => "update_coordendas", :layout => false
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
