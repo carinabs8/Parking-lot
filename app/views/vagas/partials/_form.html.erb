@@ -24,7 +24,8 @@
 
     <div class="field clear">
       <%= v.label :status%>
-      <%= v.check_box(:status, :checked => true) %>
+      <%= v.check_box :status, :checked => true if v.nil?%>
+      <%= v.check_box :status if !v.nil?%>
       <a class="hint" href="#">
         <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
         <span>A vaga se encontra disponível para ser utilizada?.</span>
