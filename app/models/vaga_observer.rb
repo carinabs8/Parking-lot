@@ -7,7 +7,6 @@ class VagaObserver < ActiveRecord::Observer
   end
   
   def create_report?(vaga)
-    debugger
     !vaga.create_report.zero?
   end
 end
