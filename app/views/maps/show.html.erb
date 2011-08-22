@@ -29,7 +29,7 @@
       <%= link_to "A estrutura do estacionamento mudou? Então altere aqui.", edit_map_path(@map) %>
     </div>
   </div>
-  <div class="sidebox clear" id="vaga_of_map" map_id="<%=@map.id%>">
+  <div class="sidebox clear" id="vacancy_of_map" map_id="<%=@map.id%>">
     <h2>Vagas</h2>
     <%= render :partial => 'maps/partials/vacancies', :locals => {:map => @map} %>
   </div>
