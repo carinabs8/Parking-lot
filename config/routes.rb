@@ -9,6 +9,7 @@ ProjetoFinal::Application.routes.draw do
   resources :users
 
   get "auto_complete/maps_list"
+  match '/reload_map' => 'maps#reload_map'
   resources :maps
   resources :vagas
   resources :reports

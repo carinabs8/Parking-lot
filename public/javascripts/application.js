@@ -23,3 +23,18 @@ function get_and_save_coordenates(codigo, vaga_id) {
 $(function(){
   $('#abas').tabs();
 });
+
+$(function(){
+  if ($("#vaga_of_map").length > 0){
+    setTimeout(updateVagas, 10000);
+  }
+});
+
+function updateVagas(){
+  var map_id = $("#vaga_of_map").attr("map_id");
+  var vaga_false = $("#vaga_of_map p a[status=false]").length
+  var vaga_true = $("#vaga_of_map p a[status=true]").length
+  
+  $.getScript("/reload_map.js?map_id=" + map_id + "&qt_false=" + vaga_false + "&qt_true=" + vaga_true)
+  setTimeout(updateVagas, 10000);
+}

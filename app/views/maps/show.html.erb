@@ -29,22 +29,12 @@
       <%= link_to "A estrutura do estacionamento mudou? Então altere aqui.", edit_map_path(@map) %>
     </div>
   </div>
-  <div id="boxFirst" class="sidebox clear">
+  <div class="sidebox clear" id="vaga_of_map" map_id="<%=@map.id%>">
     <h2>Vagas</h2>
-    <%@map.vagas.each do |vaga|%>
-      <p>
-        <%if vaga.status == false%>
-          <%= link_to image_tag('encore/ico/icoStatusRed.png')+"#{vaga.codigo}", "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}" %>
-        <%else%>
-          <%= link_to image_tag('encore/ico/icoStatusGreen.png')+"#{vaga.codigo}", "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}" %>
-        <%end%>
-      </p>
-      <div id="salva-vaga-<%=vaga.codigo%>"></div>
-      <script>$("#vaga-<%=vaga.codigo%>").offset({ top: <%=vaga.eixo_x%>, left: <%=vaga.eixo_y%> });</script>
-    <%end%>
+    <%= render :partial => 'maps/partials/vacancies', :locals => {:map => @map} %>
   </div>
   <!-- end filters sidebox -->
 
 </div>
 <!-- end sidebar -->
-<%= javascript_include_tag "/javascripts/controllers/maps/show" %>
+<%#= javascript_include_tag "/javascripts/controllers/maps/show" %>

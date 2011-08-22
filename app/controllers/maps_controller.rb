@@ -50,4 +50,16 @@ class MapsController < ApplicationController
     @map.destroy
     redirect_to maps_path
   end
+  
+  def reload_map
+    @map                  = Map.where("id = ?", params[:map_id]).first
+    
+    vacancies             = Vaga.where("map_id = ?", params[:map_id])
+    @vacancy_available    = vacancies.where("status = true").count
+    @vacancy_unavailable  = vacancies.where("status = false").count
+    
+    respond_to do |format|
+      format.js
+    end
+  end
 end

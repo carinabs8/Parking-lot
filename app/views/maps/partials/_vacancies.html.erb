@@ -1,0 +1,11 @@
+<%map.vagas.each do |vaga|%>
+  <p>
+    <%if vaga.status == false%>
+      <%= link_to image_tag('encore/ico/icoStatusRed.png')+"#{vaga.codigo}", "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}", :status => vaga.status %>
+    <%else%>
+      <%= link_to image_tag('encore/ico/icoStatusGreen.png')+"#{vaga.codigo}", "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}", :status => vaga.status %>
+    <%end%>
+  </p>
+  <div id="salva-vaga-<%=vaga.codigo%>"></div>
+  <script>$("#vaga-<%=vaga.codigo%>").offset({ top: <%=vaga.eixo_x%>, left: <%=vaga.eixo_y%> });</script>
+<% end %>
