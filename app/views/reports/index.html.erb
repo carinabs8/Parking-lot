@@ -13,9 +13,7 @@
     </ul>
     <div id="vagas">
       <h5>Por dia<h5>
-        <p>Vaga 2: 4vezes ocupada</p>
-        <p>Vaga 3: 4vezes ocupada</p>
-        <div id="topOptions" class="clear"></div>
+       <%=@report.inspect  %>
  
       <h5>Mês Atual</h5>
         <p>Vaga 2: 4vezes ocupada</p>
@@ -60,6 +58,10 @@
 
   <div id="boxFirst" class="sidebox clear">
     <h1>Ferramentas</h1>
+    <div class="boxContent clear">
+      <h2>Busca</h2>
+      <p></p>
+    </div>
     <div class="boxContent clear">
       <p><a href="#"><%=image_tag "/images/encore/ico/pdf.jpeg"%> Exportar para pdf</a></p>
     </div>
