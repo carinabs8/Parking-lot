@@ -8,4 +8,10 @@ class Report < ActiveRecord::Base
   def self.analitic
     self.where(["updated_at >= ? OR updated_at <= ?", Date.today.at_beginning_of_month,Date.today])
   end
+  
+  def self.getName(report_true)
+    names = []
+    report_true.select{|key,value| names << Vaga.find(key).codigo}
+    names
+  end
 end

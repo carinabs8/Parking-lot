@@ -47,6 +47,10 @@ GEM
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    factory_girl (2.0.5)
+    factory_girl_rails (1.1.0)
+      factory_girl (~> 2.0.0)
+      railties (>= 3.0.0)
     highline (1.6.2)
     i18n (0.6.0)
     linecache19 (0.5.12)
@@ -138,6 +142,7 @@ DEPENDENCIES
   autotest
   cancan
   capistrano
+  factory_girl_rails
   meta_search
   paperclip (= 2.3.8)
   pg

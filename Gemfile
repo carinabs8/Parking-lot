@@ -17,6 +17,5 @@ group :development, :test do
   gem "rspec-rails", "~> 2.6"
   gem "autotest"
   gem "webrat"
+  gem "factory_girl_rails"
 end
-
-

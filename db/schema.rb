@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110821014209) do
+ActiveRecord::Schema.define(:version => 20110901043827) do
 
   create_table "maps", :force => true do |t|
     t.string   "codigo"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20110821014209) do
     t.integer  "vaga_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "vaga_status", :default => true
   end
 
   create_table "users", :force => true do |t|

@@ -5,6 +5,116 @@
     <div id="actions">
     </div>
   </div>
+  <%name_status_true = @vagas_name_true.join(',')%>
+  <%name_status_false = @vagas_name_false.join(',')%>
+  
+  <script>
+    var chart;
+    var names;
+    
+    name_status_true = "<%=name_status_true%>".split(',');
+    name_status_false = "<%=name_status_false%>".split(',');
+    names = name_status_true.concat(name_status_false);
+    
+    $(function(){
+      var colors = Highcharts.getOptions().colors,
+      categories = names,
+      name = 'Vagas Abertas',
+      data = [
+          <%@vagas_name_true.each_with_index do |vaga, i|%>
+            {
+              y: (<%=(@qt_true[i] *100)/ @total%>),
+              color: colors[<%=i%>]
+              },
+            <%end%>
+            <%@vagas_name_false.each_with_index do |vaga, i|%>
+            {
+              y: (<%=(@qt_false[i] *100)/ @total%>),
+              color: colors[<%=i%>]
+              },
+            <%end%>
+          ];
+   
+   function setChart(name, categories, data, color) {
+      chart.xAxis[0].setCategories(categories);
+      chart.series[0].remove();
+      chart.addSeries({
+         name: name,
+         data: data,
+         color: color || 'white'
+      });
+   }
+   
+   chart = new Highcharts.Chart({
+      chart: {
+         renderTo: 'report_chart',
+         type: 'column'
+      },
+      title: {
+         text: 'Browser market share, April, 2011'
+      },
+      subtitle: {
+         text: 'Click the columns to view versions. Click again to view brands.'
+      },
+      xAxis: {
+         categories: categories
+      },
+      yAxis: {
+         title: {
+            text: 'Total percent market share'
+         }
+      },
+      plotOptions: {
+         column: {
+            cursor: 'pointer',
+            point: {
+               events: {
+                  click: function() {
+                     var drilldown = this.drilldown;
+                     if (drilldown) { // drill down
+                        setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color);
+                     } else { // restore
+                        setChart(name, categories, data);
+                     }
+                  }
+               }
+            },
+            dataLabels: {
+               enabled: true,
+               color: colors[0],
+               style: {
+                  fontWeight: 'bold'
+               },
+               formatter: function() {
+                  return this.y +'%';
+               }
+            }
+         }
+      },
+      tooltip: {
+         formatter: function() {
+            var point = this.point,
+               s = this.x +':<b>'+ this.y +'% market share</b><br/>';
+            if (point.drilldown) {
+               s += 'Click to view '+ point.category +' versions';
+            } else {
+               s += 'Click to return to browser brands';
+            }
+            return s;
+         }
+      },
+      series: [{
+         name: name,
+         data: data,
+         color: 'white'
+      }],
+      exporting: {
+         enabled: false
+      }
+   });
+    });
+  </script>
+  <div id="report_chart"></div>
   <div id="abas">
     <ul>
       <li><a href="#vagas">Ocupação de vagas</a></li>
@@ -13,7 +123,6 @@
     </ul>
     <div id="vagas">
       <h5>Por dia<h5>
-       <%=@report.inspect  %>
  
       <h5>Mês Atual</h5>
         <p>Vaga 2: 4vezes ocupada</p>
