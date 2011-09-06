@@ -5,8 +5,8 @@
     <div id="actions">
     </div>
   </div>
-  <%name_status_true = @vagas_name_true.join(',')%>
-  <%name_status_false = @vagas_name_false.join(',')%>
+  <%=name_status_true = @vagas_name_true.join(',')%>
+  <%=name_status_false = @vagas_name_false.join(',')%>
   
   <script>
     var chart;
@@ -19,31 +19,27 @@
     $(function(){
       var colors = Highcharts.getOptions().colors,
       categories = names,
-      name = 'Vagas Abertas',
-      data = [
+      
+      name_vaga_open = 'Vagas Abertas',
+      name_vaga_fechada = 'Vagas Fechadas',
+      
+      data_opened = [
           <%@vagas_name_true.each_with_index do |vaga, i|%>
             {
               y: (<%=(@qt_true[i] *100)/ @total%>),
               color: colors[<%=i%>]
               },
             <%end%>
-            <%@vagas_name_false.each_with_index do |vaga, i|%>
-            {
-              y: (<%=(@qt_false[i] *100)/ @total%>),
-              color: colors[<%=i%>]
-              },
-            <%end%>
+            
           ];
-   
-   function setChart(name, categories, data, color) {
-      chart.xAxis[0].setCategories(categories);
-      chart.series[0].remove();
-      chart.addSeries({
-         name: name,
-         data: data,
-         color: color || 'white'
-      });
-   }
+      data_closed = [
+        <%@vagas_name_false.each_with_index do |vaga, i|%>
+          {
+            y: (<%=((@qt_false[i] *100)/ @total).to_f%>),
+            color: colors[<%=i%>]
+          },
+        <%end%>
+      ];
    
    chart = new Highcharts.Chart({
       chart: {
@@ -51,17 +47,17 @@
          type: 'column'
       },
       title: {
-         text: 'Browser market share, April, 2011'
+         text: 'Relatório'
       },
       subtitle: {
-         text: 'Click the columns to view versions. Click again to view brands.'
+         text: 'Subtítulo do relatório.'
       },
       xAxis: {
          categories: categories
       },
       yAxis: {
          title: {
-            text: 'Total percent market share'
+            text: 'Total em porcentagem'
          }
       },
       plotOptions: {
@@ -74,7 +70,7 @@
                      if (drilldown) { // drill down
                         setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color);
                      } else { // restore
-                        setChart(name, categories, data);
+                        setChart(name_vaga_open, categories, data_opened);
                      }
                   }
                }
@@ -91,76 +87,24 @@
             }
          }
       },
-      tooltip: {
-         formatter: function() {
-            var point = this.point,
-               s = this.x +':<b>'+ this.y +'% market share</b><br/>';
-            if (point.drilldown) {
-               s += 'Click to view '+ point.category +' versions';
-            } else {
-               s += 'Click to return to browser brands';
-            }
-            return s;
-         }
+      credits: {
+         enabled: false
       },
       series: [{
-         name: name,
-         data: data,
-         color: 'white'
-      }],
-      exporting: {
-         enabled: false
-      }
-   });
+         name: name_vaga_open,
+         data: data_opened,
+         color: 'red'
+      },
+      {
+        name: name_vaga_fechada,
+        data: data_closed,
+        color: 'blue'
+        }],
+      
+      });
     });
   </script>
   <div id="report_chart"></div>
-  <div id="abas">
-    <ul>
-      <li><a href="#vagas">Ocupação de vagas</a></li>
-        <li><a href="#carros">Carros </a></li>
-        <li><a href="#especiais">Vagas especiais</a></li>
-    </ul>
-    <div id="vagas">
-      <h5>Por dia<h5>
- 
-      <h5>Mês Atual</h5>
-        <p>Vaga 2: 4vezes ocupada</p>
-        <p>Vaga 3: 4vezes ocupada</p>
-        <div id="topOptions" class="clear"></div>
-      <h5>Mês Anterior</h5>
-        <p>Vaga 2: 0vezes ocupada</p>
-        <p>Vaga 3: 0vezes ocupada</p>
-    </div>
-    <div id="carros">
-      <h5>Por dia<h5>
-        <p>Vaga 2: 10vezes ocupada</p>
-        <p>Vaga 3: 10vezes ocupada</p>
-        <div id="topOptions" class="clear"></div>
- 
-      <h5>Mês Atual</h5>
-        <p>Vaga 2: 10vezes ocupada</p>
-        <p>Vaga 3: 10vezes ocupada</p>
-        <div id="topOptions" class="clear"></div>
-      <h5>Mês Anterior</h5>
-        <p>Vaga 2: 0vezes ocupada</p>
-        <p>Vaga 3: 0vezes ocupada</p>
-    </div>
-    <div id="especiais">
-      <h5>Por dia<h5>
-        <p>Vaga 2: 1vezes ocupada</p>
-        <p>Vaga 3: 1vezes ocupada</p>
-        <div id="topOptions" class="clear"></div>
- 
-      <h5>Mês Atual</h5>
-        <p>Vaga 2: 1vezes ocupada</p>
-        <p>Vaga 3: 1vezes ocupada</p>
-        <div id="topOptions" class="clear"></div>
-      <h5>Mês Anterior</h5>
-        <p>Vaga 2: 0vezes ocupada</p>
-        <p>Vaga 3: 0vezes ocupada</p>
-    </div>
-  </div>
 </div>
 
 <div id="sidebar">
