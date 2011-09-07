@@ -21,8 +21,7 @@ class ReportsController < ApplicationController
   
   private
     def get_all
-      @vagas_name_true  = []
-      @vagas_name_false = []
+      @vagas_name_true  = @vagas_name_false = []
       @qt_true          = []
       @qt_false         = []
     end
