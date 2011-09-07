@@ -20,7 +20,7 @@ class VagasController < ApplicationController
 
   def update
     @vaga = Vaga.find(params[:id])
-    @vaga.create_report = 1
+    #@vaga.create_report = 1
     
     if @vaga.update_attributes(params[:vaga])
       flash[:success] = "Vaga atualizada com sucesso!"
@@ -38,7 +38,7 @@ class VagasController < ApplicationController
     @vaga = Vaga.find(params[:vaga_id])
     @vaga.eixo_x = params[:eixo_x]
     @vaga.eixo_y = params[:eixo_y]
-    @vaga.create_report = 0
+    #@vaga.create_report = 0
     @vaga.save!
     respond_to do |format|
       format.js
@@ -46,9 +46,7 @@ class VagasController < ApplicationController
   end
 
   def create
-    map = Map.where(:codigo => params[:vaga][:map_id]).first
     @vaga = Vaga.new(params[:vaga])
-    @vaga.map_id = map.nil? ? nil : map.id
     if @vaga.save
       flash[:notice] = 'Vaga cadastrada com sucesso!'
       redirect_to vagas_url

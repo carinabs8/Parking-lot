@@ -12,7 +12,7 @@ ProjetoFinal::Application.routes.draw do
   match '/reload_map' => 'maps#reload_map'
   resources :maps
   resources :vagas
-  resources :reports
+  resources :status_controlls
 
   match '/vagas/:id/coordenates' => 'vagas#coordenates'
   match '/vagas/update_coordendas/:vaga_id/:eixo_x/:eixo_y' => 'vagas#update_coordendas'

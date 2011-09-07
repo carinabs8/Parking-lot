@@ -3,7 +3,17 @@
   <fieldset>
     <legend><span><%=legenda%></span></legend>
     <div class="field clear">
-      <label for="vaga_codigo">Código: <span class="star">*</span></label>
+      <label for="vaga_codigo">Código do arduino: <span class="star">*</span></label>
+      <%= v.text_field(:cod_arduino, :class => "text long")%>
+      <a class="hint" href="#">
+        <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
+        <span>É necessário informar o código.</span>
+      </a>
+      <%= raw show_error_in_form(vaga.errors[:cod_arduino])%>
+    </div>
+    
+    <div class="field clear">
+      <label for="vaga_codigo">Nome: <span class="star">*</span></label>
       <%= v.text_field(:codigo, :class => "text long")%>
       <a class="hint" href="#">
         <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
@@ -14,7 +24,7 @@
 
     <div class="field clear">
       <label for="auto_complet_map">Mapa: <span class="star">*</span></label>
-      <%= v.select("map_id", Map.all.collect {|p| [ p.codigo, p.id ] }) %>
+      <%= v.select(:map_id, Map.all.collect {|p| [ p.codigo, p.id ] }) %>
       <%#= v.text_field(:map_id, :class => "text long", :id => 'auto_complet_map', :value => vaga.map.codigo)%>
     
       <a class="hint" href="#">
@@ -26,8 +36,7 @@
 
     <div class="field clear">
       <%= v.label :status%>
-      <%= v.check_box :status, :checked => true if v.nil?%>
-      <%= v.check_box :status if !v.nil?%>
+      <%= v.check_box :status, :checked => false %>
       <a class="hint" href="#">
         <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
         <span>A vaga se encontra disponível para ser utilizada?.</span>

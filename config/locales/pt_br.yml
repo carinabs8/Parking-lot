@@ -36,7 +36,7 @@ pt_br:
   helpers:
     label:
       vaga:
-        status: "Está ativa?"
+        status: "Interditada"
         especial: "É especial?"
 
   authlogic:

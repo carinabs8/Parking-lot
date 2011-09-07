@@ -26,7 +26,7 @@
 
   <%= stylesheet_link_tag 'global'%>
 
-  <%= stylesheet_link_tag 'pdf', :media => :all if params[:print]%>
+  <%#= stylesheet_link_tag 'pdf', :media => :all if params[:print]%>
 
   <!-- 2. if you want boxes to have rounded corners, uncomment the style declaration below: -->
   <!-- (note: rounded corners are displayed only by browsers supporting CSS3) -->
@@ -61,7 +61,7 @@
         <li class="<%= is_active? "maps" %>"><%=link_to "Gerenciar Mapas", maps_path%></li>
         <% if can? :manage, "vaga", "relatorios" %>
           <li class="<%= is_active? "vagas" %>"><%=link_to " Gerenciar Vagas", vagas_path%></li>
-          <li class="<%= is_active? "reports" %>"><%=link_to "Gerenciar Relatórios", reports_path%></li>
+          <li class="<%= is_active? "status_controlls" %>"><%=link_to "Gerenciar Relatórios", status_controlls_path%></li>
         <%end%>
       </ul>
     </div>

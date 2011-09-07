@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110901043827) do
+ActiveRecord::Schema.define(:version => 20110907192200) do
 
   create_table "maps", :force => true do |t|
     t.string   "codigo"
@@ -27,6 +27,23 @@ ActiveRecord::Schema.define(:version => 20110901043827) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "vaga_status", :default => true
+  end
+
+  create_table "status_controlls", :force => true do |t|
+    t.integer  "status"
+    t.datetime "timebegin"
+    t.datetime "time_end"
+    t.integer  "vaga_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "time_controlls", :force => true do |t|
+    t.integer  "id_vaga"
+    t.datetime "time_out"
+    t.date     "time_in"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
@@ -54,13 +71,13 @@ ActiveRecord::Schema.define(:version => 20110901043827) do
 
   create_table "vagas", :force => true do |t|
     t.string   "codigo"
-    t.boolean  "status"
     t.boolean  "especial"
     t.integer  "map_id"
     t.string   "eixo_x"
     t.string   "eixo_y"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "cod_arduino"
   end
 
 end
