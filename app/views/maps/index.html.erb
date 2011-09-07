@@ -6,7 +6,7 @@
     <h1>Mapas</h1>
     <% if can? :manage, "map" %>
       <div id="actions">
-        <%= link_to "Faça o upload do mapa do seu estacionamento", "#", :id => 'dialog_modal' %>
+        <%= link_to "Adicionar mapa", "#", :id => 'dialog_modal' %>
         <div id="map" title="Estacionamento" style="display:none;">
           <%= render 'maps/partials/form', :map => @map, :legend => "Cadastro de Mapa"%>
         </div>
@@ -41,7 +41,7 @@
       <%= form_for @search, :as => :search, :html => {:method => :get, :class => "sideForm"} do |b| %>
         <fieldset>
           <div class="field clear">
-            <%=b.label  "Código"%>
+            <%=b.label  "Mapa"%>
             <%=b.text_field :codigo_contains, :class => "full"%>
           </div>
         </fieldset>

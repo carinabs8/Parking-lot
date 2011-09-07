@@ -1,9 +1,13 @@
 <%map.vagas.each do |vaga|%>
   <p>
-    <%if vaga.status == false%>
-      <%= link_to image_tag('encore/ico/icoStatusRed.png')+"#{vaga.codigo}", "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}", :status => vaga.status %>
+    <%if vaga.status == false %>
+      <%= link_to "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}", :status => vaga.status do%>
+        <% image_tag('encore/ico/icoStatusRed.png')+"#{vaga.codigo}"%>
+      <% end %>
     <%else%>
-      <%= link_to image_tag('encore/ico/icoStatusGreen.png')+"#{vaga.codigo}", "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}", :status => vaga.status %>
+      <%= link_to "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}", :status => vaga.status do %>
+        <%=image_tag('encore/ico/icoStatusGreen.png')+"#{vaga.codigo}"%>
+      <%end%>
     <%end%>
   </p>
   <div id="salva-vaga-<%=vaga.codigo%>"></div>

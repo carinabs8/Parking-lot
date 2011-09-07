@@ -26,8 +26,8 @@
       data_opened = [
           <%@vagas_name_true.each_with_index do |vaga, i|%>
             {
-              y: (<%=(@qt_true[i] *100)/ @total%>),
-              color: colors[<%=i%>]
+              y: (<%=@qt_true[i]%>),
+              color: colors[1]
               },
             <%end%>
             
@@ -35,8 +35,8 @@
       data_closed = [
         <%@vagas_name_false.each_with_index do |vaga, i|%>
           {
-            y: (<%=((@qt_false[i] *100)/ @total).to_f%>),
-            color: colors[<%=i%>]
+            y: (<%=@qt_false[i]%>),
+            color: colors[0]
           },
         <%end%>
       ];
@@ -116,7 +116,11 @@
       <p></p>
     </div>
     <div class="boxContent clear">
-      <p><a href="#"><%=image_tag "/images/encore/ico/pdf.jpeg"%> Exportar para pdf</a></p>
+      <p>
+        <%= link_to reports_path(:format => "pdf", :print => true) do%>
+          <%= image_tag '/images/encore/ico/pdf.jpeg'%> Gerar PDF
+        <% end %>
+      </p>
     </div>
   </div>
 

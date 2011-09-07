@@ -14,7 +14,9 @@
 
     <div class="field clear">
       <label for="auto_complet_map">Mapa: <span class="star">*</span></label>
-      <%= v.text_field(:map_id, :class => "text long", :id => 'auto_complet_map')%>
+      <%= v.select("map_id", Map.all.collect {|p| [ p.codigo, p.id ] }) %>
+      <%#= v.text_field(:map_id, :class => "text long", :id => 'auto_complet_map', :value => vaga.map.codigo)%>
+    
       <a class="hint" href="#">
         <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
         <span>É necessário informar o código do mapa.</span>

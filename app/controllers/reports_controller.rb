@@ -19,6 +19,8 @@ class ReportsController < ApplicationController
     @total = @total.inject{|sum, n| sum+n}
   end
   
+  def create_pdf
+  end
   private
     def get_all
       @vagas_name_true  = @vagas_name_false = []

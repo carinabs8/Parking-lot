@@ -2,7 +2,7 @@
 <div id="main" class="clear">
 
   <div id="head" class="clear">
-    <h1>Mapa do Estacionamento</h1>
+  <h1>Mapa do Estacionamento <%= @map.codigo%></h1>
     <div id="actions">
     </div>
   </div>
@@ -22,15 +22,14 @@
 <div id="sidebar">
   <!-- start filters sidebox -->
   <div id="boxFirst" class="sidebox clear">
-    <h2>Ferramentas</h2>
+    <h2>Ações</h2>
     <div>
       <a href="javascript:history.go(-1);">Voltar</a>
       |
-      <%= link_to "A estrutura do estacionamento mudou? Então altere aqui.", edit_map_path(@map) %>
+      <%= link_to "Editar", edit_map_path(@map) %>
     </div>
   </div>
   <div class="sidebox clear" id="vacancy_of_map" map_id="<%=@map.id%>">
-    <h2>Vagas</h2>
     <%= render :partial => 'maps/partials/vacancies', :locals => {:map => @map} %>
   </div>
   <!-- end filters sidebox -->

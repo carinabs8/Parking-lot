@@ -8,6 +8,7 @@ gem "paperclip", "2.3.8"
 gem "serialport", "~> 1.0.4"
 gem "cancan"
 gem 'pg'
+gem 'pdfkit'
 
 gem 'capistrano'
 

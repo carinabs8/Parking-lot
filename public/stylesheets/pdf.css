@@ -1,0 +1,5 @@
+@media all{
+  #top *, #sidebar{display:none;}
+  #content{text-align:center;margin-left:20%; height:40% !important;}
+  
+}

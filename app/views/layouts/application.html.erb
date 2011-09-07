@@ -17,18 +17,20 @@
   <%= csrf_meta_tag %>
 
   <!-- start obligatory styles -->
-
-  <%= stylesheet_link_tag 'layout' %>
+  <%= stylesheet_link_tag 'layout'%>
+  
   <!-- end obligatory styles -->
 
   <!-- 1. change the skin color here by replacing <colorname>.css (available skins: black, blue, orange, wine) -->
-  <%= stylesheet_link_tag 'skin/black' %>
+  <%= stylesheet_link_tag 'skin/black' unless params[:print]%>
 
-  <%= stylesheet_link_tag 'global' %>
+  <%= stylesheet_link_tag 'global'%>
+
+  <%= stylesheet_link_tag 'pdf', :media => :all if params[:print]%>
 
   <!-- 2. if you want boxes to have rounded corners, uncomment the style declaration below: -->
   <!-- (note: rounded corners are displayed only by browsers supporting CSS3) -->
-  <%= stylesheet_link_tag 'rounded' %>
+  <%= stylesheet_link_tag 'rounded'%>
   <%= stylesheet_link_tag 'jquery-ui-1.8.9.custom' %>
   <%= stylesheet_link_tag 'jquery.ui.autocomplete' %>
   <%= stylesheet_link_tag 'calendar' %>
@@ -56,10 +58,10 @@
     <!-- start menu -->
     <div id="menu" class="clear">
       <ul>
-        <li class="<%= is_active? "parkings" %>"><%=link_to "Home", "/"%></li>
+        <li class="<%= is_active? "maps" %>"><%=link_to "Gerenciar Mapas", maps_path%></li>
         <% if can? :manage, "vaga", "relatorios" %>
-          <li class="<%= is_active? "vagas" %>"><%=link_to "Vagas", vagas_path%></li>
-          <li class="<%= is_active? "reports" %>"><%=link_to "Relatórios", reports_path%></li>
+          <li class="<%= is_active? "vagas" %>"><%=link_to " Gerenciar Vagas", vagas_path%></li>
+          <li class="<%= is_active? "reports" %>"><%=link_to "Gerenciar Relatórios", reports_path%></li>
         <%end%>
       </ul>
     </div>
@@ -104,12 +106,12 @@
 <!-- end wrapper -->
 
 <!-- start footer -->
-<div id="footer">
-  <div id="wrapFooter">
-    <p id="copyright">Copyright &copy; by Carina Brito. Todos os direitos reservados.</p>
+  <div id="footer">
+    <div id="wrapFooter">
+      <p id="copyright">Copyright &copy; by Carina Brito. Todos os direitos reservados.</p>
+    </div>
   </div>
-</div>
 <!-- end footer -->
 
-</body>
+    </body>
 </html>

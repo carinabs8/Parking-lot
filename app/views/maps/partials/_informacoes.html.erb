@@ -1,17 +1,22 @@
 <table id="tableItems" cellpadding="0" cellspacing="0" width="100%">
   <thead>
     <tr>
-      <th style="width:500px;text-align:left;">Código</th>
-      <th colspan="2" style="width: 60px;">Ações</th>
+      <th style="width:500px;text-align:left;">Mapa</th>
+      <% if current_user %>
+        <th colspan="2" style="width: 60px;">Ações</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
     <% maps.each do |map| %>
       <tr class="<%= cycle('even', 'odd') %>">
         <td style="text-align:left;"><%= link_to map.codigo, map_path(map.codigo), :title=> "Visualizar mapa #{map.codigo}" %></td>
-        <td>
-          <%= link_to image_tag('encore/ico/icoDelete.png'), map, :confirm => "Tem certeza que deseja excluir?", :method => :delete, :id=> "excluir_map" %>
-        </td>
+        <% if current_user %>
+          <td>
+            <%= link_to image_tag('encore/ico/icoEdit.png'), edit_map_path(map) %>
+            <%= link_to image_tag('encore/ico/icoDelete.png'), map, :confirm => "Tem certeza que deseja excluir?", :method => :delete, :id=> "excluir_map" %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
