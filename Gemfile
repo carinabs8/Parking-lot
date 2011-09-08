@@ -9,7 +9,7 @@ gem "serialport", "~> 1.0.4"
 gem "cancan"
 gem 'pg'
 gem 'pdfkit'
-
+gem 'rails-settings'
 gem 'capistrano'
 
 group :development, :test do

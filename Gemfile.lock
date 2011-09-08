@@ -93,6 +93,7 @@ GEM
       activesupport (= 3.0.3)
       bundler (~> 1.0)
       railties (= 3.0.3)
+    rails-settings (1.0.0)
     rails3-generators (0.17.4)
       railties (>= 3.0.0)
     railties (3.0.3)
@@ -149,6 +150,7 @@ DEPENDENCIES
   pdfkit
   pg
   rails (= 3.0.3)
+  rails-settings
   rails3-generators
   rspec
   rspec-rails (~> 2.6)
