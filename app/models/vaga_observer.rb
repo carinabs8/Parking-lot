@@ -1,18 +1,15 @@
 class VagaObserver < ActiveRecord::Observer
-  
-  def after_update(vaga)
-    if create_report?(vaga)
-      #report = Report.new(:vaga_id => vaga.id, :vaga_status => vaga.status)
-      #report.save!
-    end
-  end
   def after_create(vaga)
-    if vaga.status == "1"
+    if vaga.status == StatusControll::RESTRICTED
+      setLog(vaga.cod_arduino, StatusControll::RESTRICTED)
       StatusControll.create(:status => StatusControll::RESTRICTED, :timebegin => Time.now, :vaga_id => vaga.id)
+    else
+      setLog(vaga.cod_arduino, StatusControll::AVAILABLE)
     end
   end
-    
-  def create_report?(vaga)
-    #!vaga.create_report.nil? or !vaga.create_report.zero?
-  end
+  
+  private
+    def setLog(cod_arduino, type)
+      Logs.merge! :vagas, {"#{cod_arduino}" => type}
+    end
 end

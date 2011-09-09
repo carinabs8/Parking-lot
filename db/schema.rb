@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110907192200) do
+ActiveRecord::Schema.define(:version => 20110909032806) do
 
   create_table "maps", :force => true do |t|
     t.string   "codigo"
@@ -22,26 +22,22 @@ ActiveRecord::Schema.define(:version => 20110907192200) do
     t.datetime "updated_at"
   end
 
-  create_table "reports", :force => true do |t|
-    t.integer  "vaga_id"
+  create_table "settings", :force => true do |t|
+    t.string   "var",                      :null => false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type", :limit => 30
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "vaga_status", :default => true
   end
 
+  add_index "settings", ["thing_type", "thing_id", "var"], :name => "index_settings_on_thing_type_and_thing_id_and_var", :unique => true
+
   create_table "status_controlls", :force => true do |t|
-    t.integer  "status"
+    t.string   "status"
     t.datetime "timebegin"
     t.datetime "time_end"
     t.integer  "vaga_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "time_controlls", :force => true do |t|
-    t.integer  "id_vaga"
-    t.datetime "time_out"
-    t.date     "time_in"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
