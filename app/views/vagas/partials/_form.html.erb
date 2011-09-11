@@ -33,10 +33,10 @@
       </a>
       <%= raw show_error_in_form(vaga.errors[:map_id]) %>
     </div>
-
+    <%= render "vagas/partials/status_vaga", :vaga => vaga if !vaga.cod_arduino.nil?%>
     <div class="field clear">
-      <%= v.label :status%>
-      <%= v.check_box :status, :checked => false %>
+      <%= check_box_status(Logs.vagas["#{vaga.cod_arduino}"], vaga.status) %>
+      
       <a class="hint" href="#">
         <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
         <span>A vaga se encontra disponível para ser utilizada?.</span>
