@@ -8,8 +8,9 @@ body {
 	color:#333;
 	text-align:center;
 	}
+
 #tudo {
-	width:750px;     
+	width:750px;
 	margin:0 auto;
   text-align:left;
   color:#FFF;
@@ -47,7 +48,7 @@ h3 {
 #principal {
 	float:left;
 	width:460px;
-	margin-left:10px; 	
+	margin-left:10px;
 	text-align:justify;
 	padding: 0 10px;
 	}
@@ -69,8 +70,8 @@ body#duascolunas #principal {
 	}
 /* Estilos para template duas colunas - navegacao esquerda opcao de fonte e fundo */
 body.duascolunas-a #topo, body.duascolunas-a #rodape{
-	font: 11px Verdana, Arial, Helvetica, sans-serif; 	
-	background:#000; 
+	font: 11px Verdana, Arial, Helvetica, sans-serif;
+	background:#000;
 	padding-bottom:1px;
 	}
 body.duascolunas-a	{
@@ -90,14 +91,14 @@ body#duascolunas-dir #principal {
 	width:580px;
   margin:0;
 	}
-/* Estilos para template de uma coluna com navegacao horizontal */ 
+/* Estilos para template de uma coluna com navegacao horizontal */
 body.umacoluna #tudo  {width:98%;}
 body.umacoluna #nav	{
 	float:none;
 	}
-body.umacoluna  #topo, body.umacoluna #tudo #principal, body.umacoluna  #rodape { 
+body.umacoluna  #topo, body.umacoluna #tudo #principal, body.umacoluna  #rodape {
 	margin:0;
-	width:100%; 
+	width:100%;
 	}
 body.umacoluna #nav {
 	width: 100%;
@@ -129,7 +130,7 @@ margin: 0;
 font: 14px Arial, sans-serif;
 }
 #menuhor li {
-list-style: none; 
+list-style: none;
 margin: 0;
 
 display: inline;
@@ -147,7 +148,7 @@ display: inline;
 height:2px; /* IE5.0 bug */
 margin:0;
 padding: 15px 20px;
-border: 2px solid #000; 
+border: 2px solid #000;
 text-decoration: none;
 }
 #menuhor li a:link {
@@ -158,6 +159,6 @@ color: #fff;
 }
 #menuhor li a:hover {
 background: #ccc;
-color: #000; 
+color: #000;
 padding: 25px 20px;
 }
