@@ -9,8 +9,8 @@
   <div class="textContent full clear">
     <p>Código: <%= @vaga.codigo %></p>
     <p>Mapa: <%= @vaga.map.nil? ? "Sem mapa associado." : @vaga.map.codigo %></p>
-    <p>Status: <%=  @vaga.status ? "ativa" : "desativada" %></a></p>
-    <p>Situação: <%= @vaga.especial ? "Reservada para deficientes físicos" : "Vaga normal" %></a></p>
+    <p><%= raw vaga_status(Logs.vagas["#{@vaga.cod_arduino}"]) %></a></p>
+    <p>Tipo de vaga: <%= @vaga.especial ? "Reservada para deficientes físicos" : "Normal" %></a></p>
     
   </div>
 

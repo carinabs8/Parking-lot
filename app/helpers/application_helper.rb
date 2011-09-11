@@ -35,7 +35,7 @@ module ApplicationHelper
   end
   
   def vaga_status(cod_arduino)
-    status = label_tag :situacao
+    status = "#{label :vaga, :situacao} "
     if cod_arduino == StatusControll::RESTRICTED
       status << "Interditada"
     elsif cod_arduino == StatusControll::AVAILABLE

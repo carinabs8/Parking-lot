@@ -38,6 +38,7 @@ pt_br:
       vaga:
         status: "Interditada"
         especial: "É especial?"
+        :situacao: "Situação da vaga: "
 
   authlogic:
     error_messages:
