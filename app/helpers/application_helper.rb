@@ -34,4 +34,15 @@ module ApplicationHelper
     "<p class=\"error clear\">#{text.join(',')}</p>" unless text.nil? || text.blank?
   end
   
+  def vaga_status(cod_arduino)
+    status = label_tag :situacao
+    if cod_arduino == StatusControll::RESTRICTED
+      status << "Interditada"
+    elsif cod_arduino == StatusControll::AVAILABLE
+      status << "Disponivel"
+    else
+      status << "Ocupada"
+    end
+  end
+  
 end
