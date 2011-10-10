@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110909032806) do
+ActiveRecord::Schema.define(:version => 20111010024712) do
 
   create_table "maps", :force => true do |t|
     t.string   "codigo"
@@ -34,12 +34,9 @@ ActiveRecord::Schema.define(:version => 20110909032806) do
   add_index "settings", ["thing_type", "thing_id", "var"], :name => "index_settings_on_thing_type_and_thing_id_and_var", :unique => true
 
   create_table "status_controlls", :force => true do |t|
-    t.string   "status"
     t.datetime "timebegin"
     t.datetime "time_end"
-    t.integer  "vaga_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "cod_arduino"
   end
 
   create_table "users", :force => true do |t|
@@ -64,6 +61,12 @@ ActiveRecord::Schema.define(:version => 20110909032806) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence"
+
+  create_table "vaga_status", :force => true do |t|
+    t.integer "vaga_id"
+    t.integer "status_controll_id"
+    t.string  "status"
+  end
 
   create_table "vagas", :force => true do |t|
     t.string   "codigo"

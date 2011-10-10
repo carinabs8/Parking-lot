@@ -1,11 +1,10 @@
 <%map.vagas.each do |vaga|%>
   <p id="map_vaga">
-    <% status_vaga = Logs.vagas["#{vaga.cod_arduino}"]%>
     
-    <%= link_to "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}", :status => vaga.status, :class => :map_vaga do%>
-      <% if status_vaga == StatusControll::AVAILABLE %>
+    <%= link_to "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}", :status => vaga.vaga_status.last.status, :class => :map_vaga do%>
+      <% if vaga.vaga_status.last.status == StatusControll::AVAILABLE %>
         <% image_tag('encore/ico/_available.png')+"#{vaga.codigo}"%>
-      <% elsif status_vaga == StatusControll::RESTRICTED%>
+      <% elsif vaga.vaga_status.last.status == StatusControll::RESTRICTED%>
         <%=image_tag('encore/ico/_temporarily-not-available.png')+"#{vaga.codigo}"%>
       <% else%>
         <%=image_tag('encore/ico/_not-available.png')+"#{vaga.codigo}"%>

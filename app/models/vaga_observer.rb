@@ -2,7 +2,7 @@ class VagaObserver < ActiveRecord::Observer
   def after_create(vaga)
     if vaga.status == StatusControll::RESTRICTED
       setLog(vaga.cod_arduino, StatusControll::RESTRICTED)
-      StatusControll.create(:status => StatusControll::RESTRICTED, :timebegin => Time.now, :vaga_id => vaga.id)
+      StatusControll.create(:status => StatusControll::RESTRICTED, :timebegin => Time.now, :cod_arduino => vaga.cod_arduino)
     else
       setLog(vaga.cod_arduino, StatusControll::AVAILABLE)
     end

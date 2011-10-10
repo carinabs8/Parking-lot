@@ -35,14 +35,15 @@
     </div>
     <%= render "vagas/partials/status_vaga", :vaga => vaga if !vaga.cod_arduino.nil?%>
     <div class="field clear">
-      <%= check_box_status(Logs.vagas["#{vaga.cod_arduino}"], vaga.status) %>
+      <%= check_box_status(vaga)%>
       
       <a class="hint" href="#">
         <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
         <span>A vaga se encontra disponível para ser utilizada?.</span>
       </a>
+      
     </div>
-
+    
     <div class="field clear">
       <%= v.label :especial %>
       <%= v.check_box(:especial)%>

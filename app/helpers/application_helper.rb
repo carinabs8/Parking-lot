@@ -34,12 +34,12 @@ module ApplicationHelper
     "<p class=\"error clear\">#{text.join(',')}</p>" unless text.nil? || text.blank?
   end
   
-  def vaga_status(cod_arduino)
+  def vaga_status(vaga)
     status = "#{label :vaga, :situacao} "
-    if cod_arduino == StatusControll::RESTRICTED
-      status << "Interditada"
-    elsif cod_arduino == StatusControll::AVAILABLE
+    if vaga.id.nil? || vaga.vaga_status.last.status == StatusControll::AVAILABLE
       status << "Disponivel"
+    elsif vaga.vaga_status.last.status == StatusControll::RESTRICTED
+      status << "Interditada"
     else
       status << "Ocupada"
     end

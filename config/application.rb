@@ -8,13 +8,11 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module ProjetoFinal
   class Application < Rails::Application
-    require 'pdfkit'
     config.active_record.observers = :vaga_observer
-    config.middleware.use PDFKit::Middleware, :print_media_type => true
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-
+    
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
 
