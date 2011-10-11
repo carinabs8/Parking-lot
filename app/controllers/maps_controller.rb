@@ -54,10 +54,7 @@ class MapsController < ApplicationController
   def reload_map
     @map                  = Map.where("id = ?", params[:map_id]).first
     
-    vacancies             = Vaga.where("map_id = ?", params[:map_id])
-    @vacancy_available    = vacancies.where("status = true").count
-    @vacancy_unavailable  = vacancies.where("status = false").count
-    
+    @vacancys = @map.vagas.length
     respond_to do |format|
       format.js
     end

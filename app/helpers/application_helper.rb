@@ -36,7 +36,7 @@ module ApplicationHelper
   
   def vaga_status(vaga)
     status = "#{label :vaga, :situacao} "
-    if vaga.id.nil? || vaga.vaga_status.last.status == StatusControll::AVAILABLE
+    if vaga.vaga_status.last.nil? || vaga.vaga_status.last.status == StatusControll::AVAILABLE
       status << "Disponivel"
     elsif vaga.vaga_status.last.status == StatusControll::RESTRICTED
       status << "Interditada"

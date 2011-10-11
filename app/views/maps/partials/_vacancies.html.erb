@@ -1,10 +1,15 @@
 <%map.vagas.each do |vaga|%>
   <p id="map_vaga">
+    <% if vaga.vaga_status.last.nil? %>
+      <% status = StatusControll::AVAILABLE %>
+    <% else %>
+      <% status = vaga.vaga_status.last.status%>
+    <%end%>
     
-    <%= link_to "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}", :status => vaga.vaga_status.last.status, :class => :map_vaga do%>
-      <% if vaga.vaga_status.last.status == StatusControll::AVAILABLE %>
+    <%= link_to "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}", :status => status, :class => :map_vaga do%>
+      <% if status == StatusControll::AVAILABLE %>
         <% image_tag('encore/ico/_available.png')+"#{vaga.codigo}"%>
-      <% elsif vaga.vaga_status.last.status == StatusControll::RESTRICTED%>
+      <% elsif status == StatusControll::RESTRICTED%>
         <%=image_tag('encore/ico/_temporarily-not-available.png')+"#{vaga.codigo}"%>
       <% else%>
         <%=image_tag('encore/ico/_not-available.png')+"#{vaga.codigo}"%>

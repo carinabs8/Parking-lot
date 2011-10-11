@@ -1,3 +1,3 @@
-<% unless (params[:qt_false].to_i == @vacancy_unavailable) && (params[:qt_true].to_i == @vacancy_available) %>
+<% unless (params[:vacancys].to_i == @vacancys) %>
   $("#vacancy_of_map").html("<%= raw escape_javascript(render :partial => 'maps/partials/vacancies', :locals => {:map => @map})%>");
 <% end %>

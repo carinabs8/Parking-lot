@@ -33,9 +33,9 @@ $(function(){
 
 function updateVacancies(){
   var map_id = $("#vacancy_of_map").attr("map_id");
-  var vacancy_unavailable = $("#vacancy_of_map p a[status=false]").length
-  var vacancy_available = $("#vacancy_of_map p a[status=true]").length
+
+  var vacancys = $("#vacancy_of_map p a[id^=vaga-]").length
   
-  $.getScript("/reload_map.js?map_id=" + map_id + "&qt_false=" + vacancy_unavailable + "&qt_true=" + vacancy_available)
+  $.getScript("/reload_map.js?map_id=" + map_id + "&vacancys=" + vacancys)
   setTimeout(updateVacancies, 10000);
 }
