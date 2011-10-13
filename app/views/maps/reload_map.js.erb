@@ -1,3 +1,3 @@
-<% unless (params[:vacancys].to_i == @vacancys) %>
+<% if @changed %>
   $("#vacancy_of_map").html("<%= raw escape_javascript(render :partial => 'maps/partials/vacancies', :locals => {:map => @map})%>");
 <% end %>
