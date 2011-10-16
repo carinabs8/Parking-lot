@@ -9,12 +9,14 @@ class VagaObserver < ActiveRecord::Observer
     vaga_status = VagaStatu.where(:vaga_id => vaga.id).last
     status_controll = StatusControll.find(vaga_status.status_controll_id) if !vaga_status.nil?
     
-    if (status_controll.nil? or vaga_status.nil?) and vaga.status == StatusControll::RESTRICTED
-      setLog(vaga.cod_arduino, vaga)
-    elsif vaga_status.status == StatusControll::RESTRICTED and vaga.status == StatusControll::AVAILABLE
-       updateLog(status_controll, vaga)
-    elsif vaga_status.status != StatusControll::RESTRICTED and vaga.status == StatusControll::RESTRICTED
-       updateLog(status_controll, vaga)
+    unless vaga.status.nil?
+      if (status_controll.nil? or vaga_status.nil?) and vaga.status == StatusControll::RESTRICTED
+        setLog(vaga.cod_arduino, vaga)
+      elsif vaga_status.status == StatusControll::RESTRICTED and vaga.status == StatusControll::AVAILABLE
+         updateLog(status_controll, vaga)
+      elsif vaga_status.status != StatusControll::RESTRICTED and vaga.status == StatusControll::RESTRICTED
+         updateLog(status_controll, vaga)
+      end
     end
   end
   

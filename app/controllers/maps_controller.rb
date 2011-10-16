@@ -52,28 +52,13 @@ class MapsController < ApplicationController
   end
   
   def reload_map
-    @map                  = Map.where("id = ?", params[:map_id]).first
+    @map      = Map.where("id = ?", params[:map_id]).first
     
     vacancys  = params[:vacancys].split(',')
     status    = params[:status].split(',')
-    
-    status.shift
-    vacancys.shift
-    
-    @changed = false
-    i = 0
-    @map.vagas.each do |sv|
-      if !@map.vagas.include?(vacancys[i][5..(vacancys[i].length)])
-        @changed = true
-        break
-      elsif sv.codigo == vacancys[i][5..(vacancys[i].length)]
-        if sv.vaga_status.last.status != status[i]
-          @changed = true
-          break
-        end
-        i = i+1
-      end
-    end
+
+    @changed = Map.changed?(@map, vacancys, status)
+
     respond_to do |format|
       format.js
     end

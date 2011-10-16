@@ -20,7 +20,6 @@ class VagasController < ApplicationController
 
   def update
     @vaga = Vaga.find(params[:id])
-    #@vaga.create_report = 1
     
     if @vaga.update_attributes(params[:vaga])
       flash[:success] = "Vaga atualizada com sucesso!"
@@ -38,7 +37,7 @@ class VagasController < ApplicationController
     @vaga = Vaga.find(params[:vaga_id])
     @vaga.eixo_x = params[:eixo_x]
     @vaga.eixo_y = params[:eixo_y]
-    #@vaga.create_report = 0
+    
     @vaga.save!
     respond_to do |format|
       format.js
