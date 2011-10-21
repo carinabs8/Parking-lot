@@ -27,7 +27,7 @@ $(function(){
 //Automatic Reload =P
 $(function(){
   if ($("#vacancy_of_map").length > 0){
-    setTimeout(updateVacancies, 10000);
+    setTimeout(updateVacancies, 5000);
   }
 });
 
@@ -42,5 +42,5 @@ function updateVacancies(){
   }).get().join(',');
 
   $.getScript("/reload_map.js?map_id=" + map_id + "&vacancys=" + vacancys+ "&status=" + status_of_vacancys)
-  setTimeout(updateVacancies, 10000);
+  setTimeout(updateVacancies, 5000);
 }
