@@ -6,6 +6,7 @@ class CreateMaps < ActiveRecord::Migration
       t.string    :photo_content_type
       t.integer   :photo_file_size
       t.datetime  :photo_updated_at
+      t.boolean   :active, :default => true
       t.timestamps
     end
   end
