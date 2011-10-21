@@ -2,8 +2,8 @@ class VagasController < ApplicationController
   before_filter :require_user
   
   def index
-    @search = Vaga.search(params[:search])
-    @vagas = @search.paginate(:all, :page => params[:page], :order =>"updated_at DESC")
+    @search = Vaga.where(:active => true).search(params[:search])
+    @vagas = @search.page(params[:page]).order("updated_at DESC")
   end
 
   def show
@@ -56,7 +56,7 @@ class VagasController < ApplicationController
 
   def destroy
     @vaga = Vaga.find(params[:id])
-    @vaga.destroy
+    @vaga.update_attribute(:active, false)
     redirect_to vagas_path
   end
 end
