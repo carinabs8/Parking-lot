@@ -6,4 +6,4 @@ config/database01.yml
 db/*.sqlite3
 log/*.log
 tmp/**/*
-
+db/schema.rb
