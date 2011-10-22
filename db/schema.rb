@@ -18,20 +18,10 @@ ActiveRecord::Schema.define(:version => 20111010024712) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.boolean  "active",             :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "settings", :force => true do |t|
-    t.string   "var",                      :null => false
-    t.text     "value"
-    t.integer  "thing_id"
-    t.string   "thing_type", :limit => 30
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "settings", ["thing_type", "thing_id", "var"], :name => "index_settings_on_thing_type_and_thing_id_and_var", :unique => true
 
   create_table "status_controlls", :force => true do |t|
     t.datetime "timebegin"
@@ -74,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20111010024712) do
     t.integer  "map_id"
     t.string   "eixo_x"
     t.string   "eixo_y"
+    t.boolean  "active",      :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cod_arduino"
