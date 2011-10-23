@@ -6,14 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
   <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   <meta http-equiv="content-language" content="pl"/>
-  <!-- end HTML tags -->
-  <%#= javascript_include_tag "jquery/jquery-1.6.1.min" %>
-  <%= javascript_include_tag "jquery/jquery-1.4.4.min" %>
-  <%= javascript_include_tag "jquery/jquery-ui-1.8.9.custom.min" %>
-  <%= javascript_include_tag "jquery/jquery.ui.tabs" %>
-  <%= javascript_include_tag "jquery/jquery.ui.tabs.min" %>
+    <script src="https://www.google.com/jsapi?key=ABQIAAAA3jd8_Xd5n4i_dbbjx2m98xQ9KgLs42JL53zvjkiTf6y8yS37lBQJnH20ZfQBb_VlrHoTQ_HiM5SazA" type="text/javascript"></script>
+    <script language="Javascript" type="text/javascript">
+      google.load("jquery", "1", {uncompressed:true});
+      google.load("jqueryui", "1", {uncompressed:true});
+    </script>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "rails", "highcharts" %>
+  <%= javascript_include_tag "rails" %>
   <%= csrf_meta_tag %>
 
   <!-- start obligatory styles -->
@@ -22,14 +21,10 @@
   <!-- end obligatory styles -->
 
   <!-- 1. change the skin color here by replacing <colorname>.css (available skins: black, blue, orange, wine) -->
-  <%= stylesheet_link_tag 'skin/black' unless params[:print]%>
+  <%= stylesheet_link_tag 'skin/black'%>
 
   <%= stylesheet_link_tag 'global'%>
 
-  <%#= stylesheet_link_tag 'pdf', :media => :all if params[:print]%>
-
-  <!-- 2. if you want boxes to have rounded corners, uncomment the style declaration below: -->
-  <!-- (note: rounded corners are displayed only by browsers supporting CSS3) -->
   <%= stylesheet_link_tag 'rounded'%>
   <%= stylesheet_link_tag 'jquery-ui-1.8.9.custom' %>
   <%= stylesheet_link_tag 'jquery.ui.autocomplete' %>
@@ -37,11 +32,7 @@
 
 </head>
 
-<!-- 1. you may use body ID to make different CSS styles for different pages -->
-<!-- 2. body class: use "withoutSubnav" - when page doesn't have a submenu -->
-<!--                or  "withSubnav" - when your menu has some subitems -->
 <body id="pageDashboard" class="withoutSubnav">
-
 <!-- start wrapper -->
 <div id="wrapper">
 

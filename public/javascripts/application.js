@@ -12,7 +12,7 @@ $(document).ready(function(){
 function get_and_save_coordenates(codigo, vaga_id) {
   var codigo = codigo
   var vaga_id = vaga_id
-  jQuery("#vaga-"+codigo).draggable();
+  jQuery("#vaga-"+codigo).draggable({ cancel: 'button' });
   jQuery("#vaga-"+codigo).bind('mouseenter mouseleave',function(e){
     var positionX = this.offsetTop;
     var positionY = this.offsetLeft;
