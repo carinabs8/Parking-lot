@@ -1,5 +1,5 @@
 class VagaStatu < ActiveRecord::Base
-  belongs_to :status_controll
+  belongs_to :status_controll, :dependent => :destroy
   belongs_to :vaga
 
   class << self
