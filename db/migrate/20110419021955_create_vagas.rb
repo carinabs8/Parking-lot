@@ -6,7 +6,6 @@ class CreateVagas < ActiveRecord::Migration
       t.integer :map_id
       t.string  :eixo_x
       t.string  :eixo_y
-      t.boolean :active, :default => true
       t.timestamps
     end
   end
