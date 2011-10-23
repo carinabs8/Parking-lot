@@ -18,21 +18,18 @@ class Map < ActiveRecord::Base
       status.shift
       vacancys.shift
 
-      changed = false
       i = 0
       map.vagas.each do |sv|
         if !map.vagas.include?(vacancys[i][5..(vacancys[i].length)])
-          changed = true
-          break
+          return true
         elsif sv.codigo == vacancys[i][5..(vacancys[i].length)]
           if sv.vaga_status.last.status != status[i]
-            changed = true
-            break
+            return true
           end
           i = i+1
         end
       end
-      return changed
+      return false
     end
   end
 

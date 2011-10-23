@@ -56,9 +56,9 @@ class MapsController < ApplicationController
     
     vacancys  = params[:vacancys].split(',')
     status    = params[:status].split(',')
-
+p "=================HERE==================="
     @changed = Map.changed?(@map, vacancys, status)
-
+p @changed
     respond_to do |format|
       format.js
     end

@@ -5,16 +5,9 @@
     <% else %>
       <% status = vaga.vaga_status.last.status%>
     <%end%>
-    
+    <%= map_vaga_status(status, vaga.codigo) unless vaga.eixo_x.nil?%>
     <%= link_to "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}", :status => status, :class => :map_vaga do%>
-      <% if status == StatusControll::AVAILABLE %>
-        <%= image_tag('encore/ico/_available.png') %>
-      <% elsif status == StatusControll::RESTRICTED%>
-        <%= image_tag('encore/ico/_temporarily-not-available.png') %>
-      <% else%>
-        <%= image_tag('encore/ico/_not-available.png') %>
-      <%end%>
-      <span class="vaga_cod"><%=vaga.codigo%></span>
+      <%= map_vaga_status(status, vaga.codigo)%>
     <% end %>
   </p>
   <div id="salva-vaga-<%=vaga.codigo%>"></div>
