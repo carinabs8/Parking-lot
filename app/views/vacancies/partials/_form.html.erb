@@ -1,0 +1,61 @@
+<%=form_for vacancy, :as => :vacancy, :html => {:class => "mainForm clear", :id => "formEditor", :multipart => true} do |v| %>
+  <p id="asterisk"><span class="star">*</span> Campos obrigatórios.</p>
+  <fieldset>
+    <legend><span><%=legenda%></span></legend>
+    <div class="field clear">
+      <label for="vacancy_codigo">Código do arduino: <span class="star">*</span></label>
+      <%= v.text_field(:cod_arduino, :class => "text long")%>
+      <a class="hint" href="#">
+        <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
+        <span>É necessário informar o código.</span>
+      </a>
+      <%= raw show_error_in_form(vacancy.errors[:cod_arduino])%>
+    </div>
+    
+    <div class="field clear">
+      <label for="vacancy_codigo">Nome: <span class="star">*</span></label>
+      <%= v.text_field(:codigo, :class => "text long")%>
+      <a class="hint" href="#">
+        <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
+        <span>É necessário informar o código.</span>
+      </a>
+      <%= raw show_error_in_form(vacancy.errors[:codigo])%>
+    </div>
+
+    <div class="field clear">
+      <label for="auto_complet_map">Mapa: <span class="star">*</span></label>
+      <%= v.select(:map_id, Map.all.collect {|p| [ p.codigo, p.id ] }) %>
+      <%#= v.text_field(:map_id, :class => "text long", :id => 'auto_complet_map', :value => vacancy.map.codigo)%>
+    
+      <a class="hint" href="#">
+        <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
+        <span>É necessário informar o código do mapa.</span>
+      </a>
+      <%= raw show_error_in_form(vacancy.errors[:map_id]) %>
+    </div>
+    <%= render "vacancies/partials/status_vacancy", :vacancy => vacancy if !vacancy.cod_arduino.nil?%>
+    <div class="field clear">
+      <%= check_box_status(vacancy)%>
+      
+      <a class="hint" href="#">
+        <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
+        <span>A vaga se encontra disponível para ser utilizada?.</span>
+      </a>
+      
+    </div>
+    
+    <div class="field clear">
+      <%= v.label :especial %>
+      <%= v.check_box(:especial)%>
+      <a class="hint" href="#">
+        <img src="/images/encore/ico/icoHint.png" alt="Hint" class="hint"/>
+        <span>Se a vaga for voltada para deficientes físicos selecione esse item.</span>
+      </a>
+    </div>
+  </fieldset>
+
+  <div class="formActions clear">
+    <input id="btnSubmit" name="btnSubmit" class="button primary" type="submit" value="Salvar"/>
+    <input id="btnCancel" class="button secondary" type="button" value="Cancelar" onclick="javascript:history.go(-1);"/>
+  </div>
+<%end%>

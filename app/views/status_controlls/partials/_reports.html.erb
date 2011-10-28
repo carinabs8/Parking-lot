@@ -1,0 +1,27 @@
+<table id="tableItems" cellpadding="0" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th >Registro</th>
+      <th >Inicio</th>
+      <th>Fim</th>
+      <th >Vaga</th>
+      <th>Tempo Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% i = 0 %>
+    <% keys = reports.keys%>
+    
+    <% reports.each do |report| %>
+      <%= hr = distance_of_time_in_words(reports[keys[i]]["1"].status_controll.time_end, reports[keys[i]]["1"].status_controll.timebegin) %>
+      <tr class="<%= cycle('even', 'odd') %>">
+        <td align=center ><%= i %></td>
+        <td align=center ><%=reports[keys[i]]["1"].status_controll.timebegin.strftime("%d/%m/%Y as %H:%M:%S")%></td>
+        <td align=center ><%= reports[keys[i]]["1"].status_controll.time_end.strftime("%d/%m/%Y as %H:%M:%S")%></td>
+        <td align=center ><%= reports[keys[i]]["1"].vaga.codigo %></td>
+        <td align=center ><%= hr%></td>
+      </tr>
+      <%i = i+ 1%>
+    <% end %>
+  </tbody>
+</table>

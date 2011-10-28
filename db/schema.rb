@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111010024712) do
+ActiveRecord::Schema.define(:version => 20111028035409) do
 
   create_table "maps", :force => true do |t|
     t.string   "codigo"
@@ -18,7 +18,11 @@ ActiveRecord::Schema.define(:version => 20111010024712) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.boolean  "active",             :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sectors", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,22 +56,21 @@ ActiveRecord::Schema.define(:version => 20111010024712) do
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence"
 
-  create_table "vaga_status", :force => true do |t|
-    t.integer "vaga_id"
-    t.integer "status_controll_id"
-    t.string  "status"
-  end
-
-  create_table "vagas", :force => true do |t|
+  create_table "vacancies", :force => true do |t|
     t.string   "codigo"
     t.boolean  "especial"
     t.integer  "map_id"
     t.string   "eixo_x"
     t.string   "eixo_y"
-    t.boolean  "active",      :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cod_arduino"
+  end
+
+  create_table "vaga_status", :force => true do |t|
+    t.integer "vacancy_id"
+    t.integer "status_controll_id"
+    t.string  "status"
   end
 
 end

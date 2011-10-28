@@ -34,7 +34,7 @@ module ApplicationHelper
     "<p class=\"error clear\">#{text.join(',')}</p>" unless text.nil? || text.blank?
   end
   
-  def vaga_status(vaga)
+  def vacancy_status(vaga)
     status = "#{label :vaga, :situacao} "
     if vaga.vaga_status.last.nil? || vaga.vaga_status.last.status == StatusControll::AVAILABLE
       status << "Disponivel"

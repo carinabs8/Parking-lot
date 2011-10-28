@@ -4,6 +4,6 @@ class AddVagaArduinoToStatusControll < ActiveRecord::Migration
   end
 
   def self.down
-    remove_colmn :status_controlls, :cod_arduino
+    remove_column :status_controlls, :cod_arduino
   end
 end

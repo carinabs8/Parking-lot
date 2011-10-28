@@ -16,7 +16,7 @@ gem 'pdfkit'
 group :development, :test do
   gem 'ruby-debug19'
   gem "rspec"
-  gem "rspec-rails", "~> 2.6"
+  gem "rspec-rails"
   gem "autotest"
   gem "webrat"
   gem "factory_girl_rails"

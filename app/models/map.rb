@@ -1,5 +1,5 @@
 class Map < ActiveRecord::Base
-  has_many :vagas, :dependent => :destroy
+  has_many :vacanncies, :dependent => :destroy
   validates_presence_of :photo_file_name
   validates_presence_of :codigo
   validates_uniqueness_of :codigo
@@ -13,8 +13,9 @@ class Map < ActiveRecord::Base
     def combo
       Map.order("codigo").collect {|c| [c.codigo]}
     end
-    
-    def changed?(map, vacancys, status)
+  end
+
+  def changed?(map, vacancys, status)
       status.shift
       vacancys.shift
 
@@ -31,6 +32,5 @@ class Map < ActiveRecord::Base
       end
       return false
     end
-  end
 
 end

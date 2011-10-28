@@ -11,10 +11,10 @@ ProjetoFinal::Application.routes.draw do
   get "auto_complete/maps_list"
   match '/reload_map' => 'maps#reload_map'
   resources :maps
-  resources :vagas
+  resources :vacancies
   resources :status_controlls
 
   match '/vagas/:id/coordenates' => 'vagas#coordenates'
-  match '/vagas/update_coordendas/:vaga_id/:eixo_x/:eixo_y' => 'vagas#update_coordendas'
+  match '/vacancies/update_coordendas/:vaga_id/:eixo_x/:eixo_y' => 'vacancies#update_coordendas'
 
 end
