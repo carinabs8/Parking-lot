@@ -1,5 +1,5 @@
 class Map < ActiveRecord::Base
-  has_many :vacanncies, :dependent => :destroy
+  has_many :vacancies, :dependent => :destroy
   validates_presence_of :photo_file_name
   validates_presence_of :codigo
   validates_uniqueness_of :codigo
@@ -8,29 +8,15 @@ class Map < ActiveRecord::Base
   cattr_reader :per_page
 	@@per_page = 10
   
+  def changed?(map_vacancies)
+    vacancies = self.vacancies.map{|vacancy| [vacancy.id.to_s, vacancy.status]}
+    return false if map_vacancies.sort! == vacancies.sort!
+    true
+  end
   
   class << self
     def combo
       Map.order("codigo").collect {|c| [c.codigo]}
     end
   end
-
-  def changed?(map, vacancys, status)
-      status.shift
-      vacancys.shift
-
-      i = 0
-      map.vagas.each do |sv|
-        if !map.vagas.include?(vacancys[i][5..(vacancys[i].length)])
-          return true
-        elsif sv.codigo == vacancys[i][5..(vacancys[i].length)]
-          if sv.vaga_status.last.status != status[i]
-            return true
-          end
-          i = i+1
-        end
-      end
-      return false
-    end
-
 end

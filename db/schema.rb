@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111028035409) do
+ActiveRecord::Schema.define(:version => 20111029033734) do
 
   create_table "maps", :force => true do |t|
     t.string   "codigo"
@@ -65,12 +65,7 @@ ActiveRecord::Schema.define(:version => 20111028035409) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cod_arduino"
-  end
-
-  create_table "vaga_status", :force => true do |t|
-    t.integer "vacancy_id"
-    t.integer "status_controll_id"
-    t.string  "status"
+    t.integer  "status",      :default => 0
   end
 
 end

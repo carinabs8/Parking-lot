@@ -3,17 +3,32 @@ require 'spec_helper'
 describe Map do
   context "Changes of Map" do
     before(:each) do
-      @map = Factory(:map)
+      @vacancy = Factory(:vacancy, :status => Vacancy::AVAILABLE)
     end
-    it "should return true if state of lot were changed" do
-      #result = @map.changed?(",1,2,3", ",1,1,1")
-      
+    
+    context "Map not changed" do
+      it "should return false if state of vacancy didn't changed" do
+        vacancy = @vacancy.id.to_s
+        map = Map.find(@vacancy.map_id)
+        result = map.changed?([[vacancy, Vacancy::AVAILABLE]])
+        result.should be_false
+      end
     end
-    it "should return false if state of lot didn't changed" do
-      
-    end
-    it "should true if the user create a new lot" do
-      
+    
+    context "Map changed" do
+      it "should return true if state of vacancy were changed" do
+        vacancy = @vacancy.id.to_s
+        map = Map.find(@vacancy.map_id)
+        result = map.changed?([[vacancy, Vacancy::BUSY]])
+        result.should be_true
+      end
+      it "should true if the user create a new vacancy" do
+        vacancy_new = Factory(:vacancy, :status => Vacancy::AVAILABLE, :map_id => @vacancy.map_id)
+        vacancy = @vacancy.id.to_s
+        map = Map.find(@vacancy.map_id)
+        result = map.changed?([[vacancy, Vacancy::AVAILABLE]])
+        result.should be_true
+      end
     end
   end
 end

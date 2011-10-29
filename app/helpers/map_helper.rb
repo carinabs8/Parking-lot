@@ -1,14 +1,14 @@
 module MapHelper
-  def map_vaga_status(status, codigo)
+  def vacancy_status(vacancy)
     tag = ""
-    if status == StatusControll::AVAILABLE
+    if vacancy.status == StatusControll::AVAILABLE
       tag << image_tag('encore/ico/_available.png')
-    elsif status == StatusControll::RESTRICTED
+    elsif vacancy.status == StatusControll::RESTRICTED
       tag << image_tag('encore/ico/_temporarily-not-available.png')
     else
       tag << image_tag('encore/ico/_not-available.png')
     end
-    tag << '<span class="vaga_cod">'+codigo + '</span>'
+    tag << '<span class="vaga_cod">'+vacancy.codigo + '</span>'
     raw tag
   end
 end

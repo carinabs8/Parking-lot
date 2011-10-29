@@ -8,7 +8,7 @@ class MapsController < ApplicationController
 
   def show
     @map = Map.where(:codigo => params[:id]).first
-    @vagas = Vaga.all
+    @vagas = Vacancy.all
   end
 
   def new
@@ -57,8 +57,7 @@ class MapsController < ApplicationController
     vacancys  = params[:vacancys].split(',')
     status    = params[:status].split(',')
 p "=================HERE==================="
-    @changed = Map.changed?(@map, vacancys, status)
-p @changed
+    @changed = @map.changed?(vacancys)
     respond_to do |format|
       format.js
     end

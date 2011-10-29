@@ -1,17 +1,12 @@
-<%map.vagas.each do |vaga|%>
+<%map.vacancies.each do |vacancy|%>
   <p id="map_vaga">
-    <% if vaga.vaga_status.last.nil? %>
-      <% status = StatusControll::AVAILABLE %>
-    <% else %>
-      <% status = vaga.vaga_status.last.status%>
-    <%end%>
-    <%= map_vaga_status(status, vaga.codigo) unless vaga.eixo_x.nil?%>
-    <%= link_to "/vagas/#{vaga.id}/coordenates", :remote => true, :id=>"vaga-#{vaga.codigo}", :status => status, :class => :map_vaga do%>
-      <%= map_vaga_status(status, vaga.codigo)%>
+    <%= vacancy_status(vacancy) unless vacancy.eixo_x.nil?%>
+    <%= link_to "/vagas/#{vacancy.id}/coordenates", :remote => true, :id=>"vaga-#{vacancy.codigo}", :status => vacancy.status, :class => :map_vaga do%>
+      <%= vacancy_status(vacancy)%>
     <% end %>
   </p>
-  <div id="salva-vaga-<%=vaga.codigo%>"></div>
-  <%unless vaga.eixo_x.nil?%>
-    <script>$("#vaga-<%=vaga.codigo%>").offset({ top: <%=vaga.eixo_x%>, left: <%=vaga.eixo_y%> });</script>
+  <div id="salva-vaga-<%=vacancy.codigo%>"></div>
+  <%unless vacancy.eixo_x.nil?%>
+    <script>$("#vaga-<%=vacancy.codigo%>").offset({ top: <%=vacancy.eixo_x%>, left: <%=vacancy.eixo_y%> });</script>
   <% end %>
 <%end%>
