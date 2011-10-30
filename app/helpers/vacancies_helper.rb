@@ -1,9 +1,10 @@
 module VacanciesHelper
-  def check_box_status(vaga)
-    if vaga.vaga_status.last.nil? || vaga.vaga_status.last.status != StatusControll::RESTRICTED
-     raw  "#{label(:vaga, :status)} #{check_box :vaga, :status, :checked => false}"
-    elsif vaga.vaga_status.last.status == StatusControll::RESTRICTED
-     raw  "#{label(:vaga, :status)} #{check_box :vaga, :status, :checked => true}"
+  def check_box_status(vacancy)
+    p vacancy.status
+    if vacancy.status == Vacancy::RESTRICTED
+     raw  "#{label(:vacancy, :status)} #{check_box :vacancy, :status, :checked => true}"
+    elsif vacancy.status == Vacancy::AVAILABLE
+     raw  "#{label(:vacancy, :status)} #{check_box :vacancy, :status, :checked => false}"
     end
   end
 end

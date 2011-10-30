@@ -34,11 +34,11 @@ module ApplicationHelper
     "<p class=\"error clear\">#{text.join(',')}</p>" unless text.nil? || text.blank?
   end
   
-  def vacancy_status(vaga)
-    status = "#{label :vaga, :situacao} "
-    if vaga.vaga_status.last.nil? || vaga.vaga_status.last.status == StatusControll::AVAILABLE
+  def vacancy_status(vacancy)
+    status = "#{label :vacancy, :situacao} "
+    if vacancy.status == StatusControll::AVAILABLE
       status << "Disponivel"
-    elsif vaga.vaga_status.last.status == StatusControll::RESTRICTED
+    elsif vacancy.status == StatusControll::RESTRICTED
       status << "Interditada"
     else
       status << "Ocupada"

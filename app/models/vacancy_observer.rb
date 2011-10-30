@@ -1,34 +1,27 @@
 class VacancyObserver < ActiveRecord::Observer
-  def after_create(vaga)
-    if vaga.status == StatusControll::RESTRICTED
-      setLog(vaga.cod_arduino, vaga)
+  def after_create(vacancy)
+    if vacancy.status == Vacancy::RESTRICTED
+      setLog(vacancy, StatusControll::RESTRICTED)
     end
   end
   
-  def after_update(vaga)
-    vaga_status = VagaStatu.where(:vaga_id => vaga.id).last
-    status_controll = StatusControll.find(vaga_status.status_controll_id) if !vaga_status.nil?
-    p " ========="
-    p vaga_status
-    unless vaga.status.nil?
-      if (status_controll.nil? or vaga_status.nil?) and vaga.status == StatusControll::RESTRICTED
-        setLog(vaga.cod_arduino, vaga)
-      elsif !vaga_status.nil? && vaga_status.status == StatusControll::RESTRICTED && vaga.status == StatusControll::AVAILABLE
-         updateLog(status_controll, vaga)
-      elsif !vaga_status.nil? && vaga_status.status != StatusControll::RESTRICTED && vaga.status == StatusControll::RESTRICTED
-         updateLog(status_controll, vaga)
-      end
+  def after_update(vacancy)
+    status_controll = StatusControll.where(:vacancy_id => vacancy, :current_status => Vacancy::RESTRICTED).last
+
+    if !status_controll.nil?
+      updateLog(status_controll, vacancy)
+    elsif vacancy.status == Vacancy::RESTRICTED
+      setLog(vacancy, Vacancy::RESTRICTED)
     end
   end
   
   private
-    def setLog(cod_arduino, vaga)
-      statuscontroll = StatusControll.create(:timebegin => Time.now, :cod_arduino => cod_arduino)
-      VagaStatu.create(:vaga_id => vaga.id, :status_controll_id => statuscontroll.id, :status => vaga.status)
+    def setLog(vacancy, current_status)
+      StatusControll.create(:vacancy_id => vacancy.id, :timebegin => Time.now, :current_status => current_status)
     end
     
-    def updateLog(status_controll, vaga)
-      status_controll.update_attribute(:time_end, Time.now)
-      VagaStatu.create(:vaga_id => vaga.id, :status_controll_id => status_controll.id, :status => vaga.status)
+    def updateLog(status_controll, vacancy)
+      old_status = status_controll.current_status
+      status_controll.update_attributes(:time_end => Time.now, :current_status => vacancy.status, :old_status => old_status)
     end
 end

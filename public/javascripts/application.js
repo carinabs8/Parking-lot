@@ -34,13 +34,20 @@ $(function(){
 function updateVacancies(){
   var map_id = $("#vacancy_of_map").attr("map_id");
   
-  var status_of_vacancys = ""
-  var vacancys = ""
-  $("#vacancy_of_map p a[id^=vaga-]").map(function() {
-    status_of_vacancys +=  "," + $(this).attr('status');
-    vacancys += "," + this.id;
+  var vacancies = []
+  var statuses = []
+  var indice = 0
+  
+  $("#vacancy_of_map p a[id^=vacancy-]").map(function() {
+    var status = $(this).attr('status');
+    var vacancy = this.id.match(/\d/);
+    
+    vacancies[indice] = vacancy;
+    statuses[indice] = status
+    indice+= 1;
+    
   }).get().join(',');
-
-  $.getScript("/reload_map.js?map_id=" + map_id + "&vacancys=" + vacancys+ "&status=" + status_of_vacancys)
+  
+  $.getScript("/reload_map.js?map_id=" + map_id + "&vacancies=" + vacancies + "&statuses=" + statuses);
   setTimeout(updateVacancies, 5000);
 }

@@ -184,7 +184,7 @@ pt_br:
   activerecord:
     errors:
       models:
-        vaga:
+        vacancy:
           attributes:
             codigo:
               taken: Já existe uma vaga com esse código
@@ -193,6 +193,7 @@ pt_br:
               blank: Mapa inválido
             cod_arduino:
               taken: Essa porta já está em uso
+              blank: Não pode ficar em branco
 
         user:
           attributes:
@@ -219,7 +220,7 @@ pt_br:
 
   helpers:
     label:
-      vaga:
+      vacancy:
         status: "Interditada"
         especial: "É especial?"
         :situacao: "Situação da vaga: "

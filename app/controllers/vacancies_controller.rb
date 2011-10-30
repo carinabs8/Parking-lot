@@ -21,9 +21,9 @@ class VacanciesController < ApplicationController
   def update
     @vacancy = Vacancy.find(params[:id])
     
-    if @vacancy.update_attributes(params[:vaga])
+    if @vacancy.update_attributes(params[:vacancy])
       flash[:success] = "Vacancy atualizada com sucesso!"
-      redirect_to vagas_path
+      redirect_to vacancies_path
     else
       render :edit
     end
@@ -34,7 +34,7 @@ class VacanciesController < ApplicationController
   end
 
   def update_coordendas
-    @vacancy = Vacancy.find(params[:vaga_id])
+    @vacancy = Vacancy.find(params[:vacancy_id])
     @vacancy.eixo_x = params[:eixo_x]
     @vacancy.eixo_y = params[:eixo_y]
     
@@ -45,10 +45,10 @@ class VacanciesController < ApplicationController
   end
 
   def create
-    @vacancy = Vacancy.new(params[:vaga])
+    @vacancy = Vacancy.new(params[:vacancy])
     if @vacancy.save
       flash[:notice] = 'Vacancy cadastrada com sucesso!'
-      redirect_to vagas_url
+      redirect_to vacancies_url
     else
       render :new
     end
@@ -57,6 +57,6 @@ class VacanciesController < ApplicationController
   def destroy
     @vacancy = Vacancy.find(params[:id])
     @vacancy.destroy
-    redirect_to vagas_path
+    redirect_to vacancies_path
   end
 end

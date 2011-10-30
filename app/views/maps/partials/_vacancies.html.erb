@@ -1,7 +1,7 @@
 <%map.vacancies.each do |vacancy|%>
-  <p id="map_vaga">
+  <p id="map_vacancy">
     <%= vacancy_status(vacancy) unless vacancy.eixo_x.nil?%>
-    <%= link_to "/vagas/#{vacancy.id}/coordenates", :remote => true, :id=>"vaga-#{vacancy.codigo}", :status => vacancy.status, :class => :map_vaga do%>
+    <%= link_to "/vagas/#{vacancy.id}/coordenates", :remote => true, :id=>"vacancy-#{vacancy.id}", :status => vacancy.status, :class => :map_vaga do%>
       <%= vacancy_status(vacancy)%>
     <% end %>
   </p>

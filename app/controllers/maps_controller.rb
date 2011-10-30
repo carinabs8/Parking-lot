@@ -53,11 +53,15 @@ class MapsController < ApplicationController
   
   def reload_map
     @map      = Map.where("id = ?", params[:map_id]).first
+    vacancys_status = []
+    vacancies = params[:vacancies].split(',')
+    statuses = params[:statuses].split(',')
     
-    vacancys  = params[:vacancys].split(',')
-    status    = params[:status].split(',')
-p "=================HERE==================="
-    @changed = @map.changed?(vacancys)
+    (0...vacancies.length).each do |i|
+      vacancys_status << [vacancies[i].to_i, statuses[i].to_i]
+    end
+    p vacancys_status
+    @changed = @map.changed?(vacancys_status)
     respond_to do |format|
       format.js
     end

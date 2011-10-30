@@ -9,7 +9,7 @@ class Map < ActiveRecord::Base
 	@@per_page = 10
   
   def changed?(map_vacancies)
-    vacancies = self.vacancies.map{|vacancy| [vacancy.id.to_s, vacancy.status]}
+    vacancies = self.vacancies.map{|vacancy| [vacancy.id, vacancy.status]}
     return false if map_vacancies.sort! == vacancies.sort!
     true
   end

@@ -11,8 +11,8 @@
     <% vacancies.each do |vacancy| %>
       <tr class="<%= cycle('even', 'odd') %>">
         <td><%= link_to vacancy.id, vacancy_path(vacancy.codigo) %></td>
-        <td style="text-align:left;"><%= vacancy.codigo %></td>
-        <td style="text-align:left;"><%= vacancy.map.codigo unless vacancy.map.nil?%> <%= "Sem mapa associado." if vacancy.map.nil?%></td>
+        <td style="text-align:left;"><%= link_to vacancy.codigo, vacancy_path(vacancy.codigo) %></td>
+        <td style="text-align:left;"><%= link_to vacancy.map.codigo, map_path(vacancy.map.codigo) %></td>
         <td>
           <%= link_to image_tag("encore/ico/icoEdit.png"), edit_vacancy_path(vacancy.codigo), :id=> "alterar_vaga" %>
         </td>

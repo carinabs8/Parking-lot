@@ -8,8 +8,8 @@
   </div>
   <div class="textContent full clear">
     <p>Código: <%= @vacancy.codigo %></p>
-    <p>Mapa: <%= @vacancy.map.nil? ? "Sem mapa associado." : @vacancy.map.codigo %></p>
-    <p><%= raw vaga_status(@vacancy) %></a></p>
+    <p>Mapa: <%=@vacancy.map.codigo %></p>
+    <p><%= raw vacancy_status(@vacancy) %></a></p>
     <p>Tipo de vaga: <%= @vacancy.especial ? "Reservada para deficientes físicos" : "Normal" %></a></p>
     
   </div>

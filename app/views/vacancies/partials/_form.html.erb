@@ -33,7 +33,6 @@
       </a>
       <%= raw show_error_in_form(vacancy.errors[:map_id]) %>
     </div>
-    <%= render "vacancies/partials/status_vacancy", :vacancy => vacancy if !vacancy.cod_arduino.nil?%>
     <div class="field clear">
       <%= check_box_status(vacancy)%>
       
