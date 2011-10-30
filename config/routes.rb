@@ -14,7 +14,7 @@ ProjetoFinal::Application.routes.draw do
   resources :vacancies
   resources :status_controlls
 
-  match '/vagas/:id/coordenates' => 'vagas#coordenates'
-  match '/vacancies/update_coordendas/:vaga_id/:eixo_x/:eixo_y' => 'vacancies#update_coordendas'
+  match '/vacancies/:id/coordenates' => 'vacancies#coordenates'
+  match '/vacancies/update_coordendas/:vacancy_id/:eixo_x/:eixo_y' => 'vacancies#update_coordendas'
 
 end
