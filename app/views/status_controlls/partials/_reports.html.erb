@@ -10,15 +10,14 @@
   </thead>
   <tbody>
     <% i = 0 %>
-    <% keys = reports.keys%>
-    
     <% reports.each do |report| %>
-      <%= hr = distance_of_time_in_words(reports[keys[i]]["1"].status_controll.time_end, reports[keys[i]]["1"].status_controll.timebegin) %>
+    <%= report.inspect%>
+      <% hr = report.time_end, report.timebegin %>
       <tr class="<%= cycle('even', 'odd') %>">
         <td align=center ><%= i %></td>
-        <td align=center ><%=reports[keys[i]]["1"].status_controll.timebegin.strftime("%d/%m/%Y as %H:%M:%S")%></td>
-        <td align=center ><%= reports[keys[i]]["1"].status_controll.time_end.strftime("%d/%m/%Y as %H:%M:%S")%></td>
-        <td align=center ><%= reports[keys[i]]["1"].vaga.codigo %></td>
+        <td align=center ><%=report.timebegin.strftime("%d/%m/%Y as %H:%M:%S")%></td>
+        <td align=center ><%= report.time_end.strftime("%d/%m/%Y as %H:%M:%S")%></td>
+        <td align=center ><%= report.vacancy %></td>
         <td align=center ><%= hr%></td>
       </tr>
       <%i = i+ 1%>

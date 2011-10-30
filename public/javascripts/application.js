@@ -25,11 +25,11 @@ $(function(){
 });
 
 //Automatic Reload =P
-/*$(function(){
+$(function(){
   if ($("#vacancy_of_map").length > 0){
     setTimeout(updateVacancies, 5000);
   }
-  });*/
+});
 
 function updateVacancies(){
   var map_id = $("#vacancy_of_map").attr("map_id");
