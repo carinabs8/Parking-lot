@@ -8,7 +8,7 @@ module MapHelper
     else
       tag << image_tag('encore/ico/_not-available.png')
     end
-    tag << '<span class="vaga_cod">'+vacancy.codigo + '</span>'
+    tag << '<span class="vacancy_cod">'+vacancy.codigo + '</span>'
     raw tag
   end
 end

@@ -1,12 +1,16 @@
 <%map.vacancies.each do |vacancy|%>
   <p id="map_vacancy">
-    <%= vacancy_status(vacancy) unless vacancy.eixo_x.nil?%>
-    <%= link_to "/vagas/#{vacancy.id}/coordenates", :remote => true, :id=>"vacancy-#{vacancy.id}", :status => vacancy.status, :class => :map_vaga do%>
+    <span id="original_vacancy_<%=vacancy.id%>">
+      <%= vacancy_status(vacancy) unless vacancy.eixo_x.nil?%>
+    </span>
+    <%= link_to "/vacancies/#{vacancy.id}/coordenates", :remote => true, :id=>"vacancy-#{vacancy.id}",
+    :status => vacancy.status, :class => :map_vaga do%>
       <%= vacancy_status(vacancy)%>
     <% end %>
+    <script>$("#vacancy-<%=vacancy.id%>").draggable({ refreshPositions: true });</script>
   </p>
-  <div id="salva-vaga-<%=vacancy.codigo%>"></div>
-  <%unless vacancy.eixo_x.nil?%>
-    <script>$("#vaga-<%=vacancy.codigo%>").offset({ top: <%=vacancy.eixo_x%>, left: <%=vacancy.eixo_y%> });</script>
+  <div id="save_vacancy-<%=vacancy.id%>"></div>
+  <% unless vacancy.eixo_x.nil?%>
+    <script>$("#vacancy-<%=vacancy.id%>").offset({ top: <%=vacancy.eixo_x%>, left: <%=vacancy.eixo_y%> });</script>
   <% end %>
 <%end%>

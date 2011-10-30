@@ -9,14 +9,14 @@ $(document).ready(function(){
     { source: "/auto_complete/maps_list.json" }
   );
 })
-function get_and_save_coordenates(codigo, vaga_id) {
-  var codigo = codigo
-  var vaga_id = vaga_id
-  jQuery("#vaga-"+codigo).draggable({ cancel: 'button' });
-  jQuery("#vaga-"+codigo).bind('mouseenter mouseleave',function(e){
+function get_and_save_coordenates(vacancy_id) {
+  var vacancy_id = vacancy_id;
+  
+  $("#vacancy-"+ vacancy_id).bind('mouseenter mouseleave',function(e){
     var positionX = this.offsetTop;
     var positionY = this.offsetLeft;
-    $("#salva-vaga-"+codigo).load("/vagas/update_coordendas/"+vaga_id + "/" + positionX +"/"+ positionY);
+    console.log($("#save_vacancy-"+vacancy_id));
+    $("#save_vacancy-"+vacancy_id).load("/vacancies/update_coordendas/"+vacancy_id + "/" + positionX +"/"+ positionY);
   });
 }
 
@@ -25,11 +25,11 @@ $(function(){
 });
 
 //Automatic Reload =P
-$(function(){
+/*$(function(){
   if ($("#vacancy_of_map").length > 0){
     setTimeout(updateVacancies, 5000);
   }
-});
+  });*/
 
 function updateVacancies(){
   var map_id = $("#vacancy_of_map").attr("map_id");

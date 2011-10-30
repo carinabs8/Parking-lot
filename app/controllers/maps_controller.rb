@@ -56,11 +56,11 @@ class MapsController < ApplicationController
     vacancys_status = []
     vacancies = params[:vacancies].split(',')
     statuses = params[:statuses].split(',')
-    
+
     (0...vacancies.length).each do |i|
       vacancys_status << [vacancies[i].to_i, statuses[i].to_i]
     end
-    p vacancys_status
+
     @changed = @map.changed?(vacancys_status)
     respond_to do |format|
       format.js

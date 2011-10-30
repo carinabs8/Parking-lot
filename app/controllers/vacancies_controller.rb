@@ -34,14 +34,16 @@ class VacanciesController < ApplicationController
   end
 
   def update_coordendas
+    
     @vacancy = Vacancy.find(params[:vacancy_id])
     @vacancy.eixo_x = params[:eixo_x]
     @vacancy.eixo_y = params[:eixo_y]
     
     @vacancy.save!
     respond_to do |format|
-      format.js
+      format.js {render :layout => false}
     end
+    
   end
 
   def create
