@@ -8,14 +8,13 @@
 
   <!-- start top table options -->
   <div id="topOptions" class="clear">
-    <%#= page_entries_info @reports, :entry_name => 'registro' %>
+    <%#= page_entries_info @status_vagas, :entry_name => 'registro' %>
   </div>
   <!-- end top table options -->
   
   <%= raw show_msg(flash[:report_index], :success) %>
 
   <%= render :partial => "status_controlls/partials/reports", :locals =>{:reports => @status_vagas}%>
-
 </div>
 <!-- end main -->
 

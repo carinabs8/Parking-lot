@@ -1,5 +1,5 @@
 ProjetoFinal::Application.routes.draw do
-  root  :to =>  'maps#index'
+  root  :to =>  'home#index'
   resources :user_sessions
   get "user_sessions/new"
   match 'login' => "user_sessions#new", :as => :login

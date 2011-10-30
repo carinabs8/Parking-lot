@@ -47,15 +47,17 @@
     <!-- end title -->
 
     <!-- start menu -->
-    <div id="menu" class="clear">
-      <ul>
-        <li class="<%= is_active? "maps" %>"><%=link_to "Gerenciar Mapas", maps_path%></li>
-        <% if can? :manage, "vaga", "relatorios" %>
+    <% if !is_active? "home"%>
+      <div id="menu" class="clear">
+        <ul>
+          <li class="<%= is_active? "maps" %>"><%=link_to "Gerenciar Mapas", maps_path%></li>
+          <% if can? :manage, "vaga", "relatorios" %>
           <li class="<%= is_active? "vagas" %>"><%=link_to " Gerenciar Vagas", vacancies_path%></li>
           <li class="<%= is_active? "status_controlls" %>"><%=link_to "Gerenciar Relatórios", status_controlls_path%></li>
-        <%end%>
-      </ul>
-    </div>
+          <%end%>
+        </ul>
+      </div>
+    <% end%>
     <!-- end menu -->
 
     <!-- start toolbar -->

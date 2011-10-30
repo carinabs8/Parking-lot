@@ -11,14 +11,12 @@
   <tbody>
     <% i = 0 %>
     <% reports.each do |report| %>
-    <%= report.inspect%>
-      <% hr = report.time_end, report.timebegin %>
       <tr class="<%= cycle('even', 'odd') %>">
         <td align=center ><%= i %></td>
         <td align=center ><%=report.timebegin.strftime("%d/%m/%Y as %H:%M:%S")%></td>
         <td align=center ><%= report.time_end.strftime("%d/%m/%Y as %H:%M:%S")%></td>
-        <td align=center ><%= report.vacancy %></td>
-        <td align=center ><%= hr%></td>
+        <td align=center ><%= report.vacancy.codigo %></td>
+        <td align=center ><%= distance_of_time_in_words(report.time_end, report.timebegin)%></td>
       </tr>
       <%i = i+ 1%>
     <% end %>

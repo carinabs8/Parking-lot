@@ -750,21 +750,23 @@ img.thumbnail {
 
 #quick { margin: 10px 0; }
 .quickLink {
-    width: 100px;
-    height: 100px;
+    width: 170px;
+    height: 170px;
     float: left;
     margin: 6px;
     text-align: center;
     border: 1px solid #ddd;
-    background: transparent url(../images/encore/bgQuickLink.gif) repeat-x 0 0;
+    background: transparent url(../images/encore/bgQuickLink.gif) repeat-x 0 0 repeat-y 0 0;
 }
 .quickLink img {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     margin: 13px 0;
+    position: center;
+    text-align: absolute;
 }
 .quickLink span {
-    width: 100px;
+    width: 170px;
     display: block;
     clear: both;
     margin: 5px 0;
