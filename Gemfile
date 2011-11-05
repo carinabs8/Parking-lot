@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.0.3'
+gem 'rails', '3.1.1'
 gem 'authlogic'
 gem 'rails3-generators'
 gem 'will_paginate', '~> 3.0.2'
