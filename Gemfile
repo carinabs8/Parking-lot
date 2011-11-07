@@ -4,7 +4,7 @@ gem 'authlogic'
 gem 'rails3-generators'
 gem 'will_paginate', '~> 3.0.2'
 gem "meta_search"
-gem "paperclip", "2.3.8"
+gem "paperclip", "~> 2.4"
 gem "serialport", "~> 1.0.4"
 gem "cancan"
 gem 'pg'
