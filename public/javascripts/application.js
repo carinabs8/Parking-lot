@@ -12,10 +12,9 @@ $(document).ready(function(){
 function get_and_save_coordenates(vacancy_id) {
   var vacancy_id = vacancy_id;
   
-  $("#vacancy-"+ vacancy_id).bind('mouseenter mouseleave',function(e){
+  $("#vacancy-"+ vacancy_id).bind('click',function(e){
     var positionX = this.offsetTop;
     var positionY = this.offsetLeft;
-    console.log($("#save_vacancy-"+vacancy_id));
     $("#save_vacancy-"+vacancy_id).load("/vacancies/update_coordendas/"+vacancy_id + "/" + positionX +"/"+ positionY);
   });
 }
