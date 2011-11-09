@@ -8,10 +8,9 @@ class Map < ActiveRecord::Base
   cattr_reader :per_page
 	@@per_page = 10
   
-  def changed?(map_vacancies)
+  def vacancy_changed?(vacancies_status)
     vacancies = self.vacancies.map{|vacancy| [vacancy.id, vacancy.status]}
-    return false if map_vacancies.sort! == vacancies.sort!
-    true
+    vacancies_status.sort! != vacancies.sort!
   end
   
   class << self

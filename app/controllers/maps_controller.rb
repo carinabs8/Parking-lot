@@ -61,7 +61,7 @@ class MapsController < ApplicationController
       vacancys_status << [vacancies[i].to_i, statuses[i].to_i]
     end
 
-    @changed = @map.changed?(vacancys_status)
+    @changed = @map.vacancy_changed?(vacancys_status)
     respond_to do |format|
       format.js
     end
