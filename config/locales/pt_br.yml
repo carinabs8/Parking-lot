@@ -227,19 +227,25 @@ pt_br:
 
   authlogic:
     error_messages:
-      consecutive_failed_logins_limit_exceeded: "Consecutive failed logins limit exceeded, account is disabled."
-      not_active: Your account is not active
-      not_confirmed: Your account is not confirmed
-      not_approved: Your account is not approved
-      no_authentication_details: You did not provide any details for authentication.
+      login_blank: "não pode ficar em branco"
+      login_not_found: "não é válido"
+      login_invalid: "deve usar somente letras, números, espaços e .-_@ por favor."
+      consecutive_failed_logins_limit_exceeded: "Consecutivos logins que falharam limite excedido, a conta está desativada."
+      email_invalid: "deve ser semelhante a um endereço de email."
+      password_blank: "não pode ficar em branco"
+      password_invalid: "não é válido"
+      not_active: "Sua conta não está ativa"
+      not_confirmed: "Sua conta não está confirmada"
+      not_approved: "Sua conta não foi aprovada"
+      no_authentication_details: "Você não forneceu nenhum detalhe para autenticação."
     models:
-      user_session:
+      user_session: "SessãoUsuário"
     attributes:
       user_session:
-        login: login
-        email: email
-        password: password
-        remember_me: remember me
+        login: "Usuário"
+        email: "Email"
+        password: "Senha"
+        remember_me: "Lembrar me"
 
   will_paginate:
     page_entries_info:
