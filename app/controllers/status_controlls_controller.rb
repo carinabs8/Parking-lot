@@ -1,6 +1,6 @@
 class StatusControllsController < ApplicationController
   before_filter :require_user
   def index
-    @status_vagas = StatusControll.where("time_end is NOT NULL")
+    @status_vagas = StatusControll.closed.recent
   end
 end

@@ -7,4 +7,7 @@ class StatusControll < ActiveRecord::Base
   AVAILABLE   = "0"
   RESTRICTED  = "1"
   BUSY        = "2"
+  
+  scope :closed, lambda{ where("time_end is NOT NULL") }
+  scope :recent, lambda{ where(:timebegin => Time.new(Time.now.year, Time.now.month, 1)..Time.now)}
 end
