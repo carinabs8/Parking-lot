@@ -13,6 +13,7 @@ ProjetoFinal::Application.routes.draw do
   resources :maps
   resources :vacancies
   resources :status_controlls
+  match 'reports/:time_begin' => 'status_controlls#show', :as => :reports
 
   match '/vacancies/:id/coordenates' => 'vacancies#coordenates'
   match '/vacancies/update_coordendas/:vacancy_id/:eixo_x/:eixo_y' => 'vacancies#update_coordendas'
