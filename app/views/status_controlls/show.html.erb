@@ -28,7 +28,7 @@
         <fieldset>
           <div class="field clear">
             <%=b.label t(:time_begin)%>
-            <%=b.date_select :time_begin, :class => "full"%>
+            <%=b.date_select :time_begin,:default => params[:id].to_datetime, :class => "full"%>
           </div>
         </fieldset>
           <%=b.submit "Buscar", :class => "button secondary"%>
