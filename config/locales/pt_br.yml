@@ -2,6 +2,7 @@ pt_br:
   date:
     formats:
       default: "%d/%m/%Y"
+      urls: "%Y-%m-%d"
       short: "%d de %B"
       long: "%d de %B de %Y"
 
