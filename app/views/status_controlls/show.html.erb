@@ -9,6 +9,11 @@
   <!-- start top table options -->
   <div id="topOptions" class="clear">
     <%#= page_entries_info @status_vagas, :entry_name => 'registro' %>
+    
+    <%= link_to make_pdf_reports_path(:id => @time_begin.strftime(t("date.formats.urls")), :format => :pdf) do %>
+      Gerar PDF
+      <%= image_tag('encore/ico/pdf.jpeg')%>
+    <% end %>
   </div>
   <!-- end top table options -->
   
@@ -28,7 +33,7 @@
         <fieldset>
           <div class="field clear">
             <%=b.label t(:time_begin)%>
-            <%=b.date_select :time_begin,:default => params[:id].to_datetime, :class => "full"%>
+            <%=b.date_select :time_begin,:default => @time_begin, :class => "full"%>
           </div>
         </fieldset>
           <%=b.submit "Buscar", :class => "button secondary"%>

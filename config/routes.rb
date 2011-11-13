@@ -12,9 +12,10 @@ ProjetoFinal::Application.routes.draw do
   match '/reload_map' => 'maps#reload_map'
   resources :maps
   resources :vacancies
-  resources :status_controlls, :as => :reports do
+  resources :status_controlls, :as => :reports, :only => [:show, :search, :make_pdf] do
     collection do
       get :search
+      get :make_pdf
     end
   end
 

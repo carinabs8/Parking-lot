@@ -11,7 +11,6 @@ gem 'pg'
 gem 'capistrano'
 gem 'pdfkit'
 
-
 group :development, :test do
   gem 'ruby-debug19'
   gem "rspec"
