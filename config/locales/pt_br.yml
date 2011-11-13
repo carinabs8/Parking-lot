@@ -180,8 +180,8 @@ pt_br:
       hour:   "Hora"
       minute: "Minuto"
       second: "Segundo"
-
   
+  time_begin: Data de Início
   activerecord:
     errors:
       models:
