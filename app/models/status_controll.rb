@@ -9,5 +9,7 @@ class StatusControll < ActiveRecord::Base
   BUSY        = "2"
   
   scope :closed, lambda{ where("time_end is NOT NULL") }
-  scope :recent, lambda{ where(:timebegin => Time.new(Time.now.year, Time.now.month, 1)..Time.now)}
+  scope :by_time_begin, lambda{ |time_begin|
+    where(:timebegin => Time.new(time_begin.year, time_begin.month, 1)..time_begin)}
+
 end

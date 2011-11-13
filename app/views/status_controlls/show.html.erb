@@ -1,0 +1,41 @@
+<%#= will_paginate @reports %>
+<!-- start main -->
+<div id="main" class="clear">
+
+  <div id="head" class="clear">
+    <h1>Relatórios</h1>
+  </div>
+
+  <!-- start top table options -->
+  <div id="topOptions" class="clear">
+    <%#= page_entries_info @status_vagas, :entry_name => 'registro' %>
+  </div>
+  <!-- end top table options -->
+  
+  <%= raw show_msg(flash[:report_index], :success) %>
+
+  <%= render :partial => "status_controlls/partials/reports", :locals =>{:reports => @status_vagas}%>
+</div>
+<!-- end main -->
+
+<!-- start sidebar -->
+<div id="sidebar">
+  <!-- start filters sidebox -->
+  <div id="boxFirst" class="sidebox clear">
+    <h1>Buscar</h1>
+    <div class="boxContent clear">
+    <%=form_for :status_controll, :as => :search, :html => {:method => :post, :class => "sideForm"} do |b|%>
+        <fieldset>
+          <div class="field clear">
+            <%=b.label  "Data"%>
+            <%=b.date_select :time_begin, :class => "full"%>
+          </div>
+        </fieldset>
+          <%=b.submit "Buscar", :class => "button secondary"%>
+        <%end%>
+      </div>
+  </div>
+  <!-- end filters sidebox -->
+
+</div>
+<!-- end sidebar -->
