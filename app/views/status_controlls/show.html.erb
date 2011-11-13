@@ -24,10 +24,10 @@
   <div id="boxFirst" class="sidebox clear">
     <h1>Buscar</h1>
     <div class="boxContent clear">
-    <%=form_for :status_controll, :as => :search, :url => reports_path, :html => {:method => :post, :class => "sideForm"} do |b|%>
+    <%=form_for :status_controll, :as => :search, :url => search_reports_path, :html => {:method => :get, :class => "sideForm"} do |b|%>
         <fieldset>
           <div class="field clear">
-          <%=b.label t(:time_begin)%>
+            <%=b.label t(:time_begin)%>
             <%=b.date_select :time_begin, :class => "full"%>
           </div>
         </fieldset>

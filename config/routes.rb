@@ -12,8 +12,11 @@ ProjetoFinal::Application.routes.draw do
   match '/reload_map' => 'maps#reload_map'
   resources :maps
   resources :vacancies
-  resources :status_controlls, :as => :reports
-  match 'report/:time_begin' => 'status_controlls#show', :as => :report
+  resources :status_controlls, :as => :reports do
+    collection do
+      get :search
+    end
+  end
 
   match '/vacancies/:id/coordenates' => 'vacancies#coordenates'
   match '/vacancies/update_coordendas/:vacancy_id/:eixo_x/:eixo_y' => 'vacancies#update_coordendas'

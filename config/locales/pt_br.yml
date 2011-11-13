@@ -183,6 +183,8 @@ pt_br:
   
   time_begin: Data de Início
   activerecord:
+    models:
+      status_controll: "report"
     errors:
       models:
         vacancy:
