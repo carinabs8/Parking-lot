@@ -7,6 +7,6 @@ class StatusControllsController < ApplicationController
   
   def create
     time_begin = "#{params[:status_controll]["time_begin(1i)"]}-#{params[:status_controll]["time_begin(2i)"]}-#{params[:status_controll]["time_begin(3i)"]}"
-    redirect_to reports_path(time_begin)
+    redirect_to report_path(time_begin)
   end
 end
