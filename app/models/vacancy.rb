@@ -14,4 +14,6 @@ class Vacancy < ActiveRecord::Base
 
   cattr_reader :per_page
   @@per_page = 10
+  
+  scope :vacancy_by_cod, lambda { |cod| where(:codigo => cod) }
 end

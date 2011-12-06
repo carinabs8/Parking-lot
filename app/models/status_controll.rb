@@ -10,6 +10,9 @@ class StatusControll < ActiveRecord::Base
   
   scope :closed, lambda{ where("time_end is NOT NULL") }
   scope :by_time_begin, lambda{ |time_begin|
-    where(:timebegin => Time.new(time_begin.year, time_begin.month, 1)..time_begin)}
+    where(
+    :timebegin => Time.new(time_begin.year, time_begin.month, 1)...Time.new(time_begin.year, time_begin.month, time_begin.day)
+    )
+  }
 
 end

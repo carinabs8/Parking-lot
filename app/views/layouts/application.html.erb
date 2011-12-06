@@ -52,8 +52,8 @@
         <ul>
           <li class="<%= is_active? "maps" %>"><%=link_to "Gerenciar Mapas", maps_path%></li>
           <% if can? :manage, "vaga", "relatorios" %>
-          <li class="<%= is_active? "vacancies" %>"><%=link_to " Gerenciar Vagas", vacancies_path%></li>
-          <li class="<%= is_active? "status_controlls" %>"><%=link_to "Gerenciar Relatórios", report_path((Time.now.strftime(t("date.formats.urls"))))%></li>
+            <li class="<%= is_active? "vacancies" %>"><%=link_to " Gerenciar Vagas", vacancies_path%></li>
+            <li class="<%= is_active? "status_controlls" %>"><%=link_to "Gerenciar Relatórios", report_path((Time.now.strftime(t("date.formats.urls"))))%></li>
           <%end%>
         </ul>
       </div>

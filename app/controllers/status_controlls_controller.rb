@@ -12,7 +12,7 @@ class StatusControllsController < ApplicationController
   end
   
   def make_pdf
-    render :layout => nil
+    render :layout => false
   end
   
   private
@@ -22,6 +22,6 @@ class StatusControllsController < ApplicationController
       rescue
         @time_begin = Time.now
       end
-      @status_vagas = StatusControll.closed.by_time_begin(@time_begin)
+      @status_vacancies = StatusControll.closed.by_time_begin(@time_begin)
     end
 end

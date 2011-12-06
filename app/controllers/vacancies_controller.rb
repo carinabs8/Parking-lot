@@ -7,7 +7,7 @@ class VacanciesController < ApplicationController
   end
 
   def show
-    @vacancy = Vacancy.where(:codigo => params[:id]).first
+    @vacancy = Vacancy.vacancy_by_cod(params[:id]).first
   end
 
   def new
@@ -15,7 +15,7 @@ class VacanciesController < ApplicationController
   end
 
   def edit
-    @vacancy = Vacancy.where(:codigo => params[:id]).first
+    @vacancy = Vacancy.vacancy_by_cod(params[:id]).first
   end
 
   def update

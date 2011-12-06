@@ -7,19 +7,24 @@
   </div>
 
   <!-- start top table options -->
-  <div id="topOptions" class="clear">
-    <%#= page_entries_info @status_vagas, :entry_name => 'registro' %>
+  
+    <%#= page_entries_info @status_vacancies, :entry_name => 'registro' %>
+  <% unless @status_vacancies.blank? %>
+    <div id="topOptions" class="clear">
+      <%= link_to make_pdf_reports_path(:id => @time_begin.strftime(t("date.formats.urls")), :format => :pdf) do %>
+        Gerar PDF
+        <%= image_tag('encore/ico/pdf.jpeg')%>
+      <% end %>
+    </div>
+  <% else %>
+    <%= raw show_msg("Nenhum resultado encontrado", :warning)%>
+  <% end%>
     
-    <%= link_to make_pdf_reports_path(:id => @time_begin.strftime(t("date.formats.urls")), :format => :pdf) do %>
-      Gerar PDF
-      <%= image_tag('encore/ico/pdf.jpeg')%>
-    <% end %>
-  </div>
   <!-- end top table options -->
   
   <%= raw show_msg(flash[:report_index], :success) %>
 
-  <%= render :partial => "status_controlls/partials/reports", :locals =>{:reports => @status_vagas}%>
+  <%= render :partial => "status_controlls/partials/reports", :locals =>{:reports => @status_vacancies}%>
 </div>
 <!-- end main -->
 
