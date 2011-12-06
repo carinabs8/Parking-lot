@@ -22,6 +22,6 @@ class StatusControllsController < ApplicationController
       rescue
         @time_begin = Time.now
       end
-      @status_vacancies = StatusControll.closed.by_time_begin(@time_begin)
+      @status_vacancies = StatusControll.closed.by_time_begin(@time_begin).paginate(:page => params[:page])
     end
 end

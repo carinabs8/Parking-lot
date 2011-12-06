@@ -1,7 +1,6 @@
 class StatusControll < ActiveRecord::Base
-  cattr_reader :per_page
-	@@per_page = 10
-  
+  self.per_page = 5
+
   has_many    :vacancies
   belongs_to  :vacancy
   AVAILABLE   = "0"

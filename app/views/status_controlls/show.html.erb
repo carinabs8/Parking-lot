@@ -1,4 +1,3 @@
-<%#= will_paginate @reports %>
 <!-- start main -->
 <div id="main" class="clear">
 
@@ -8,7 +7,7 @@
 
   <!-- start top table options -->
   
-    <%#= page_entries_info @status_vacancies, :entry_name => 'registro' %>
+  <%= page_entries_info @status_vacancies, :entry_name => 'registro' %>
   <% unless @status_vacancies.blank? %>
     <div id="topOptions" class="clear">
       <%= link_to make_pdf_reports_path(:id => @time_begin.strftime(t("date.formats.urls")), :format => :pdf) do %>
@@ -25,6 +24,10 @@
   <%= raw show_msg(flash[:report_index], :success) %>
 
   <%= render :partial => "status_controlls/partials/reports", :locals =>{:reports => @status_vacancies}%>
+  <%= will_paginate @status_vacancies %>
+  <% if @status_vacancies.blank? %>
+      <%= raw show_msg("Nenhum registro foi encontrado.", :warning) %>
+  <% end %>
 </div>
 <!-- end main -->
 

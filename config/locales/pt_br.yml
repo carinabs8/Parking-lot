@@ -184,7 +184,8 @@ pt_br:
   time_begin: Data de Início
   activerecord:
     models:
-      status_controll: "report"
+      status_controll: "Relatório"
+      vacancy: "Vaga"
     errors:
       models:
         vacancy:
@@ -254,12 +255,14 @@ pt_br:
     page_entries_info:
       single_page:
         zero:  "No %{model} found"
-        one:   "Displaying 1 %{model}"
+        one:   "Mostrando 1 %{model}"
         other: "Displaying all %{count} %{model}"
       single_page_html:
         zero:  "No %{model} found"
-        one:   "Displaying <b>1</b> %{model}"
-        other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
+        one:   "Mostrando <b>1</b> %{model}"
+        other: "Exibindo <b>&nbsp;%{count}</b> %{model}"
 
-      multi_page: "Displaying %{model} %{from} - %{to} of %{count} in total"
-      multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
+      multi_page: "Exibindo %{model} %{from} - %{to} de %{count} no total"
+      multi_page_html: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b> no total"
+    previous_label: "voltar"
+    next_label: "próxima"
