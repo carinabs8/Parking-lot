@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.1'
 gem 'authlogic'
 gem 'rails3-generators'
-gem 'will_paginate', '~> 3.0.2'
+gem 'will_paginate'
 gem "meta_search"
 gem "paperclip", "~> 2.4"
 gem "serialport", "~> 1.0.4"
