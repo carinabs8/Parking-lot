@@ -1,7 +1,10 @@
+#encoding: UTF-8
 class VacanciesController < ApplicationController
   before_filter :require_user
+  before_filter :exist_map?, :only => [:new, :create]
   
   def index
+    @map = Map.first
     @search = Vacancy.search(params[:search])
     @vacancies = @search.page(params[:page]).order("updated_at DESC")
   end
@@ -61,4 +64,12 @@ class VacanciesController < ApplicationController
     @vacancy.destroy
     redirect_to vacancies_path
   end
+  
+  private
+    def exist_map?
+      unless Map.first
+        flash[:vacancy] = t(:vacancy_without_map)
+        redirect_to vacancies_path(:type => :warning)
+      end
+    end
 end

@@ -5,7 +5,7 @@
   <div id="head" class="clear">
     <h1>Vagas</h1>
     <div id="actions">
-      <%= link_to 'Novo Vaga', new_vacancy_path, :class => "button primary" %>
+      <%= link_to('Novo Vaga', new_vacancy_path, :class => "button primary") if @map %>
     </div>
   </div>
 
@@ -14,8 +14,7 @@
     <%= page_entries_info @vagas, :entry_name => 'registro' %>
   </div>
   <!-- end top table options -->
-  
-  <%= raw show_msg(flash[:client_index], :success) %>
+  <%= raw show_msg(flash[:vacancy], show_type_message(params[:type]))%>
 
   <%= render :partial => "vacancies/partials/vacancies", :locals =>{:vacancies => @vacancies}%>
 
