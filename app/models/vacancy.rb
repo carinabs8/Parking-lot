@@ -16,4 +16,5 @@ class Vacancy < ActiveRecord::Base
   @@per_page = 10
   
   scope :vacancy_by_cod, lambda { |cod| where(:codigo => cod) }
+  scope :by_map, lambda {|maps| where(:map_id => maps)}
 end

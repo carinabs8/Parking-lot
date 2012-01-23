@@ -1,0 +1,78 @@
+<!-- start main -->
+<div id="main" class="clear">
+
+  <div id="head" class="clear">
+    <h1>Relatórios</h1>
+  </div>
+
+  <!-- start top table options -->
+  
+  <%= page_entries_info @status_vacancies, :entry_name => 'registro' %>
+  <% unless @status_vacancies.blank? %>
+    <div id="topOptions" class="clear">
+      <%= link_to make_pdf_reports_path(:time_begin => @time_begin, :time_end => @time_end, :vacancies => @params_vacancies, :format => :pdf) do %>
+        Gerar PDF
+        <%= image_tag('encore/ico/pdf.jpeg')%>
+      <% end %>
+    </div>
+  <% end%>
+    
+  <!-- end top table options -->
+  
+  <%= raw show_msg(flash[:report_index], :success) %>
+
+  <%= render :partial => "status_controlls/partials/reports", :locals =>{:reports => @status_vacancies}%>
+  <%= will_paginate @status_vacancies %>
+  <% if @status_vacancies.blank? %>
+      <%= raw show_msg("Nenhum registro foi encontrado.", :warning) %>
+  <% end %>
+</div>
+<!-- end main -->
+
+<!-- start sidebar -->
+<div id="sidebar">
+  <!-- start filters sidebox -->
+  <div id="boxFirst" class="sidebox clear">
+    <h1>Buscar</h1>
+    <div class="boxContent clear">
+      <%=form_for :status_controll, :as => :search, :url => search_reports_path, :html => {:method => :get, :class => "sideForm"} do |b|%>    
+        <fieldset>
+          <h3>Intervalo</h3>
+          <div class="field clear">
+            <%=b.label t(:time_begin)%>
+            <%=b.datetime_select :time_begin, :start_year => @start_year, :end_year => @end_year, :default => @time_begin%>
+          </div>
+          <div class="field clear">
+            <%=b.label t(:time_end)%>
+            <%=b.datetime_select :time_end, :start_year => @start_year, :end_year => @end_year, :default => @time_end%>
+          </div>  
+          
+          <h3>Mapa</h3>
+          <div class="field clear">
+            <% @maps.each do |map|%>
+              <% if !params[:maps] || (params[:maps] && params[:maps].include?(map.id.to_s))%>
+                <%= b.check_box(:map, {:checked => true, :multiple => true}, map.id, nil) %>
+              <% else %>
+                <%= b.check_box(:map, {:multiple => true}, map.id, nil) %>
+              <% end %>
+              <%= b.label :map, map.codigo %>
+            <% end %>
+          </div>
+          
+          <h3>Vagas</h3>
+          <div class="field clear" id="vacancies_search">
+            <%= render "status_controlls/partials/vacancies", :vacancies => @vacancies %>
+          </div>
+          
+          <div class="field clear">
+            <%=b.submit "Buscar", :class => "button secondary"%>
+          </div>
+        </fieldset>
+      <%end%>
+    </div>
+  </div>
+  <!-- end filters sidebox -->
+
+</div>
+<!-- end sidebar -->
+<%= javascript_include_tag "status_controll" %>

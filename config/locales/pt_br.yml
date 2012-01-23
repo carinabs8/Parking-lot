@@ -182,7 +182,8 @@ pt_br:
       minute: "Minuto"
       second: "Segundo"
   
-  time_begin: Data de Início
+  time_begin: Data de Entrada
+  time_end: Data de Saída
   activerecord:
     models:
       status_controll: "Relatório"

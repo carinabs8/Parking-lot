@@ -1,0 +1,4 @@
+<% vacancies.each do |vacancy|%>
+    <%= check_box(:status_controll, :vacancy, {:checked => true, :multiple => true}, vacancy.id, nil) %>
+  <%= label(:status_controll, :vacancy, vacancy.codigo) %>
+<% end %>
