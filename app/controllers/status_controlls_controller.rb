@@ -1,24 +1,19 @@
-require 'open-uri'
 class StatusControllsController < ApplicationController
   before_filter :require_user
-  before_filter :get_report, :only => [:analytic, :make_pdf]
+  before_filter :get_report, :only => [:analytic, :make_pdf, :make_csv]
   before_filter :get_start_year, :get_end_year
   
   def analytic
   end
   
-  def search
-    param       = params[:status_controll]   
-    time_begin  = param["time_begin(1i)"] + "-" + param['time_begin(2i)'] + "-" + param['time_begin(3i)'] + " " + param['time_begin(4i)'] + ":" + param['time_begin(5i)'] 
-    time_end    = param["time_end(1i)"] + "-" + param['time_end(2i)'] + "-" + param['time_end(3i)'] + " " + param['time_end(4i)'] + ":" + param['time_end(5i)'] 
-    maps        = param[:map].reject(&:blank?) 
-    vacancies   = param[:vacancy].reject(&:blank?) rescue Vacancy.all.map(&:id)
+  def search 
+    time_begin  = StatusControll.get_time_begin(params) 
+    time_end    = StatusControll.get_time_end(params)
+    
+    maps        = params[:status_controll][:map].reject(&:blank?) 
+    vacancies   = params[:status_controll][:vacancy].reject(&:blank?) rescue Vacancy.all.map(&:id)
     
     redirect_to  analytic_reports_path(:time_begin => time_begin, :time_end => time_end, :maps => maps, :vacancies => vacancies)
-  end
-  
-  def make_pdf
-    render :layout => false
   end
   
   def vacancy
@@ -26,6 +21,25 @@ class StatusControllsController < ApplicationController
     @vacancies = Vacancy.by_map(maps.scan(/\w+/))
     render :layout => false
   end
+  
+  def make_pdf
+    render :layout => false
+  end
+  
+  def make_csv
+    report = File.new("new.csv", "w")
+    report.puts "Registro, Inicio, Fim, Vaga, Tempo Total"
+    i = 1
+    linha = ""
+    @status_vacancies.each do |data|
+      linha << "#{i},#{data.timebegin.strftime("%d/%m/%Y as %H:%M:%S")},#{data.time_end.strftime("%d/%m/%Y as %H:%M:%S")},#{data.vacancy.codigo}"
+      
+      report.puts linha
+      i = i+1
+    end
+    report.close
+    send_file "new.csv"
+  end 
   
   private
     def get_report

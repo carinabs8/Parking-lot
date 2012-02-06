@@ -14,6 +14,11 @@
         Gerar PDF
         <%= image_tag('encore/ico/pdf.jpeg')%>
       <% end %>
+      
+      <%= link_to make_csv_reports_path(:time_begin => @time_begin, :time_end => @time_end, :vacancies => @params_vacancies) do %>
+        Exportar para Excell
+        <%= image_tag('encore/ico/pdf.jpeg')%>
+      <% end %>
     </div>
   <% end%>
     
@@ -34,6 +39,7 @@
   <!-- start filters sidebox -->
   <div id="boxFirst" class="sidebox clear">
     <h1>Buscar</h1>
+    
     <div class="boxContent clear">
       <%=form_for :status_controll, :as => :search, :url => search_reports_path, :html => {:method => :get, :class => "sideForm"} do |b|%>    
         <fieldset>

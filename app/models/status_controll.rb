@@ -30,5 +30,15 @@ class StatusControll < ActiveRecord::Base
     def getEndYear
       maximum(:time_end).year
     end
+    
+    def get_time_begin(params={})
+      param = params[:status_controll]  
+      param["time_begin(1i)"] + "-" + param['time_begin(2i)'] + "-" + param['time_begin(3i)'] + " " + param['time_begin(4i)'] + ":" + param['time_begin(5i)']
+    end
+    
+    def get_time_end(params={})
+      param = params[:status_controll]  
+      param["time_end(1i)"] + "-" + param['time_end(2i)'] + "-" + param['time_end(3i)'] + " " + param['time_end(4i)'] + ":" + param['time_end(5i)'] 
+    end
   end
 end
