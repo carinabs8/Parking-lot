@@ -24,11 +24,19 @@ class StatusControll < ActiveRecord::Base
   
   class << self
     def getStartYear
-      minimum(:timebegin).year
+      if !self.minimum(:timebegin).nil?
+        minimum(:timebegin).year 
+      else
+        Time.now.year
+      end
     end
     
     def getEndYear
-      maximum(:time_end).year
+      if !self.maximum(:time_end).nil?
+        maximum(:time_end).year
+      else
+        Time.now.year
+      end
     end
     
     def get_time_begin(params={})
