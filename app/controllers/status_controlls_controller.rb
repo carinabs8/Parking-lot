@@ -30,11 +30,12 @@ class StatusControllsController < ApplicationController
     report = File.new("new.csv", "w")
     report.puts "Registro, Inicio, Fim, Vaga, Tempo Total"
     i = 1
-    linha = ""
     @status_vacancies.each do |data|
-      linha << "#{i},#{data.timebegin.strftime("%d/%m/%Y as %H:%M:%S")},#{data.time_end.strftime("%d/%m/%Y as %H:%M:%S")},#{data.vacancy.codigo}"
+      time_begin = data.timebegin.strftime("%d/%m/%Y as %H:%M:%S")
+      time_end = data.time_end.strftime("%d/%m/%Y as %H:%M:%S")
+      codigo = data.vacancy.codigo
       
-      report.puts linha
+      report.puts "#{i},#{time_begin},#{time_end},#{codigo}"
       i = i+1
     end
     report.close
