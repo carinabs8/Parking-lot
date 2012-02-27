@@ -2,10 +2,13 @@ pt_br:
   vacancy_without_map: "Não se pode criar uma vaga sem ter uma mapa associado!"
   date:
     formats:
+      datetime: "%d/%m/%Y %H:%M"
+      reports: "%d/%m/%Y as %H:%M:%S"
       default: "%d/%m/%Y"
       urls: "%Y-%m-%d"
       short: "%d de %B"
       long: "%d de %B de %Y"
+      
 
     day_names:
       - Domingo

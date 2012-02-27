@@ -1,25 +1,29 @@
 class StatusControllsController < ApplicationController
   before_filter :require_user
   before_filter :get_report, :only => [:analytic, :make_pdf, :make_csv]
-  before_filter :get_start_year, :get_end_year
   
   def analytic
   end
   
-  def search 
-    time_begin  = StatusControll.get_time_begin(params) 
-    time_end    = StatusControll.get_time_end(params)
+  def search
+    time_begin  = params[:status_controll][:time_begin].to_datetime
+    time_end    = params[:status_controll][:time_end].to_datetime
     
-    maps        = params[:status_controll][:map].reject(&:blank?) 
-    vacancies   = params[:status_controll][:vacancy].reject(&:blank?) rescue Vacancy.all.map(&:id)
-    
-    redirect_to  analytic_reports_path(:time_begin => time_begin, :time_end => time_end, :maps => maps, :vacancies => vacancies)
+    unless (params[:status_controll][:map].blank? || params[:status_controll][:vacancy].blank?)
+      maps        = params[:status_controll][:map].reject(&:blank?) 
+      vacancies   = params[:status_controll][:vacancy].reject(&:blank?)
+      redirect_to  analytic_reports_path(:time_begin => time_begin, :time_end => time_end, :maps => maps, :vacancies => vacancies)
+    else
+      get_report
+      flash[:search_error] = 'Entre com pelo menos um mapa e uma vaga!'
+      render :analytic
+    end
   end
   
   def vacancy
-    maps = params[:vacancies].to_s
+    maps = params[:maps].to_s
     @vacancies = Vacancy.by_map(maps.scan(/\w+/))
-    render :layout => false
+    render :layout =>false
   end
   
   def make_pdf
@@ -30,12 +34,15 @@ class StatusControllsController < ApplicationController
     report = File.new("new.csv", "w")
     report.puts "Registro, Inicio, Fim, Vaga, Tempo Total"
     i = 1
+    
     @status_vacancies.each do |data|
-      time_begin = data.timebegin.strftime("%d/%m/%Y as %H:%M:%S")
-      time_end = data.time_end.strftime("%d/%m/%Y as %H:%M:%S")
+      time_begin = data.timebegin.strftime(t("date.formats.reports"))
+      time_end = data.time_end.strftime(t("date.formats.reports"))
       codigo = data.vacancy.codigo
       
-      report.puts "#{i},#{time_begin},#{time_end},#{codigo}"
+      min = (data.time_end.min - data.timebegin.min)
+      hora = (data.time_end.hour - data.timebegin.hour)
+      report.puts "#{i},#{time_begin},#{time_end},#{codigo}, #{hora}:#{min}"
       i = i+1
     end
     report.close
@@ -46,9 +53,10 @@ class StatusControllsController < ApplicationController
     def get_report
       @time_begin = params[:time_begin].to_datetime rescue Time.now
       @time_end   = params[:time_end].to_datetime rescue Time.now   
+      
       @maps       = Map.all
-      @vacancies  = Vacancy.by_map(params[:maps])
-  
+      @vacancies  = Vacancy.by_map(@maps)
+      
       if params[:vacancies]
         @params_vacancies = params[:vacancies] 
       else
@@ -56,13 +64,5 @@ class StatusControllsController < ApplicationController
       end
       
       @status_vacancies = StatusControll.closed.by_time_begin(@time_begin).by_time_end(@time_end).by_vacancies(@params_vacancies).paginate(:page => params[:page])
-    end
-    
-    def get_start_year 
-      @start_year = StatusControll.getStartYear
-    end
-    
-    def get_end_year
-      @end_year = StatusControll.getEndYear
     end
 end
