@@ -51,10 +51,12 @@
     <% if !is_active? "home"%>
       <div id="menu" class="clear">
         <ul>
-          <li class="<%= is_active? "maps" %>"><%=link_to "Gerenciar Mapas", maps_path%></li>
           <% if can? :manage, "vaga", "relatorios" %>
+            <li class="<%= is_active? "maps" %>"><%=link_to "Gerenciar Mapas", maps_path%></li>
             <li class="<%= is_active? "vacancies" %>"><%=link_to " Gerenciar Vagas", vacancies_path%></li>
             <li class="<%= is_active? "status_controlls" %>"><%=link_to "Gerenciar Relatórios", analytic_reports_path%></li>
+          <%else%>
+            <li class="<%= is_active? "maps" %>"><%=link_to "Gerenciar Mapas", user_maps_path%></li>
           <%end%>
         </ul>
       </div>

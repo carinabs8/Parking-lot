@@ -1,10 +1,11 @@
 <table id="tableItems" cellpadding="0" cellspacing="0" width="100%">
   <thead>
     <tr>
-      <th >Registro</th>
-      <th >Inicio</th>
+      <th>Registro</th>
+      <th>Mapa</th>
+      <th>Inicio</th>
       <th>Fim</th>
-      <th >Vaga</th>
+      <th>Vaga</th>
       <th>Tempo Total</th>
     </tr>
   </thead>
@@ -13,6 +14,7 @@
     <% reports.each do |report| %>
       <tr class="<%= cycle('even', 'odd') %>">
         <td align=center ><%= i %></td>
+        <td align=center ><%= report.vacancy.map.codigo %></td>
         <td align=center ><%=report.timebegin.strftime(t("date.formats.reports"))%></td>
         <td align=center ><%= report.time_end.strftime(t("date.formats.reports"))%></td>
         <td align=center ><%= report.vacancy.codigo %></td>

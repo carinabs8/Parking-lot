@@ -1,15 +1,5 @@
-class MapsController < ApplicationController
+class Admin::MapsController < ViewMapsController
   before_filter :require_user, :only => [:new, :create, :update, :destroy, :edit]
-  def index
-    @search = Map.search(params[:search])
-    @maps = @search.page(params[:page]).order("updated_at DESC")
-    @map = Map.new
-  end
-
-  def show
-    @map = Map.where(:codigo => params[:id]).first
-    @vagas = Vacancy.all
-  end
 
   def new
     @map = Map.new
@@ -49,21 +39,5 @@ class MapsController < ApplicationController
     @map = Map.find(params[:id])
     @map.destroy
     redirect_to maps_path
-  end
-  
-  def reload_map
-    @map      = Map.where("id = ?", params[:map_id]).first
-    vacancys_status = []
-    vacancies = params[:vacancies].split(',')
-    statuses = params[:statuses].split(',')
-
-    (0...vacancies.length).each do |i|
-      vacancys_status << [vacancies[i].to_i, statuses[i].to_i]
-    end
-
-    @changed = @map.vacancy_changed?(vacancys_status)
-    respond_to do |format|
-      format.js
-    end
-  end
+  end  
 end

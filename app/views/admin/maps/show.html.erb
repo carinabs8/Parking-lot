@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="sidebox clear" id="vacancy_of_map" map_id="<%=@map.id%>">
-    <%= render :partial => 'maps/partials/vacancies', :locals => {:map => @map} %>
+    <%= render :partial => 'admin/maps/partials/vacancies', :locals => {:map => @map, :available => @available} %>
   </div>
   <!-- end filters sidebox -->
 

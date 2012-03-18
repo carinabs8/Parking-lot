@@ -16,7 +16,7 @@
   <!-- end top table options -->
   <%= raw show_msg(flash[:vacancy], show_type_message(params[:type]))%>
 
-  <%= render :partial => "vacancies/partials/vacancies", :locals =>{:vacancies => @vacancies}%>
+  <%= render :partial => "admin/vacancies/partials/vacancies", :locals =>{:vacancies => @vacancies}%>
 
   <% if !@vagas.nil? && @vagas.length == 0 %>
       <%= raw show_msg("Nenhuma vaga foi encontrada.", :warning) %>

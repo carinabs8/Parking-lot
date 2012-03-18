@@ -1,5 +1,5 @@
 #encoding: UTF-8
-class VacanciesController < ApplicationController
+class Admin::VacanciesController < ApplicationController
   before_filter :require_user
   before_filter :exist_map?, :only => [:new, :create]
   

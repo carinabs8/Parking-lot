@@ -1,21 +1,30 @@
-class StatusControllsController < ApplicationController
+class Admin::StatusControllsController < ApplicationController
   before_filter :require_user
-  before_filter :get_report, :only => [:analytic, :make_pdf, :make_csv]
+  before_filter :analytic_report, :only => [:analytic, :make_pdf, :make_csv]
+  
+  def index
+  end
   
   def analytic
   end
   
+  def daily
+    vacancies = Vacancy.all.map(&:id)
+    @status_vacancies = StatusControll.closed.by_daily.by_vacancies(vacancies).paginate(:page => params[:page])
+  end
+  
   def search
-    time_begin  = params[:status_controll][:time_begin].to_datetime
-    time_end    = params[:status_controll][:time_end].to_datetime
+    time_begin  = params[:status_controll][:time_begin]
+    time_end    = params[:status_controll][:time_end]
+    
     
     unless (params[:status_controll][:map].blank? || params[:status_controll][:vacancy].blank?)
-      maps        = params[:status_controll][:map].reject(&:blank?) 
-      vacancies   = params[:status_controll][:vacancy].reject(&:blank?)
+      maps        = params[:status_controll][:map] 
+      vacancies   = params[:status_controll][:vacancy]
       redirect_to  analytic_reports_path(:time_begin => time_begin, :time_end => time_end, :maps => maps, :vacancies => vacancies)
     else
-      get_report
-      flash[:search_error] = 'Entre com pelo menos um mapa e uma vaga!'
+      analytic_report
+      flash[:analytic_report] = 'Entre com pelo menos um mapa e uma vaga!'
       render :analytic
     end
   end
@@ -50,19 +59,12 @@ class StatusControllsController < ApplicationController
   end 
   
   private
-    def get_report
+    def analytic_report
       @time_begin = params[:time_begin].to_datetime rescue Time.now
       @time_end   = params[:time_end].to_datetime rescue Time.now   
-      
       @maps       = Map.all
       @vacancies  = Vacancy.by_map(@maps)
-      
-      if params[:vacancies]
-        @params_vacancies = params[:vacancies] 
-      else
-        @params_vacancies = Vacancy.all.map(&:id)
-      end
-      
-      @status_vacancies = StatusControll.closed.by_time_begin(@time_begin).by_time_end(@time_end).by_vacancies(@params_vacancies).paginate(:page => params[:page])
+      buscar = {:begin => @time_begin, :end => @time_end, :maps => params[:maps], :vacancies => params[:vacancies]}
+      @status_vacancies = StatusControll.analytic_report(buscar).paginate(:page => params[:page])
     end
 end

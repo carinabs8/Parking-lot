@@ -1,13 +1,18 @@
 <!-- start main -->
+<%= stylesheet_link_tag 'status_controll/report' %>
+
 <div id="main" class="clear">
 
   <div id="head" class="clear">
     <h1>Relatórios</h1>
   </div>
-
+  <div id="topOptions" class="clear">
+      <%= link_to "Relatório diário", daily_reports_path %>
+    </div>
   <!-- start top table options -->
   
   <%= page_entries_info @status_vacancies, :entry_name => 'registro' %>
+  
   <% unless @status_vacancies.blank? %>
     <div id="topOptions" class="clear">
       <%= link_to make_pdf_reports_path(:time_begin => @time_begin, :time_end => @time_end, :vacancies => @params_vacancies, :format => :pdf), :title =>  "Exportar para PDF" do %>
@@ -25,12 +30,12 @@
   <!-- end top table options -->
   
   <%= raw show_msg(flash[:report_index], :success) %>
-  <%= raw show_msg(flash[:search_error], :error) %>
 
-  <%= render :partial => "status_controlls/partials/reports", :locals =>{:reports => @status_vacancies}%>
+  <%= render :partial => "admin/status_controlls/partials/reports", :locals =>{:reports => @status_vacancies}%>
   <%= will_paginate @status_vacancies %>
   <% if @status_vacancies.blank? %>
-      <%= raw show_msg("Nenhum registro foi encontrado.", :warning) %>
+    <%= raw show_msg(flash[:analytic_report], :error) %>
+      <%#= raw show_msg("Nenhum registro foi encontrado.", :warning) %>
   <% end %>
 </div>
 <!-- end main -->
@@ -53,22 +58,25 @@
             <%=b.label t(:time_end)%>
             <%= b.text_field(:time_end, :class => "full", :value => @time_end.strftime(t("date.formats.datetime")))%>
           </div>  
+
           <% unless @maps.blank? %>
             <h3>Mapa</h3>
-            <div class="field clear">
-              <% @maps.each do |map|%>
-              <% if !params[:maps] || (params[:maps] && params[:maps].include?(map.id.to_s))%>
-              <%= b.check_box(:map, {:checked => true, :multiple => true}, map.id, nil) %>
-              <% else %>
-              <%= b.check_box(:map, {:multiple => true}, map.id, nil) %>
-              <% end %>
-              <%= b.label :map, map.codigo %>
-              <% end %>
+            <div class="field clear checkfield">
+              <fieldset>
+                <% @maps.each do |map|%>
+                  <% if !params[:maps] || (params[:maps] && params[:maps].include?(map.id.to_s))%>
+                    <%= b.check_box(:map, {:checked => true, :multiple => true}, map.id, nil) %>
+                  <% else %>
+                    <%= b.check_box(:map, {:multiple => true}, map.id, nil) %>
+                  <% end %>
+                  <%= b.label :map, map.codigo %>
+                <% end %>
+              </fieldset>
             </div>
             <% unless @vacancies.blank? %>
               <h3>Vagas</h3>
-              <div class="field clear" id="vacancies_search">
-                <%= render "status_controlls/partials/vacancies", :vacancies => @vacancies, :params_vacancies => params[:vacancies] %>
+              <div class="field clear checkfield" id="vacancies_search">
+                <%= render "admin/status_controlls/partials/vacancies", :vacancies => @vacancies, :params_vacancies => params[:vacancies] %>
               </div>
             <% else %>
               <h3 class="blank">Não existem vagas cadastrados no sistema</h3>
@@ -76,6 +84,7 @@
           <% else %>
             <h3 class="blank">Não existem mapas cadastrados no sistema</h3>
           <% end %>
+          
           <div class="field clear">
             <%=b.submit "Buscar", :class => "button secondary"%>
           </div>

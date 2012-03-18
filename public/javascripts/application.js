@@ -11,7 +11,7 @@ $(document).ready(function(){
 })
 function get_and_save_coordenates(vacancy_id) {
   var vacancy_id = vacancy_id;
-  
+
   $("#vacancy-"+ vacancy_id).bind('click',function(e){
     var positionX = this.offsetTop;
     var positionY = this.offsetLeft;
@@ -46,7 +46,6 @@ function updateVacancies(){
     indice+= 1;
     
   }).get().join(',');
-  
   $.getScript("/reload_map.js?map_id=" + map_id + "&vacancies=" + vacancies + "&statuses=" + statuses);
   setTimeout(updateVacancies, 5000);
 }

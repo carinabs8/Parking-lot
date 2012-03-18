@@ -9,20 +9,26 @@ ProjetoFinal::Application.routes.draw do
   resources :users
 
   get "auto_complete/maps_list"
-  match '/reload_map' => 'maps#reload_map'
-  resources :maps
-  resources :vacancies
-  resources :status_controlls, :as => :reports, :only => [:analytic, :search] do
-    collection do
-      get :analytic
-      get :search
-      get :make_pdf
-      get :vacancy
-      get :make_csv
+  
+  scope :module => :admin do
+    resources :status_controlls, :as => :reports, :only => [:index] do
+      collection do
+        get :analytic
+        get :search
+        get :make_pdf
+        get :vacancy
+        get :daily
+        get :make_csv
+      end
     end
+    resources :vacancies
+    resources :maps
+    match '/reload_map' => 'maps#reload_map'
+    match '/vacancies/:id/coordenates' => 'vacancies#coordenates'
+    match '/vacancies/update_coordendas/:vacancy_id/:eixo_x/:eixo_y' => 'vacancies#update_coordendas'
   end
-
-  match '/vacancies/:id/coordenates' => 'vacancies#coordenates'
-  match '/vacancies/update_coordendas/:vacancy_id/:eixo_x/:eixo_y' => 'vacancies#update_coordendas'
-
+  namespace :user do
+    resources :maps, :only => [:index, :show, :update_coordenadas]
+    match '/reload_map' => 'maps#reload_map'
+  end
 end
