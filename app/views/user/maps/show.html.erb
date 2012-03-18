@@ -1,0 +1,21 @@
+<!-- start main -->
+<div id="main" class="clear">
+  <!-- start top table options -->
+  <div id="topOptions" class="clear">
+  </div>
+  <!-- end top table options -->
+  <%=image_tag @map.photo.url(:small), :id => "map_image"%>
+</div>
+<!-- end main -->
+
+<div id="sidebar">
+  <div id="head" class="clear">
+    <h1><strong><%= @map.codigo%></strong></h1>
+    <div id="actions">
+    </div>
+  </div>
+  <div class="sidebox clear" id="vacancy_of_map" map_id="<%=@map.id%>">
+    <%= render :partial => 'user/maps/partials/vacancies', :locals => {:map => @map, :available => @available} %>
+  </div>
+  <%= image_tag "concurso-cefet-2011.jpg", :class => "logo"%>
+</div>

@@ -1,0 +1,14 @@
+<h1>Vagas Disponíveis</h2>
+  <span class="total_vagas"><strong><%=available%></strong></span>
+<%map.vacancies.each do |vacancy|%>
+  <p id="map_vacancy">
+    <a id="vacancy-<%=vacancy.id%>" class="vacancies">
+      <%= vacancy_status(vacancy)%>
+    </a>
+  </p>
+  <div id="save_vacancy-<%=vacancy.id%>" class="vacancies" ></div>
+  <% unless vacancy.eixo_x.nil?%>
+    <script>$("#vacancy-<%=vacancy.id%>").offset({ top: <%=vacancy.eixo_x%>, left: <%=vacancy.eixo_y%> });</script>
+  <% end %>
+  
+<%end%>
