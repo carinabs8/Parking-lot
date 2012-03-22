@@ -18,7 +18,7 @@ class Admin::StatusControllsController < ApplicationController
     time_end    = params[:status_controll][:time_end]
     
     
-    unless (params[:status_controll][:map].blank? || params[:status_controll][:vacancy].blank?)
+    unless(params[:status_controll][:vacancy].blank? || params[:status_controll][:map].blank?)
       maps        = params[:status_controll][:map] 
       vacancies   = params[:status_controll][:vacancy]
       redirect_to  analytic_reports_path(:time_begin => time_begin, :time_end => time_end, :maps => maps, :vacancies => vacancies)
@@ -66,5 +66,6 @@ class Admin::StatusControllsController < ApplicationController
       @vacancies  = Vacancy.by_map(@maps)
       buscar = {:begin => @time_begin, :end => @time_end, :maps => params[:maps], :vacancies => params[:vacancies]}
       @status_vacancies = StatusControll.analytic_report(buscar).paginate(:page => params[:page])
+      flash[:analytic_report_blank] = "Nenhum registro foi encontrado." if  @status_vacancies.blank?
     end
 end

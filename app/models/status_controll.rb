@@ -22,6 +22,13 @@ class StatusControll < ActiveRecord::Base
     )
   }
   
+  scope :by_input_hours, lambda{|time_begin, time_end|
+    where(
+      :timebegin => Time.new(time_begin.year, time_begin.month, time_begin.day, time_begin.hour) ..
+                    Time.new(time_end.year, time_end.month, time_end.day, time_end.hour)
+    )  
+  }
+  
   def self.get_current_date
     Time.new(Time.now.year, Time.now.month, Time.now.day, 0, 0)
   end
@@ -34,6 +41,6 @@ class StatusControll < ActiveRecord::Base
   scope :by_vacancies, lambda{|vacancies| where(:vacancy_id => vacancies)}
   
   def self.analytic_report(params={})
-    closed.by_time_begin(params[:begin]).by_time_end(params[:end]).by_vacancies(params[:vacancies] )
+    closed.by_input_hours(params[:begin], params[:end]).by_vacancies(params[:vacancies] )
   end
 end

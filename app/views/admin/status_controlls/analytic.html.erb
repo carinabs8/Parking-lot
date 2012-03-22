@@ -5,25 +5,24 @@
 
   <div id="head" class="clear">
     <h1>Relatórios</h1>
-  </div>
-  <div id="topOptions" class="clear">
-      <%= link_to "Relatório diário", daily_reports_path %>
+    <div id="actions">
+      <a class="button primary" href="<%= reports_path%>" title="Visualizar Relatórios">Voltar</a>
     </div>
-  <!-- start top table options -->
+  </div>
   
   <%= page_entries_info @status_vacancies, :entry_name => 'registro' %>
   
   <% unless @status_vacancies.blank? %>
     <div id="topOptions" class="clear">
-      <%= link_to make_pdf_reports_path(:time_begin => @time_begin, :time_end => @time_end, :vacancies => @params_vacancies, :format => :pdf), :title =>  "Exportar para PDF" do %>
+      <%#= link_to make_pdf_reports_path(:time_begin => @time_begin, :time_end => @time_end, :vacancies => @params_vacancies, :format => :pdf), :title =>  "Exportar para PDF" do %>
         Gerar PDF
         <%= image_tag('encore/ico/pdf.jpeg')%>
-      <% end %>
+      <%# end %>
       
-      <%= link_to make_csv_reports_path(:time_begin => @time_begin, :time_end => @time_end, :vacancies => @params_vacancies), :title =>  "Exportar para Excel" do %>
+      <%#= link_to make_csv_reports_path(:time_begin => @time_begin, :time_end => @time_end, :vacancies => @params_vacancies), :title =>  "Exportar para Excel" do %>
         Gerar CSV
         <%= image_tag('encore/ico/xls.png')%>
-      <% end %>
+      <%# end %>
     </div>
   <% end%>
     
@@ -33,9 +32,10 @@
 
   <%= render :partial => "admin/status_controlls/partials/reports", :locals =>{:reports => @status_vacancies}%>
   <%= will_paginate @status_vacancies %>
-  <% if @status_vacancies.blank? %>
-    <%= raw show_msg(flash[:analytic_report], :error) %>
-      <%#= raw show_msg("Nenhum registro foi encontrado.", :warning) %>
+  <%= raw show_msg(flash[:analytic_report], :error) %>
+  
+  <% unless flash[:analytic_report] %>
+    <%= raw show_msg(flash[:analytic_report_blank], :warning) %>
   <% end %>
 </div>
 <!-- end main -->
@@ -60,19 +60,21 @@
           </div>  
 
           <% unless @maps.blank? %>
-            <h3>Mapa</h3>
-            <div class="field clear checkfield">
+            <h3>Mapas</h3>
               <fieldset>
+                <div class="field clear">
                 <% @maps.each do |map|%>
-                  <% if !params[:maps] || (params[:maps] && params[:maps].include?(map.id.to_s))%>
-                    <%= b.check_box(:map, {:checked => true, :multiple => true}, map.id, nil) %>
-                  <% else %>
-                    <%= b.check_box(:map, {:multiple => true}, map.id, nil) %>
-                  <% end %>
-                  <%= b.label :map, map.codigo %>
+                  <div class="maps">
+                    <% if !params[:maps] || (params[:maps] && params[:maps].include?(map.id.to_s))%>
+                      <%= b.check_box(:map, {:checked => true, :multiple => true}, map.id, nil) %>
+                    <% else %>
+                      <%= b.check_box(:map, {:multiple => true}, map.id, nil) %>
+                    <% end %>
+                    <%= b.label :map, map.codigo %>
+                  </div>
                 <% end %>
+              </div>
               </fieldset>
-            </div>
             <% unless @vacancies.blank? %>
               <h3>Vagas</h3>
               <div class="field clear checkfield" id="vacancies_search">

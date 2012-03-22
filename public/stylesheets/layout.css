@@ -716,8 +716,8 @@ img.thumbnail {
     background: transparent url(../images/encore/bgQuickLink.gif) repeat-x 0 0 repeat-y 0 0;
 }
 .quickLink img {
-    width: 50px;
-    height: 50px;
+    width: 50%;
+    height: 50%;
     margin: 13px 0;
     position: center;
     text-align: absolute;

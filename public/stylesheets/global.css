@@ -68,5 +68,8 @@ table, thead, tbody, tfoot, tr, th, td, input, select, textarea {
   visibility: hidden;
   content: "";
 }
-h3.blank{color:red;}
+h3.blank, .red {
+  color:red;
+}
+
 .vacancy_cod{color:#F0FFF0; background: black;}

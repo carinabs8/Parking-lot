@@ -1,9 +1,14 @@
 <%params_vacancies = params[:vacancies].to_s%>
 <% vacancies.each do |vacancy|%>
-  <%if !params[:vacancies] || (params[:vacancies] && params_vacancies.include?(vacancy.id.to_s))%>
-    <%= check_box(:status_controll, :vacancy, {:checked => true, :multiple => true}, vacancy.id, nil) %>
-  <% else %>
-    <%= check_box(:status_controll, :vacancy, {:multiple => true}, vacancy.id, nil) %>
-  <% end %>
-  <%= label(:status_controll, :vacancy, vacancy.codigo) %>
+	<div class="maps">
+	  <%if !params[:vacancies] || (params[:vacancies] && params_vacancies.include?(vacancy.id.to_s))%>
+	    <%= check_box(:status_controll, :vacancy, {:checked => true, :multiple => true}, vacancy.id, nil) %>
+	  <% else %>
+	    <%= check_box(:status_controll, :vacancy, {:multiple => true}, vacancy.id, nil) %>
+	  <% end %>
+	  <%= label(:status_controll, :vacancy, vacancy.codigo) %>
+	</div>
+<% end %>
+<% if vacancies.blank? %>
+	<p class="red">Não existem vagas associadas a esse mapa</p>
 <% end %>

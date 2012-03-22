@@ -15,10 +15,10 @@ ProjetoFinal::Application.routes.draw do
       collection do
         get :analytic
         get :search
-        get :make_pdf
         get :vacancy
         get :daily
-        get :make_csv
+        #get :make_pdf
+        #get :make_csv
       end
     end
     resources :vacancies

@@ -1,4 +1,4 @@
-checkbox {
-  
-  float:left !important;
+fieldset .maps,  fieldset .vacancies{ 
+    float: left;
+    width: auto;
 }
