@@ -9,38 +9,29 @@ class StatusControll < ActiveRecord::Base
   BUSY        = "2"
   
   scope :closed, where("time_end is NOT NULL")
-  scope :by_time_begin, lambda{ |time_begin|
-    where(
-    :timebegin => Time.new(time_begin.year, time_begin.month, 1, 0, 0)..
-    Time.new(time_begin.year, time_begin.month, time_begin.day, time_begin.hour, time_begin.min)
-    )
-  }
-  
-  scope :by_time_end, lambda{ |time_end|
-    where(
-    :time_end => Time.new(time_end.year, time_end.month, 1, 0, 0)..Time.new(time_end.year, time_end.month, time_end.day, time_end.hour, time_end.min)
-    )
-  }
-  
+
   scope :by_input_hours, lambda{|time_begin, time_end|
     where(
       :timebegin => Time.new(time_begin.year, time_begin.month, time_begin.day, time_begin.hour) ..
                     Time.new(time_end.year, time_end.month, time_end.day, time_end.hour)
     )  
   }
-  
-  def self.get_current_date
-    Time.new(Time.now.year, Time.now.month, Time.now.day, 0, 0)
-  end
-  
+
   scope :by_daily, where(
-      :timebegin =>  get_current_date .. (Time.new(Time.now.year, Time.now.month, Time.now.day, Time.now.hour, Time.now.min)),
-      :time_end => get_current_date .. (Time.new(Time.now.year, Time.now.month, Time.now.day, Time.now.hour, Time.now.min))
-    )
+      :timebegin =>  (Time.now.at_beginning_of_day) .. (Time.now)
+      )
     
   scope :by_vacancies, lambda{|vacancies| where(:vacancy_id => vacancies)}
   
   def self.analytic_report(params={})
-    closed.by_input_hours(params[:begin], params[:end]).by_vacancies(params[:vacancies] )
+    closed.by_input_hours(params[:begin], params[:end]).by_vacancies(params[:vacancies])
+  end
+
+  def self.frequency_report(params={})
+    closed.by_input_hours(params[:begin], params[:end]).by_vacancies(params[:vacancies]).select('vacancy_id, count(id) as total_vagas').group(:vacancy_id)
+  end
+
+  def self.idleness_report(params={})
+    closed.by_input_hours(params[:begin], params[:end]).by_vacancies(params[:vacancies]).select('vacancy_id, count(id) as total_vagas').where(:current_status => AVAILABLE).group(:vacancy_id)
   end
 end

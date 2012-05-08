@@ -1,0 +1,51 @@
+<div id="boxFirst" class="sidebox clear">
+  <h1>Buscar</h1>
+  
+  <div class="boxContent clear">
+    <%=form_tag url, :method => :get do %>    
+      <fieldset>
+        <h3>Intervalo</h3>
+        <div class="field clear">
+          <%= label_tag t(:time_begin)%>
+          <%= text_field_tag(:time_begin, l(@time_begin, :format => :datetime), :class => "full")%>
+        </div>
+        <div class="field clear">
+          <%= label_tag t(:time_end)%>
+          <%= text_field_tag(:time_end, l(@time_end, :format => :datetime), :class => "full")%>
+        </div>  
+
+        <% unless @maps.blank? %>
+          <h3>Mapas</h3>
+            <fieldset>
+              <div class="field clear">
+              <% @maps.each do |map|%>
+                <div class="maps">
+                  <% if !params[:map] || (params[:map] && params[:map].include?(map.id.to_s))%>
+                    <%= check_box_tag("map[]", map.id, :checked => true, :multiple => true ) %>
+                  <% else %>
+                    <%= check_box_tag("map[]", map.id ) %>
+                  <% end %>
+                  <%= label_tag :map, map.codigo %>
+                </div>
+              <% end %>
+            </div>
+            </fieldset>
+          <% unless @vacancies.blank? %>
+            <h3>Vagas</h3>
+            <div class="field clear checkfield" id="vacancies_search">
+              <%= render "admin/status_controlls/partials/vacancies", :vacancies => @vacancies, :params_vacancies => params[:vacancy] %>
+            </div>
+          <% else %>
+            <h3 class="blank">Não existem vagas cadastrados no sistema</h3>
+          <% end %>
+        <% else %>
+          <h3 class="blank">Não existem mapas cadastrados no sistema</h3>
+        <% end %>
+        
+        <div class="field clear">
+          <%= submit_tag "Buscar", :class => "button secondary"%>
+        </div>
+      </fieldset>
+    <%end%>
+  </div>
+</div>

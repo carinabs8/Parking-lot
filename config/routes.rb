@@ -14,10 +14,11 @@ ProjetoFinal::Application.routes.draw do
     resources :status_controlls, :as => :reports, :only => [:index] do
       collection do
         get :analytic
-        get :search
+        get :frequency
+        get :idleness
         get :vacancy
-        get :daily
-        #get :make_pdf
+        get :analytic_pdf
+        get :frequency_pdf
         #get :make_csv
       end
     end

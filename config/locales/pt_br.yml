@@ -1,8 +1,9 @@
 pt_br:
   vacancy_without_map: "Não se pode criar uma vaga sem ter uma mapa associado!"
+  entry_blank: "Nenhum registro encontrado!"
+  require_vacancy_map: 'Entre com pelo menos um mapa e uma vaga!'
   date:
     formats:
-      datetime: "%d/%m/%Y %H:%M"
       reports: "%d/%m/%Y as %H:%M:%S"
       default: "%d/%m/%Y"
       urls: "%Y-%m-%d"
@@ -65,6 +66,7 @@ pt_br:
       default: "%A, %d de %B de %Y, %H:%M h"
       short: "%d/%m, %H:%M h"
       long: "%A, %d de %B de %Y, %H:%M h"
+      datetime: "%d/%m/%Y %H:%M"
     am: ''
     pm: ''
 

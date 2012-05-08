@@ -1,23 +1,22 @@
-<!-- start main -->
 <%= stylesheet_link_tag 'status_controll/report' %>
-
 <div id="main" class="clear">
 
   <div id="head" class="clear">
-    <h1>Relatório Detalhado</h1>
+    <h1>Relatório por tempo de ocupação</h1>
     <div id="actions">
       <a class="button primary" href="<%= reports_path%>" title="Visualizar Relatórios">Voltar</a>
     </div>
   </div>
+  <!-- start top table options -->
   
-  <%= page_entries_info @status_vacancies, :entry_name => 'registro' %>
+  <%#= page_entries_info @status_vacancies, :entry_name => 'registro' %>
   
   <% unless @status_vacancies.blank? %>
     <div id="topOptions" class="clear">
-      <%= link_to analytic_pdf_reports_path(:time_begin => @time_begin, :time_end => @time_end, :vacancy => params[:vacancy] , :format => :pdf), :title =>  "Exportar para PDF" do %>
-        Gerar PDF
-        <%= image_tag('encore/ico/pdf.jpeg')%>
-      <% end %>
+    <%= link_to frequency_pdf_reports_path(:time_begin => @time_begin, :time_end => @time_end, :vacancy => params[:vacancy], :format => :pdf), :title =>  "Exportar para PDF" do %>
+      Gerar PDF
+      <%= image_tag('encore/ico/pdf.jpeg')%>
+    <% end %>
       
       <%#= link_to make_csv_reports_path(:time_begin => @time_begin, :time_end => @time_end, :vacancies => @params_vacancies), :title =>  "Exportar para Excel" do %>
         Gerar CSV
@@ -25,14 +24,15 @@
       <%# end %>
     </div>
   <% end%>
-
-  <%= render :partial => "admin/status_controlls/partials/reports", :locals =>{:reports => @status_vacancies}%>
-  <%= will_paginate @status_vacancies %>
-  <%= raw show_msg(flash[:analytic_report], :error) %>
+    
+  <%= render :partial => "admin/status_controlls/partials/frequency_reports.html", :locals =>{:reports => @status_vacancies }%>
   <%= raw show_msg(flash[:analytic_report_blank], :warning) %>
+  <%= raw show_msg(flash[:analytic_report], :error) %>
 </div>
+<!-- end main -->
 
 <div id="sidebar">
-  <%= render :partial => "admin/status_controlls/partials/busca", :locals => {:url => analytic_reports_path} %>
+  <%= render :partial => "admin/status_controlls/partials/busca", :locals => {:url => frequency_reports_path} %>
 </div>
+<!-- end sidebar -->
 <%= javascript_include_tag "status_controll" %>

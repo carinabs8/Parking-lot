@@ -1,41 +1,53 @@
 class Admin::StatusControllsController < ApplicationController
   before_filter :require_user
-  before_filter :analytic_report, :only => [:analytic, :make_pdf, :make_csv]
+  before_filter :make_report, :only => [:analytic, :frequency, :idleness]
   
   def index
   end
   
   def analytic
-  end
-  
-  def daily
-    vacancies = Vacancy.all.map(&:id)
-    @status_vacancies = StatusControll.closed.by_daily.by_vacancies(vacancies).paginate(:page => params[:page])
-  end
-  
-  def search
-    time_begin  = params[:status_controll][:time_begin]
-    time_end    = params[:status_controll][:time_end]
-    
-    
-    unless(params[:status_controll][:vacancy].blank? || params[:status_controll][:map].blank?)
-      maps        = params[:status_controll][:map] 
-      vacancies   = params[:status_controll][:vacancy]
-      redirect_to  analytic_reports_path(:time_begin => time_begin, :time_end => time_end, :maps => maps, :vacancies => vacancies)
-    else
-      analytic_report
-      flash[:analytic_report] = 'Entre com pelo menos um mapa e uma vaga!'
-      render :analytic
+    @status_vacancies = StatusControll.analytic_report(@buscar).paginate(:page => params[:page])
+
+    if params[:time_begin] && (params[:vacancy].blank? || params[:map].blank?)
+      flash[:analytic_report] = t(:require_vacancy_map)
+    elsif @status_vacancies.blank?
+      flash[:analytic_report_blank] = t(:entry_blank)        
     end
   end
   
+  def frequency
+    @status_vacancies = StatusControll.frequency_report(@buscar)
+    if params[:time_begin] && (params[:vacancy].blank? || params[:map].blank?)
+      flash[:analytic_report] = t(:require_vacancy_map)
+    elsif @status_vacancies.blank?
+      flash[:analytic_report_blank] = t(:entry_blank)      
+    end
+  end
+  
+  def idleness
+    @status_vacancies = StatusControll.idleness_report(@buscar)
+    if params[:time_begin] && (params[:vacancy].blank? || params[:map].blank?)
+      flash[:analytic_report] = t(:require_vacancy_map)
+    elsif @status_vacancies.blank?
+      flash[:analytic_report_blank] = t(:entry_blank)      
+    end
+  end
+
   def vacancy
-    maps = params[:maps].to_s
+    maps = params[:map].to_s
     @vacancies = Vacancy.by_map(maps.scan(/\w+/))
     render :layout =>false
   end
+
+  def analytic_pdf
+    make_report
+    @status_vacancies = StatusControll.analytic_report(@buscar)
+    render :layout => false
+  end
   
-  def make_pdf
+  def frequency_pdf
+    make_report
+    @status_vacancies = StatusControll.frequency_report(@buscar)
     render :layout => false
   end
   
@@ -59,13 +71,11 @@ class Admin::StatusControllsController < ApplicationController
   end 
   
   private
-    def analytic_report
+    def make_report
       @time_begin = params[:time_begin].to_datetime rescue Time.now
-      @time_end   = params[:time_end].to_datetime rescue Time.now   
+      @time_end   = params[:time_end].to_datetime rescue Time.now
       @maps       = Map.all
       @vacancies  = Vacancy.by_map(@maps)
-      buscar = {:begin => @time_begin, :end => @time_end, :maps => params[:maps], :vacancies => params[:vacancies]}
-      @status_vacancies = StatusControll.analytic_report(buscar).paginate(:page => params[:page])
-      flash[:analytic_report_blank] = "Nenhum registro foi encontrado." if  @status_vacancies.blank?
+      @buscar = {:begin => @time_begin, :end => @time_end, :maps => params[:map], :vacancies => params[:vacancy]}
     end
 end
