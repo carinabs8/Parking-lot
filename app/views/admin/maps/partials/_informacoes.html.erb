@@ -13,8 +13,8 @@
         <td style="text-align:left;"><%= link_to map.codigo, map_path(map.codigo), :title=> "Visualizar mapa #{map.codigo}" %></td>
         <% if current_user %>
           <td>
-            <%= link_to image_tag('encore/ico/icoEdit.png'), edit_map_path(map) %>
-            <%= link_to image_tag('encore/ico/icoDelete.png'), map, :confirm => "Todos os dados relacionados a este mapa incluindo relatórios e vagas serão apagados permanentemente! Tem certeza que deseja excluir? ", :method => :delete, :id=> "excluir_map" %>
+            <%= link_to image_tag('encore/ico/icoEdit.png'), edit_map_path(map), :title => "Alterar" %>
+            <%= link_to image_tag('encore/ico/icoDelete.png'), map, :confirm => "Todos os dados relacionados a este mapa incluindo relatórios e vagas serão apagados permanentemente! Tem certeza que deseja excluir? ", :method => :delete, :id=> "excluir_map", :title => "Excluir" %>
           </td>
         <% end %>
       </tr>

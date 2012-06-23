@@ -14,10 +14,10 @@
         <td style="text-align:left;"><%= link_to vacancy.codigo, vacancy_path(vacancy.codigo) %></td>
         <td style="text-align:left;"><%= link_to vacancy.map.codigo, map_path(vacancy.map.codigo) %></td>
         <td>
-          <%= link_to image_tag("encore/ico/icoEdit.png"), edit_vacancy_path(vacancy.codigo), :id=> "alterar_vaga" %>
+          <%= link_to image_tag("encore/ico/icoEdit.png"), edit_vacancy_path(vacancy.codigo), :id=> "alterar_vaga", :title => "Alterar" %>
         </td>
         <td>
-          <%= link_to image_tag('encore/ico/icoDelete.png'), vacancy, :confirm => "Todos os dados relacionados a esta vaga incluindo relatórios serão apagados permanentemente! Tem certeza que deseja excluir? ", :method => :delete, :id=> "excluir_client" %>
+          <%= link_to image_tag('encore/ico/icoDelete.png'), vacancy, :confirm => "Todos os dados relacionados a esta vaga incluindo relatórios serão apagados permanentemente! Tem certeza que deseja excluir? ", :method => :delete, :id=> "excluir_client", :title => "Excluir" %>
         </td>
       </tr>
     <% end %>

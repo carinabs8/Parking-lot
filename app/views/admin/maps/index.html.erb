@@ -6,9 +6,9 @@
     <h1>Mapas</h1>
     <% if can? :manage, "map" %>
       <div id="actions">
-        <%= link_to "Adicionar mapa", "#", :id => 'dialog_modal', :class => "button primary" %>
+        <%= link_to "Adicionar", "#", :id => 'dialog_modal', :class => "button primary" %>
         <div id="map" title="Estacionamento" style="display:none;">
-          <%= render 'admin/maps/partials/form', :map => @map, :legend => "Cadastro de Mapa"%>
+          <%= render 'admin/maps/partials/form', :map => @map, :legend => "Cadastrar Mapa"%>
         </div>
       </div>
     <% end %>
