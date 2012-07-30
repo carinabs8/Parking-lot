@@ -32,12 +32,7 @@ class Admin::VacanciesController < ApplicationController
     end
   end
 
-  def coordenates
-    @vacancy = Vacancy.find(params[:id])
-  end
-
   def update_coordendas
-    
     @vacancy = Vacancy.find(params[:vacancy_id])
     @vacancy.eixo_x = params[:eixo_x]
     @vacancy.eixo_y = params[:eixo_y]

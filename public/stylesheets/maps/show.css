@@ -1,0 +1,20 @@
+#div_success {
+	height: 38px;
+	margin: 0 0 5px;
+	display: block;
+}
+
+div[id^='map_'][id$='_photo'], div[id^='map_'][id$='_photo'] img {
+	width:inherit;
+	height:inherit;
+}
+
+span[id^='original_vacancy_'] *{
+	background: none;
+	color: #000000;
+	border:none;
+}
+
+#vacancy_of_map h2 {
+	margin-bottom: 10px;
+}

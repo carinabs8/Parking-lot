@@ -4,31 +4,26 @@
   <div id="head" class="clear">
   <h1>Mapa do Estacionamento <%= @map.codigo%></h1>
     <div id="actions">
+      <a href="javascript:history.go(-1);" class="button primary">Voltar</a>
+      <%= link_to "Editar", edit_map_path(@map), class: "button primary"%>
     </div>
   </div>
 
-  <!-- start top table options -->
-  <div id="topOptions" class="clear">
-  </div>
   <!-- end top table options -->
-
-  <%= raw show_msg(flash[:success], :success) %>
-  <%= raw show_msg(flash[:error], :errors) %>
-
-  <%=image_tag @map.photo.url(:small)%>
+  <div id="div_success">
+    <p>
+    <%= raw show_msg(flash[:success], :success) %>
+    <%= raw show_msg(flash[:error], :errors) %>
+    </p>
+  </div>
+  <div id ="map_<%=@map.id%>_photo">
+    <%=image_tag @map.photo.url(:small) %>
+  </div>
 </div>
 <!-- end main -->
 
 <div id="sidebar">
   <!-- start filters sidebox -->
-  <div id="boxFirst" class="sidebox clear">
-    <h2>Ações</h2>
-    <div>
-      <a href="javascript:history.go(-1);">Voltar</a>
-      |
-      <%= link_to "Editar", edit_map_path(@map) %>
-    </div>
-  </div>
   <div class="sidebox clear" id="vacancy_of_map" map_id="<%=@map.id%>">
     <%= render :partial => 'admin/maps/partials/vacancies', :locals => {:map => @map, :available => @available} %>
   </div>
@@ -36,3 +31,21 @@
 
 </div>
 <!-- end sidebar -->
+<script type="text/javascript">
+  $("div[id^=update_coordenates_]").draggable({containment: "#" + $("div[id^='map_'][id$='_photo']").attr('id')});
+
+  $("div[id^=update_coordenates_]").mouseup(function(){
+    var positionX = $(this).css("top");
+    var positionY = $(this).css("left");
+    var vacancy_id = $(this).attr("data-vacancy");
+    var cod_vaga = $("#"+ $(this).attr("id")+ " span").text();
+
+    if (positionX != "" && positionY != "" && vacancy_id != "") {
+      $.post("/vacancies/update_coordendas/"+ vacancy_id + "/" + positionX +"/"+ positionY);
+      $("#div_success p").html('<%= raw show_msg("A vaga:'+cod_vaga+ ' foi atualizada com sucesso!", :success) %>').slideDown().delay(4000).slideUp();
+    }
+  });
+</script>
+<%= content_for :estilos do%>
+  <%= stylesheet_link_tag 'maps/show' %>
+<%end%>
