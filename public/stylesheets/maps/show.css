@@ -17,4 +17,5 @@ span[id^='original_vacancy_'] *{
 
 #vacancy_of_map h2 {
 	margin-bottom: 10px;
+	font-size: 22px;
 }

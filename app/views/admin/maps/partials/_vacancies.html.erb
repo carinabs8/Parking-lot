@@ -1,4 +1,7 @@
 <h2>Vagas</h2>
+<% if (map.vacancies.map(&:eixo_x)-[nil]).length.zero? %>
+  <%= show_msg("Para manipular a vaga é necessário a selecionar e arrastar para o lugar desejado.", :message) %>
+<% end %> 
 <%map.vacancies.each do |vacancy|%>
 <% unless vacancy.eixo_x.nil? %>
   <p id="map_vacancy">

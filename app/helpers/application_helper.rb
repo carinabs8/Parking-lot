@@ -14,7 +14,7 @@ module ApplicationHelper
                when :message
                  "msgInfo"
              end
-      "<div id=\"#{id}\" class=\"message\">#{text}</div>"
+     raw "<div id=\"#{id}\" class=\"message\">#{text}</div>"
     end
   end
 
