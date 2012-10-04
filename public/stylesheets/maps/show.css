@@ -19,3 +19,7 @@ span[id^='original_vacancy_'] *{
 	margin-bottom: 10px;
 	font-size: 22px;
 }
+
+.update_coordenates_of_vacancy, div[id^='map_'][id$='_photo'] > .update_coordenates_of_vacancy > div[id^='update_vacancy'] {
+	position: absolute;
+}

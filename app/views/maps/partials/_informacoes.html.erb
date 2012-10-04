@@ -1,0 +1,17 @@
+<table id="tableItems" cellpadding="0" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th style="width:500px;text-align:left;">Mapa</th>
+      <% if current_user %>
+        <th colspan="2" style="width: 60px;">Ações</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% maps.each do |map| %>
+      <tr class="<%= cycle('even', 'odd') %>">
+        <td style="text-align:left;"><%= link_to map.codigo, user_map_path(map.codigo), :title=> "Visualizar mapa #{map.codigo}" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

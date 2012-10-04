@@ -2,17 +2,6 @@
 <% if (map.vacancies.map(&:eixo_x)-[nil]).length.zero? %>
   <%= show_msg("Para manipular a vaga é necessário a selecionar e arrastar para o lugar desejado.", :message) %>
 <% end %> 
-<%map.vacancies.each do |vacancy|%>
-<% unless vacancy.eixo_x.nil? %>
-  <p id="map_vacancy">
-    <span id="original_vacancy_<%=vacancy.id%>">
-      <%= vacancy_status(vacancy) unless vacancy.eixo_x.nil?%>
-    </span>
-  </p>
-  <% end %>
-<%end%>
 <%map.vacancies.each do |vacancy| %>
-  <div id="update_coordenates_<%= vacancy.id %>" style= "<%=vacancy.eixo_x.blank? ? "" :  "top: #{vacancy.eixo_x}; left: #{vacancy.eixo_y};" %>" , data-vacancy= <%=vacancy.id%>>
-    <%= vacancy_status(vacancy)%>
-  </div>
+  <%= link_to_add_vacancy(vacancy, true)%>
 <% end %>

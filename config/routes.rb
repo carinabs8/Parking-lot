@@ -19,11 +19,15 @@ ProjetoFinal::Application.routes.draw do
         get :vacancy
         get :analytic_pdf
         get :frequency_pdf
-        #get :make_csv
+      end
+    end
+    resources :maps do
+      collection do
+        get :add_vacancy
       end
     end
     resources :vacancies
-    resources :maps
+
     match '/reload_map' => 'maps#reload_map'
     match '/vacancies/update_coordendas/:vacancy_id/:eixo_x/:eixo_y' => 'vacancies#update_coordendas', :via => [:post, :put]
   end

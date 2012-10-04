@@ -39,5 +39,10 @@ class Admin::MapsController < ViewMapsController
     @map = Map.find(params[:id])
     @map.destroy
     redirect_to maps_path
-  end  
+  end
+
+  def add_vacancy
+    @vacancy = Vacancy.where(id: params[:vacancy_id]).first
+    render layout: nil
+  end
 end
