@@ -17,10 +17,7 @@
     </p>
   </div>
   <div id ="map_<%=@map.id%>_photo" style="position:relative;">
-    <%=image_tag @map.photo.url(:small) %>
-    <% @map.vacancies.each do |vacancy| %>
-      <%= link_to_add_vacancy(vacancy)%>
-    <% end %>
+    <%= render partial: "admin/maps/partials/posicionamento_das_vagas_no_mapa", locals: {map: @map} %>
   </div>
 </div>
 <!-- end main -->
@@ -35,19 +32,7 @@
 </div>
 <!-- end sidebar -->
 <%= javascript_include_tag "admin/maps"%>
-<script type="text/javascript">
-  $(".change_vacancy_coordenate").draggable({containment: "#" + $("div[id^='map_'][id$='_photo']").attr('id')});
-  $(".change_vacancy_coordenate").mouseup(function(){
-    var positionX = $(this).css("top");
-    var positionY = $(this).css("left");
-    var vacancy_id = $(this).attr("data-vacancy");
-    var cod_vaga = $(".change_vacancy_coordenate #update_vacancy_"+ vacancy_id + " span").text();
-    if (positionX != "" && positionY != "" && vacancy_id != "") {
-      $.post("/vacancies/update_coordendas/"+ vacancy_id + "/" + positionX +"/"+ positionY);
-      $("#div_success p").html('<%= raw show_msg("A vaga: <b>'+cod_vaga+ ' </b>foi atualizada com sucesso!", :success) %>').slideDown().delay(4000).slideUp();
-    }
-  });
-</script>
+<%= render partial: '/admin/maps/partials/javascript' %> 
 
 <%= content_for :estilos do%>
   <%= stylesheet_link_tag 'maps/show' %>

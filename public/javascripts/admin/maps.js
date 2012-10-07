@@ -8,6 +8,7 @@ $(function actived_vacancys_link(){
 function adicionaVacancyAoMap(vacancy){
 	$.get("/maps/add_vacancy", { vacancy_id: vacancy.attr('data-vacancy')}, function(data){
 		$("#" + $("div[id^='map_'][id$='_photo']").attr('id')).append(data);
+		vacancy.removeAttr("href");
 		vacancy.unbind("click");
 		vacancy.removeClass("adiciona_vacancy_ao_map");
 	});

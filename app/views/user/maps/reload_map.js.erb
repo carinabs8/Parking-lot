@@ -1,1 +1,2 @@
 $("#vacancy_of_map").html("<%= raw escape_javascript(render :partial => 'user/maps/partials/vacancies', :locals => {:map => @map, :available => @available})%>");
+$("div[id^='map_'][id$='_photo']").html("<%= raw escape_javascript(render :partial => 'user/maps/partials/posicionamento_das_vagas_no_mapa', :locals => {:map => @map})%>");

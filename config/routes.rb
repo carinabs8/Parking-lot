@@ -26,10 +26,13 @@ ProjetoFinal::Application.routes.draw do
         get :add_vacancy
       end
     end
-    resources :vacancies
+    resources :vacancies do
+      collection do
+        post :update_coordenadas
+      end
+    end
 
     match '/reload_map' => 'maps#reload_map'
-    match '/vacancies/update_coordendas/:vacancy_id/:eixo_x/:eixo_y' => 'vacancies#update_coordendas', :via => [:post, :put]
   end
   namespace :user do
     resources :maps, :only => [:index, :show, :update_coordenadas]

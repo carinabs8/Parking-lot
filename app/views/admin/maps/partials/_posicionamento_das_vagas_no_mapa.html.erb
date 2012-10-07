@@ -1,0 +1,8 @@
+<%=image_tag map.photo.url(:small) %>
+<% map.vacancies.each do |vacancy| %>
+  <%unless (vacancy.eixo_x.blank? || vacancy.eixo_y.blank?) %>
+    <%= link_to_add_vacancy(vacancy)%>
+  <% end %>
+<% end %>
+<%= javascript_include_tag "admin/maps"%>
+<%= render partial: '/admin/maps/partials/javascript' %>

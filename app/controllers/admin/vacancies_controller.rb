@@ -32,12 +32,9 @@ class Admin::VacanciesController < ApplicationController
     end
   end
 
-  def update_coordendas
-    @vacancy = Vacancy.find(params[:vacancy_id])
-    @vacancy.eixo_x = params[:eixo_x]
-    @vacancy.eixo_y = params[:eixo_y]
-    
-    @vacancy.save!
+  def update_coordenadas
+    @vacancy = Vacancy.where(id: params[:vacancy_id]).first
+    @vacancy.update_attributes(eixo_x: params[:eixo_x], eixo_y: params[:eixo_y])
     respond_to do |format|
       format.js {render :layout => false}
     end

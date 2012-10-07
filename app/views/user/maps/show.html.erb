@@ -4,7 +4,9 @@
   <div id="topOptions" class="clear">
   </div>
   <!-- end top table options -->
-  <%=image_tag @map.photo.url(:small), :id => "map_image"%>
+  <div id ="map_<%=@map.id%>_photo" style="position:relative;">
+    <%= render partial: "user/maps/partials/posicionamento_das_vagas_no_mapa", locals: {map: @map} %>
+  </div>
 </div>
 <!-- end main -->
 

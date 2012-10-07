@@ -1,3 +1,4 @@
 <% if @changed == true%>
   $("#vacancy_of_map").html("<%= raw escape_javascript(render :partial => 'admin/maps/partials/vacancies', :locals => {:map => @map})%>");
+  $("div[id^='map_'][id$='_photo']").html("<%= raw escape_javascript(render :partial => 'admin/maps/partials/posicionamento_das_vagas_no_mapa', :locals => {:map => @map})%>");
 <% end %>
