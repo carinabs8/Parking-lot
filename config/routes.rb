@@ -19,6 +19,7 @@ ProjetoFinal::Application.routes.draw do
         get :vacancy
         get :analytic_pdf
         get :frequency_pdf
+        get :idleness_pdf
       end
     end
     resources :maps do

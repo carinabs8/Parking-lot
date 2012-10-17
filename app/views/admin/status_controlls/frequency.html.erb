@@ -13,15 +13,10 @@
   
   <% unless @status_vacancies.blank? %>
     <div id="topOptions" class="clear">
-    <%= link_to frequency_pdf_reports_path(:time_begin => @time_begin, :time_end => @time_end, :vacancy => params[:vacancy], :format => :pdf), :title =>  "Exportar para PDF" do %>
-      Gerar PDF
-      <%= image_tag('encore/ico/pdf.jpeg')%>
-    <% end %>
-      
-      <%#= link_to make_csv_reports_path(:time_begin => @time_begin, :time_end => @time_end, :vacancies => @params_vacancies), :title =>  "Exportar para Excel" do %>
-        Gerar CSV
-        <%= image_tag('encore/ico/xls.png')%>
-      <%# end %>
+      <%= link_to frequency_pdf_reports_path(:time_begin => @time_begin, :time_end => @time_end, :vacancy => params[:vacancy], :format => :pdf), :title =>  "Exportar para PDF" do %>
+        Gerar PDF
+        <%= image_tag('encore/ico/pdf.jpeg')%>
+      <% end %>
     </div>
   <% end%>
     

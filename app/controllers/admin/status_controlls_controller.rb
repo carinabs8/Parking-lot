@@ -50,6 +50,12 @@ class Admin::StatusControllsController < ApplicationController
     @status_vacancies = StatusControll.frequency_report(@buscar)
     render :layout => false
   end
+
+  def idleness_pdf
+    make_report
+    @status_vacancies = StatusControll.idleness_report(@buscar)
+    render :layout => false
+  end
   
   def make_csv
     report = File.new("new.csv", "w")
